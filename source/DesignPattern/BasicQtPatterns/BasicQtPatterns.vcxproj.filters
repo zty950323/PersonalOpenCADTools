@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{1b45efd2-249a-4546-9a96-09807a51ffb3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basicqtpatterns_global.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClCompile Include="BasicQtPatterns.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClInclude Include="BasicQtPatterns.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_factory_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_abstract_factory_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_builder_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_prototype_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_singleton_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_adapter_pattern_01.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_bridge_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_composite_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_decorator_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_proxy_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_template_method_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_chain_of_responsibility_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_flyweight_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_command_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_observer_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_strategy_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_state_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_iterator_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_memento_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\basic_visitor_pattern.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\basic_factory_pattren.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_abstract_factory_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_builder_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_prototype_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_singleton_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_adapter_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_bridge_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_composite_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_decorator_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_proxy_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_template_method_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_chain_of_responsibility_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_flyweight_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_command_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_observer_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_strategy_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_state_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_iterator_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_memento_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_visitor_pattern.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/style">
+        <file>res/style/AMOLED.qss</file>
+        <file>res/style/Aqua.qss</file>
+        <file>res/style/ConsoleStyle.qss</file>
+        <file>res/style/ElegantDark.qss</file>
+        <file>res/style/LICENSE</file>
+        <file>res/style/ManjaroMix.qss</file>
+        <file>res/style/MaterialDark.qss</file>
+        <file>res/style/README.md</file>
+        <file>res/style/Ubuntu.qss</file>
+        <file>res/style/icon1.png</file>
+    </qresource>
+</RCC>

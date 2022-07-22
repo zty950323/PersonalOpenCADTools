@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{2d785f64-becf-4581-88a9-ef7997939d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\OpenTools">
+      <UniqueIdentifier>{33afe804-1f0a-4874-acdd-c4ec3350b06a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\InnerTools">
+      <UniqueIdentifier>{554824f7-da46-47f8-be67-7c84d917c5da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_open_math.h">
+      <Filter>include\OpenTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_open_bit_flags.h">
+      <Filter>include\OpenTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_bit_flags.h">
+      <Filter>include\InnerTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_array.h">
+      <Filter>include\InnerTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_open_array.h">
+      <Filter>include\OpenTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_open_no_copyable_class.h">
+      <Filter>include\OpenTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_char_map.h">
+      <Filter>include\InnerTools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\basic_open_array_stl.h">
+      <Filter>include\OpenTools</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

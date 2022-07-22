@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>004box.png</file>
+        <file>013package.png</file>
+        <file>survey.png</file>
+        <file>survey_grey.png</file>
+    </qresource>
+</RCC>

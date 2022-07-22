@@ -1,5 +1,13 @@
 # Prerequisites
 *.d
+*.suo
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.tlog
+*.props
+*.pdb
 
 # Compiled Object files
 *.slo
@@ -10,15 +18,24 @@
 # Precompiled Headers
 *.gch
 *.pch
+*.ipch
+*.user
+*.cbt
+*.stash
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
+*.ilk
+*.lastbuildstate
 
 # Fortran module files
 *.mod
 *.smod
+*.opendb
+*.idb
+*.recipe
 
 # Compiled Static libraries
 *.lai
@@ -30,3 +47,16 @@
 *.exe
 *.out
 *.app
+
+# Some CMake Useless Files
+*.rule
+*.check_cache
+*.stamp
+*.depend
+*.list
+
+Out
+x64
+./FunnyTestCases/x64
+./FunnyTestCases/QPainterPathUseCases/x64
+*.exp

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/ui_files">
+        <file>switchwidgetinner.ui</file>
+        <file>zstabwidget.ui</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E4AD96BF-E5C6-47BF-8B47-7860A9EF9A29}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>msvc2017_64</QtInstall>
+    <QtModules>core;opengl;gui;widgets;openglextensions</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>msvc2017_64</QtInstall>
+    <QtModules>core;opengl;gui;widgets;openglextensions</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="..\..\..\solutions\TzPropertySheet.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+    <Import Project="..\..\..\solutions\TzPropertySheet.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>BASICQTPATTERNS_LIB;BUILD_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>BASICQTPATTERNS_LIB;BUILD_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\basic_abstract_factory_pattern.cpp" />
+    <ClCompile Include="src\basic_adapter_pattern.cpp" />
+    <ClCompile Include="src\basic_bridge_pattern.cpp" />
+    <ClCompile Include="src\basic_builder_pattern.cpp" />
+    <ClCompile Include="src\basic_chain_of_responsibility_pattern.cpp" />
+    <ClCompile Include="src\basic_command_pattern.cpp" />
+    <ClCompile Include="src\basic_composite_pattern.cpp" />
+    <ClCompile Include="src\basic_decorator_pattern.cpp" />
+    <ClCompile Include="src\basic_factory_pattren.cpp" />
+    <ClCompile Include="src\basic_flyweight_pattern.cpp" />
+    <ClCompile Include="src\basic_iterator_pattern.cpp" />
+    <ClCompile Include="src\basic_memento_pattern.cpp" />
+    <ClCompile Include="src\basic_observer_pattern.cpp" />
+    <ClCompile Include="src\basic_prototype_pattern.cpp" />
+    <ClCompile Include="src\basic_proxy_pattern.cpp" />
+    <ClCompile Include="src\basic_singleton_pattern.cpp" />
+    <ClCompile Include="src\basic_state_pattern.cpp" />
+    <ClCompile Include="src\basic_strategy_pattern.cpp" />
+    <ClCompile Include="src\basic_template_method_pattern.cpp" />
+    <ClCompile Include="src\basic_visitor_pattern.cpp" />
+    <ClInclude Include="..\include\basic_abstract_factory_pattern.h" />
+    <ClInclude Include="..\include\basic_adapter_pattern_01.h" />
+    <ClInclude Include="..\include\basic_bridge_pattern.h" />
+    <ClInclude Include="..\include\basic_builder_pattern.h" />
+    <ClInclude Include="..\include\basic_chain_of_responsibility_pattern.h" />
+    <ClInclude Include="..\include\basic_command_pattern.h" />
+    <ClInclude Include="..\include\basic_composite_pattern.h" />
+    <ClInclude Include="..\include\basic_decorator_pattern.h" />
+    <ClInclude Include="..\include\basic_factory_pattern.h" />
+    <ClInclude Include="..\include\basic_flyweight_pattern.h" />
+    <ClInclude Include="..\include\basic_iterator_pattern.h" />
+    <ClInclude Include="..\include\basic_memento_pattern.h" />
+    <ClInclude Include="..\include\basic_observer_pattern.h" />
+    <ClInclude Include="..\include\basic_prototype_pattern.h" />
+    <ClInclude Include="..\include\basic_proxy_pattern.h" />
+    <ClInclude Include="..\include\basic_singleton_pattern.h" />
+    <ClInclude Include="..\include\basic_state_pattern.h" />
+    <ClInclude Include="..\include\basic_strategy_pattern.h" />
+    <ClInclude Include="..\include\basic_template_method_pattern.h" />
+    <ClInclude Include="..\include\basic_visitor_pattern.h" />
+    <ClInclude Include="basicqtpatterns_global.h" />
+    <ClInclude Include="BasicQtPatterns.h" />
+    <ClCompile Include="BasicQtPatterns.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

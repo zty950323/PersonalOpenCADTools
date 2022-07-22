@@ -1,0 +1,95 @@
+#[================================================================[.rst:
+    Copyright (c)2021, Tom Zhao personal. ("TZOpenTools")
+    This software is a personal tools project by Tom Zhao.
+    Description:
+#]================================================================]
+
+CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0 FATAL_ERROR)
+
+SET(TZ_CMAKE_TOOLCHAIN_FILE "${TZ_CMAKE_TOOLCHAIN_FILE}" CACHE PATH "Please select the matched vcpkg toolchain path root dir!")
+
+IF(EXISTS "${TZ_CMAKE_TOOLCHAIN_FILE}")
+    SET(CMAKE_TOOLCHAIN_FILE ${TZ_CMAKE_TOOLCHAIN_FILE})
+    MESSAGE("Set Up the vcpkg's package")
+ELSE()
+    MESSAGE("Please specify the TZ_CMAKE_TOOLCHAIN_FILE")
+ENDIF()
+
+PROJECT(TZOpentools)
+
+ENABLE_LANGUAGE(ASM_MASM)
+
+SET(TZ_QT_ROOT "${TZ_QT_ROOT}" CACHE PATH "Please select the matched QT build root dir!")
+
+IF(EXISTS "${TZ_QT_ROOT}")
+    SET(CMAKE_PREFIX_PATH "${TZ_QT_ROOT};${CMAKE_PREFIX_PATH}")
+ELSE()
+    MESSAGE("Please specify the TZ_QT_ROOT")
+ENDIF()
+
+SET(TZ_THIRDPARTY_ROOT "${TZ_THIRDPARTY_ROOT}" CACHE PATH "Please select the matched thirdparty root dir!")
+
+IF(EXISTS "${TZ_THIRDPARTY_ROOT}")
+    SET(CMAKE_PREFIX_PATH "${TZ_THIRDPARTY_ROOT};${CMAKE_PREFIX_PATH}")
+ELSE()
+    MESSAGE(FATAL_ERROR "Please specify the TZ_THIRDPARTY_ROOT")
+ENDIF()
+
+SET(TZ_CMAKEMODULES_ROOT "${TZ_CMAKEMODULES_ROOT}" CACHE PATH "Please select the matched cmakemoudules root dir!")
+
+MESSAGE("TZ_QT_ROOT=${TZ_QT_ROOT}")
+MESSAGE("TZ_THIRDPARTY_ROOT=${TZ_THIRDPARTY_ROOT}")
+MESSAGE("TZ_CMAKEMODULES_ROOT=${TZ_CMAKEMODULES_ROOT}")
+
+IF(EXISTS "${TZ_CMAKEMODULES_ROOT}")
+    SET(CMAKE_PREFIX_PATH "${TZ_CMAKEMODULES_ROOT}; ${CMAKE_PREFIX_PATH}")
+ELSE()
+    MESSAGE(FATAL_ERROR "Please specify the TZ_CMAKEMODULES_ROOT")
+ENDIF()
+
+SET(CMAKE_MODULE_PATH "${TZ_CMAKEMODULES_ROOT};${CMAKE_SOURCE_DIR};${CMAKE_MODULE_PATH}")
+
+# SET(TZ_WKAPI_ROOT "${TZ_WKAPI_ROOT}" CACHE PATH "Please select the matched wkapi root dir!")
+
+MESSAGE("TZ_QT_ROOT=${TZ_QT_ROOT}")
+MESSAGE("TZ_THIRDPARTY_ROOT=${TZ_THIRDPARTY_ROOT}")
+MESSAGE("TZ_CMAKEMODULES_ROOT=${TZ_CMAKEMODULES_ROOT}")
+# MESSAGE("TZ_WKAPI_ROOT=${TZ_WKAPI_ROOT}")
+
+#[[
+IF(EXISTS "${TZ_WKAPI_ROOT}")
+    SET(CMAKE_PREFIX_PATH "${TZ_WKAPI_ROOT};${CMAKE_PREFIX_PATH}")
+    SET(TZ_WKAPI_INCLUDE
+        ${TZ_WKAPI_ROOT}
+        ${TZ_WKAPI_ROOT}/include
+        ${TZ_WKAPI_ROOT}/api
+        ${TZ_WKAPI_ROOT}/api/api
+        ${TZ_WKAPI_ROOT}/api/model
+        ${TZ_WKAPI_ROOT}/boost/1.76.0/src
+        ${TZ_WKAPI_ROOT}/cpprest/2.10.15-1/x64_v141/include
+    )
+ENDIF()
+#]]
+
+SET(TZ_ROOT_DIR ${CMAKE_SOURCE_DIR})
+SET(TZ_SOURCE_DIR ${TZ_ROOT_DIR}/source)
+SET(TZ_SDK_INCLUDE_DIR ${TZ_SOURCE_DIR}/include)
+
+MESSAGE("TZ_ROOT_DIR=${TZ_ROOT_DIR}")
+MESSAGE("TZ_SOURCE_DIR=${TZ_SOURCE_DIR}")
+MESSAGE("TZ_SDK_INCLUDE_DIR=${TZ_SDK_INCLUDE_DIR}")
+
+INCLUDE(TzSoftPlatformDetermine)
+INCLUDE(TzSoftMacroUtils)
+INCLUDE(TzSoftGlobalSetting)
+INCLUDE(TzSoftApplySetting)
+
+ADD_SUBDIRECTORY(source)
+# ADD_SUBDIRECTORY(samples)
+
+IF(TZ_BUILD_EXAMPLES)
+    ADD_SUBDIRECTORY(samples)
+    ADD_SUBDIRECTORY(examples)
+ENDIF()
+
+INCLUDE(CPack)

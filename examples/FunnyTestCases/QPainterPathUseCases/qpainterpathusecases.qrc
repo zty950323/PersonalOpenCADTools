@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/QPainterPathUseCases">
+        <file>res/AMOLED.qss</file>
+        <file>res/ConsoleStyle.qss</file>
+        <file>res/Aqua.qss</file>
+        <file>res/LICENSE</file>
+        <file>res/ManjaroMix.qss</file>
+        <file>res/MaterialDark.qss</file>
+        <file>res/README.md</file>
+        <file>res/Ubuntu.qss</file>
+        <file>res/header.jpg</file>
+    </qresource>
+</RCC>

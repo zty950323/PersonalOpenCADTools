@@ -1,0 +1,256 @@
+#[================================================================[.rst:
+    Copyright (c)2021, Tom Zhao personal. ("TZOpenTools")
+    This software is a personal tools project by Tom Zhao.
+    Description:
+#]================================================================]
+
+SET(TZ_APPLICATION_NAME BasicTestCases)
+
+SET(TZ_APPLICATION_INCLUDE
+
+)
+
+SET(TZ_APPLICATION_INC
+    inc/basic_test_all_cases_run.h
+    inc/basic_test_boost_some_test_cases.h
+    #inc/basic_test_boost_count_cases.h
+    inc/basic_example_boost_acc.h
+    inc/basic_test_basicTools_cases.h
+    inc/basic_test_RBTree_cases.h
+    inc/basic_test_basicArray_cases.h
+    inc/basic_test_bitflag_cases.h
+    inc/basic_test_folly_cases.h
+
+)
+
+SET(TZ_APPLICATION_SRC
+    src/main.cpp
+    src/basic_test_boost_some_test_cases.cpp
+    #src/basic_test_boost_count_cases.cpp
+    src/basic_example_boost_acc.cpp
+    src/basic_test_all_cases_run.cpp
+    src/basic_test_basicTools_cases.cpp
+    src/basic_test_RBTree_cases.cpp
+    src/basic_test_basicArray_cases.cpp
+    src/basic_test_bitflag_cases.cpp
+    src/basic_test_folly_cases.cpp
+)
+
+SET(TZ_APPLICATION_MOC_SRCS
+
+)
+
+SET(TZ_APPLICATION_UI_FORMS
+
+)
+
+SET(TZ_APPLICATION_RESOURCES
+
+)
+
+SET(TZ_APPLICATION_CUSTOM_GROUP ON)
+
+SET(TZ_APPLICATION_FOLDER "Basic")
+
+#SET(TZ_APPLICATION_GENERAL_DEFINITIONS "")
+#SET(TZ_APPLICATION_DEFINITIONS_<CONFIG> "")
+
+IF(TZ_WINDOWS)
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS
+        /SUBSYSTEM:WINDOWS
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_RELEASE
+    
+    )
+
+ELSEIF(TZ_MAC)
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_RELEASE
+    
+    )
+ELSEIF(TZ_UNIX)
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_DEBUG
+    
+    )
+
+    SET(__TZ_PLATFORM_LINK_FLAGS_RELEASE
+    
+    )
+
+ELSE()
+    MESSAGE(FATAL_ERROR "Tzsoft not support platform")
+ENDIF(TZ_WINDOWS)
+
+#   COMPILE_OPTIONS
+
+SET(TZ_APPLICATION_GENERAL_OPTIONS
+    ${__TZ_PLATFORM_COMPILE_OPTIONS}
+)
+
+SET(TZ_APPLICATION_GENERAL_OPTIONS_DEBUG
+    ${__TZ_PLATFORM_COMPILE_OPTIONS_DEBUG}
+)
+
+SET(TZ_APPLICATION_GENERAL_OPTIONS_RELEASE
+    ${__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE}
+)
+
+
+SET(TZ_APPLICATION_INCLUDE_DIRECTORIES_PRIVATE
+    ${TZ_BASIC_INCLUDE_DIR}
+    ${TZ_SDK_INCLUDE_DIR}
+    ${TZ_THIRDPARTY_ROOT}/boost_1_76_0
+    ${TZ_THIRDPARTY_ROOT}/cgal-5.3
+    inc
+)
+
+
+SET(TZ_APPLICATION_LINK_LIBRARIES_PRIVATE
+
+)
+
+SET(TZ_USE_FOLLY ON)
+
+IF(TZ_USE_FOLLY)
+    MESSAGE("set up the folly")
+    find_package(folly CONFIG REQUIRED)
+    find_package(GTest CONFIG REQUIRED)
+    set(${TZ_FOLLY_LIBS_PRIVATE} 
+        Folly::folly
+        Folly::folly_deps
+        Folly::follybenchmark
+        Folly::folly_test_util
+        GTest::gmock
+        GTest::gtest
+        GTest::gmock_main
+        GTest::gtest_main
+    )
+ELSE()
+    set(${TZ_FOLLY_LIBS_PRIVATE} 
+
+    )
+ENDIF()
+
+SET(TZ_APPLICATION_USE_MODULES_PRIVATE
+    Platform
+    BasicTools
+    Root
+    # ${TZ_FOLLY_LIBS_PRIVATE}
+    Folly::folly
+    Folly::folly_deps
+    Folly::follybenchmark
+    Folly::folly_test_util
+    GTest::gmock
+    GTest::gtest
+    GTest::gmock_main
+    GTest::gtest_main
+)
+
+SET(TZ_APPLICATION_DEPENDENCIES
+
+)
+
+SET(TZ_APPLICATION_INSTALL OFF)
+
+TZ_SETUP_APPLICATION()
+
+IF(TZ_WINDOWS)
+
+    MESSAGE("Set up the source group!")
+
+    SOURCE_GROUP("inc\\Boost"
+        FILES
+        inc/basic_test_boost_some_test_cases.h
+        #inc/basic_test_boost_count_cases.h
+        inc/basic_example_boost_acc.h
+    )
+
+    SOURCE_GROUP("inc\\BasicTools"
+        FILES
+        inc/basic_test_basicTools_cases.h
+        inc/basic_test_basicArray_cases.h
+        inc/basic_test_RBTree_cases.h
+        inc/basic_test_bitflag_cases.h
+        inc/basic_test_folly_cases.h
+    )
+
+    SOURCE_GROUP("src\\Boost"
+        FILES
+        src/basic_test_boost_some_test_cases.cpp
+        #src/basic_test_boost_count_cases.cpp
+        src/basic_example_boost_acc.cpp
+    )
+
+    SOURCE_GROUP("src\\BasicTools"
+        FILES
+        src/basic_test_basicTools_cases.cpp
+        src/basic_test_basicArray_cases.cpp
+        src/basic_test_RBTree_cases.cpp
+        src/basic_test_bitflag_cases.cpp
+        src/basic_test_folly_cases.cpp
+    )
+
+    SOURCE_GROUP("include"
+        FILES
+        inc/basic_test_all_cases_run.h
+    )
+
+    SOURCE_GROUP("src"
+        FILES
+        src/main.cpp
+        src/basic_test_all_cases_run.cpp
+    )
+
+ENDIF()

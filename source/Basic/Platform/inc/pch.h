@@ -1,0 +1,14 @@
+﻿///////////////////////////////////////////////////////////////////////////////////////////
+// Copyright (c)2020, Tom Zhao personal. ("TZOpenTools")
+// This software is a personal tools project by Tom Zhao.
+// Description:
+///////////////////////////////////////////////////////////////////////////////////////////
+
+#ifndef PCH_H
+#define PCH_H
+
+// add pre-compiled headers.
+#include "framework.h"
+#include "platform_export.h"
+
+#endif //PCH_H

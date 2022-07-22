@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{952415d4-2943-465b-89c5-cb5eb0ef96de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{40aa23f1-d32b-46fe-8bc3-5e475042a5b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{133643a5-daee-4882-811f-ea85f7dd9331}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\root_export.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\root_win64_mem_pool.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\root_win32_mem_pool.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\tzsofts_mem_heap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\root_mem_malloc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\root_mem_heap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\root_mem_heap_dbg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\root_mem_malloc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\root_win64_mem_pool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tzsofts_mem_heap.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\target_winver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\root_mem_heap.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

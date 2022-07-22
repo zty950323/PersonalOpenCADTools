@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{1ca7e2b7-5fa3-4c20-8a61-f6f7b3aa2b23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TabWidgets">
+      <UniqueIdentifier>{f0db0ffe-5d89-45e1-85b7-839d54958ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\TabWidgets">
+      <UniqueIdentifier>{57629b11-70a8-4c60-88fd-a568f5658861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\TestClasses">
+      <UniqueIdentifier>{de04faef-80d3-4d95-bc3c-bb8a1ba68634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TestClasses">
+      <UniqueIdentifier>{cfbf6b72-0843-4f84-a6ad-f0df883e6827}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicTests.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_array_test_tab_widget.cpp">
+      <Filter>src\TabWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_array_tests.cpp">
+      <Filter>src\TestClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_bit_flags_test_tab_widget.cpp">
+      <Filter>src\TabWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\basic_bit_flags_test.cpp">
+      <Filter>src\TestClasses</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="BasicTests.h">
+      <Filter>inc</Filter>
+    </QtMoc>
+    <QtMoc Include="inc\basic_bit_flags_test_tab_widget.h">
+      <Filter>inc\TabWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="inc\basic_array_test_tab_widget.h">
+      <Filter>inc\TabWidgets</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="BasicTests.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="BasicTests.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\basic_test_common_defines.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\basic_array_tests.h">
+      <Filter>inc\TestClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\basic_bit_flags_test.h">
+      <Filter>inc\TestClasses</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
