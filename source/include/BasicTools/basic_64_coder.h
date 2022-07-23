@@ -10,8 +10,7 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides a serious export macros about GuiTools.
- * codec.
+ * @brief This file provides a tool with the capabilities of a basic 64-bit codec.
  * @file main.cpp
  * @author Tom Zhao(18872770445@163.com)
  * @since 2022-07-23
@@ -23,21 +22,16 @@
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#ifndef SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
-#define SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
+#ifndef BASIC_BASE64_H
+#define BASIC_BASE64_H
 
-#include "zsofts_compiler_specific.h"
+#include "basic_export.h"
+#include <string>
 
-#ifdef TZ_SOFT_GUI_CORE_MODULE
-    #define TZ_GUI_CORE_EXPORT TZ_EXPORT
-    #define TZ_GUI_CORE_STATIC_EXPORT TZ_EXPORT
-    #define TZ_GUI_CORE_EXPORT_STATIC
-    #define TZ_GUI_CORE_C_EXPORT TZ_C_EXPORT
-#else
-    #define TZ_GUI_CORE_EXPORT TZ_IMPORT
-    #define TZ_GUI_CORE_STATIC_EXPORT
-    #define TZ_GUI_CORE_EXPORT_STATIC TZ_IMPORT
-    #define TZ_GUI_CORE_C_EXPORT TZ_C_IMPORT
-#endif
+namespace Basic
+{
+    std::string TZ_BASIC_STATIC_EXPORT base64Encode(unsigned char const*, unsigned int len);
+    std::string TZ_BASIC_STATIC_EXPORT base64Decode(const std::string& s);
+}  // namespace Basic
 
-#endif  // SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
+#endif // BASIC_BASE64_H
