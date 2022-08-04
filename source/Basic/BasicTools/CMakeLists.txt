@@ -32,6 +32,8 @@ SET(_LIBRARY_SDK_INCLUDE
     ${TZ_SDK_INCLUDE_DIR}/basic_open_math.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_no_copyable_class.h
     ${TZ_BASIC_TOOLS_PATH}/basic_64_coder.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_type_class.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
     ${TZ_BASIC_DP_PATH}/basic_open_singleTon.h
     ${TZ_BASIC_OCTOOLS_PATH}/basic_yvals_core.h
     ${TZ_BASIC_DS_PATH}/basic_RBTree.h
@@ -58,6 +60,8 @@ SET(TZ_LIBRARY_SRC
     ${_TZ_PLATFORM_SRC}
     ${TZ_SOURCE_COMMON_DIR}/target_winver.cpp
     src/basic_64_coder.cpp
+    src/basic_type_class.cpp
+    src/basic_binary_data.cpp
 )
 
 SET(TZ_LIBRARY_CUSTOM_GROUP ON)
@@ -124,6 +128,8 @@ IF(TZ_WINDOWS)
         ${TZ_SDK_INCLUDE_DIR}/basic_open_math.h
         ${TZ_SDK_INCLUDE_DIR}/basic_open_no_copyable_class.h
         ${TZ_BASIC_TOOLS_PATH}/basic_64_coder.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_type_class.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
     )
 
     SOURCE_GROUP("include\\DesignPattern"
@@ -149,6 +155,8 @@ IF(TZ_WINDOWS)
     SOURCE_GROUP("src\\Common"
         FILES
         src/basic_64_coder.cpp
+        src/basic_type_class.cpp
+        src/basic_binary_data.cpp
     )
 
 ENDIF()

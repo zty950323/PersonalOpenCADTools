@@ -12,12 +12,13 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-class TZ_GUI_CORE_EXPORT CoreCommonUtils {
- public:
+class TZ_GUI_CORE_EXPORT CoreCommonUtils
+{
+public:
   CoreCommonUtils();
   ~CoreCommonUtils();
 };
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_GUI_CORE_COMMON_UTILS_H_
+#endif // SOURCE_INCLUDE_GUI_CORE_COMMON_UTILS_H_

@@ -11,10 +11,11 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-enum class CoreCommonFlag : unsigned short {
+enum class CoreCommonFlag : unsigned short
+{
   TZ_NEED_WIDGETS = 0,
 };
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_GUI_CORE_CORE_DEFINES_H_
+#endif // SOURCE_INCLUDE_GUI_CORE_CORE_DEFINES_H_

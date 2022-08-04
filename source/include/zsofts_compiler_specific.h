@@ -14,11 +14,11 @@
 #define TZ_BUILD_RELEASE 2
 #define TZ_CHARACTERS_MBCS 1
 #define TZ_CHARACTERS_UNICODE 2
-#define TZ_DEBUG_PHASE 0    // Developing
-#define TZ_UNITT_PHASE 1    // Unit testing
-#define TZ_ALPHA_PHASE 2    // Alpha released
-#define TZ_BETA_PHASE 3     // Beta released
-#define TZ_RELEASE_PHASE 4  // Official released
+#define TZ_DEBUG_PHASE 0   // Developing
+#define TZ_UNITT_PHASE 1   // Unit testing
+#define TZ_ALPHA_PHASE 2   // Alpha released
+#define TZ_BETA_PHASE 3    // Beta released
+#define TZ_RELEASE_PHASE 4 // Official released
 
 // Put predefine macros in your project building
 // configurations to determine which phase your project is in.
@@ -145,14 +145,18 @@
 #endif
 
 #ifdef __cplusplus
-#define COMPILE_WITH_CTYPE_BEGIN extern "C" {
+#define COMPILE_WITH_CTYPE_BEGIN \
+    extern "C"                   \
+    {
 #define COMPILE_WITH_CTYPE_END }
 #else
 #define COMPILE_WITH_CTYPE_BEGIN
 #define COMPILE_WITH_CTYPE_END
 #endif
 
-#define TZ_NAMESPACE_BEGIN(name) namespace name {
+#define TZ_NAMESPACE_BEGIN(name) \
+    namespace name               \
+    {
 #define TZ_NAMESPACE_END(name) }
 #define TZ_USINGNAMESPACE(name) using namespace name
 
@@ -180,6 +184,6 @@
 #pragma warning(error : 4150)
 #pragma warning(error : 4805)
 
-#endif  // # if (TZ_COMPILER == TZ_COMPILER_MSVC)
+#endif // # if (TZ_COMPILER == TZ_COMPILER_MSVC)
 
 #endif

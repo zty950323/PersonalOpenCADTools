@@ -13,7 +13,7 @@
 
 #ifdef TZ_WINDOWS
 #include <mbstring.h>
-#endif  // TZ_WINDOWS
+#endif // TZ_WINDOWS
 #include "zsofts_types.h"
 
 #define tz_stdstring_a std::string
@@ -41,7 +41,7 @@
 #ifndef _tprintf
 #define _tprintf printf
 #endif
-#endif  // _UNICODE
+#endif // _UNICODE
 
 #define tz_vscprintf _vsctprintf
 #define tz_vstprintf _vstprintf
@@ -151,4 +151,4 @@
 #define tz_tsplitpath _tsplitpath
 #define tz_tmakepath _tmakepath
 
-#endif  // !_TZ_SOFT_STRING_OPERATIONS_H_H_
+#endif // !_TZ_SOFT_STRING_OPERATIONS_H_H_

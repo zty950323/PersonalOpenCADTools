@@ -12,12 +12,13 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-class TZ_GUI_TOOLS_EXPORT GuiToolsCommonUtils {
- public:
+class TZ_GUI_TOOLS_EXPORT GuiToolsCommonUtils
+{
+public:
   GuiToolsCommonUtils();
   ~GuiToolsCommonUtils();
 };
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_GUI_TOOLS_COMMON_UTILS_H_
+#endif // SOURCE_INCLUDE_GUI_TOOLS_COMMON_UTILS_H_

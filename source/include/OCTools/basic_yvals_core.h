@@ -18,7 +18,7 @@
 #else
 #define _STL_COMPILER_PREPROCESSOR 1
 #endif
-#endif  // _STL_COMPILER_PREPROCESSOR
+#endif // _STL_COMPILER_PREPROCESSOR
 
 #if _STL_COMPILER_PREPROCESSOR
 // Implemented unconditionally:
@@ -353,23 +353,23 @@
 // * unique_copy
 
 #include <vcruntime.h>
-#include <xkeycheck.h>  // The _HAS_CXX tags must be defined before including this.
+#include <xkeycheck.h> // The _HAS_CXX tags must be defined before including this.
 
 #ifndef _STL_WARNING_LEVEL
 #if defined(_MSVC_WARNING_LEVEL) && _MSVC_WARNING_LEVEL >= 4
 #define _STL_WARNING_LEVEL 4
-#else  // defined(_MSVC_WARNING_LEVEL) && _MSVC_WARNING_LEVEL >= 4
+#else // defined(_MSVC_WARNING_LEVEL) && _MSVC_WARNING_LEVEL >= 4
 #define _STL_WARNING_LEVEL 3
-#endif  // defined(_MSVC_WARNING_LEVEL) && _MSVC_WARNING_LEVEL >= 4
-#endif  // _STL_WARNING_LEVEL
+#endif // defined(_MSVC_WARNING_LEVEL) && _MSVC_WARNING_LEVEL >= 4
+#endif // _STL_WARNING_LEVEL
 
 #if _STL_WARNING_LEVEL < 3
 #error _STL_WARNING_LEVEL cannot be less than 3.
-#endif  // _STL_WARNING_LEVEL < 3
+#endif // _STL_WARNING_LEVEL < 3
 
 #if _STL_WARNING_LEVEL > 4
 #error _STL_WARNING_LEVEL cannot be greater than 4.
-#endif  // _STL_WARNING_LEVEL > 4
+#endif // _STL_WARNING_LEVEL > 4
 
 // _HAS_NODISCARD (in vcruntime.h) controls:
 // [[nodiscard]] attributes on STL functions
@@ -387,8 +387,8 @@
 // semantics
 #ifndef __has_cpp_attribute
 #define _MSVC_KNOWN_SEMANTICS
-#elif defined(__CUDACC__)  // TRANSITION, CUDA - warning: attribute namespace
-                           // "msvc" is unrecognized
+#elif defined(__CUDACC__) // TRANSITION, CUDA - warning: attribute namespace
+                          // "msvc" is unrecognized
 #define _MSVC_KNOWN_SEMANTICS
 #elif __has_cpp_attribute(msvc::known_semantics)
 #define _MSVC_KNOWN_SEMANTICS [[msvc::known_semantics]]
@@ -401,38 +401,38 @@
 #ifdef __cpp_conditional_explicit
 #define _HAS_CONDITIONAL_EXPLICIT 1
 #elif defined(__CUDACC__) || defined(__INTEL_COMPILER)
-#define _HAS_CONDITIONAL_EXPLICIT 0  // TRANSITION, CUDA/ICC
-#else                                // vvv C1XX or Clang or IntelliSense vvv
+#define _HAS_CONDITIONAL_EXPLICIT 0 // TRANSITION, CUDA/ICC
+#else                               // vvv C1XX or Clang or IntelliSense vvv
 #define _HAS_CONDITIONAL_EXPLICIT 1
-#endif  // ^^^ C1XX or Clang or IntelliSense ^^^
-#endif  // _HAS_CONDITIONAL_EXPLICIT
+#endif // ^^^ C1XX or Clang or IntelliSense ^^^
+#endif // _HAS_CONDITIONAL_EXPLICIT
 
 // warning C4577: 'noexcept' used with no exception handling mode specified;
 // termination on exception is not guaranteed. Specify /EHsc (/Wall)
 #if _HAS_EXCEPTIONS
 #define _STL_DISABLED_WARNING_C4577
-#else  // _HAS_EXCEPTIONS
+#else // _HAS_EXCEPTIONS
 #define _STL_DISABLED_WARNING_C4577 4577
-#endif  // _HAS_EXCEPTIONS
+#endif // _HAS_EXCEPTIONS
 
 // warning C4984: 'if constexpr' is a C++17 language extension
 #if !_HAS_CXX17
 #define _STL_DISABLED_WARNING_C4984 4984
-#else  // !_HAS_CXX17
+#else // !_HAS_CXX17
 #define _STL_DISABLED_WARNING_C4984
-#endif  // !_HAS_CXX17
+#endif // !_HAS_CXX17
 
 // warning C5053: support for 'explicit(<expr>)' in C++17 and earlier is a
 // vendor extension
 #if !_HAS_CXX20 && _HAS_CONDITIONAL_EXPLICIT
 #define _STL_DISABLED_WARNING_C5053 5053
-#else  // !_HAS_CXX20 && _HAS_CONDITIONAL_EXPLICIT
+#else // !_HAS_CXX20 && _HAS_CONDITIONAL_EXPLICIT
 #define _STL_DISABLED_WARNING_C5053
-#endif  // !_HAS_CXX20 && _HAS_CONDITIONAL_EXPLICIT
+#endif // !_HAS_CXX20 && _HAS_CONDITIONAL_EXPLICIT
 
 #ifndef _STL_EXTRA_DISABLED_WARNINGS
 #define _STL_EXTRA_DISABLED_WARNINGS
-#endif  // _STL_EXTRA_DISABLED_WARNINGS
+#endif // _STL_EXTRA_DISABLED_WARNINGS
 
 // warning C4180: qualifier applied to function type has no meaning; ignored
 // warning C4412: function signature contains type 'meow'; C++ objects are
@@ -474,7 +474,7 @@
     _STL_DISABLED_WARNING_C5053                       \
     _STL_EXTRA_DISABLED_WARNINGS
 // clang-format on
-#endif  // _STL_DISABLED_WARNINGS
+#endif // _STL_DISABLED_WARNINGS
 
 // warning: constexpr if is a C++17 extension [-Wc++17-extensions]
 // warning: explicit(bool) is a C++20 extension [-Wc++20-extensions]
@@ -494,18 +494,18 @@
     _Pragma("clang diagnostic ignored \"-Wuser-defined-literals\"") \
     _Pragma("clang diagnostic ignored \"-Wunknown-pragmas\"")
 // clang-format on
-#else  // __clang__
+#else // __clang__
 #define _STL_DISABLE_CLANG_WARNINGS
-#endif  // __clang__
-#endif  // _STL_DISABLE_CLANG_WARNINGS
+#endif // __clang__
+#endif // _STL_DISABLE_CLANG_WARNINGS
 
 #ifndef _STL_RESTORE_CLANG_WARNINGS
 #ifdef __clang__
 #define _STL_RESTORE_CLANG_WARNINGS _Pragma("clang diagnostic pop")
-#else  // __clang__
+#else // __clang__
 #define _STL_RESTORE_CLANG_WARNINGS
-#endif  // __clang__
-#endif  // _STL_RESTORE_CLANG_WARNINGS
+#endif // __clang__
+#endif // _STL_RESTORE_CLANG_WARNINGS
 
 // clang-format off
 #ifndef _STL_DISABLE_DEPRECATED_WARNING
@@ -524,10 +524,10 @@
 #ifndef _STL_RESTORE_DEPRECATED_WARNING
 #ifdef __clang__
 #define _STL_RESTORE_DEPRECATED_WARNING _Pragma("clang diagnostic pop")
-#else  // __clang__
+#else // __clang__
 #define _STL_RESTORE_DEPRECATED_WARNING __pragma(warning(pop))
-#endif  // __clang__
-#endif  // _STL_RESTORE_DEPRECATED_WARNING
+#endif // __clang__
+#endif // _STL_RESTORE_DEPRECATED_WARNING
 
 #define _CPPLIB_VER 650
 #define _MSVC_STL_VERSION 142
@@ -540,29 +540,29 @@
      (__CUDACC_VER_MINOR__ < 1 ||  \
       (__CUDACC_VER_MINOR__ == 1 && __CUDACC_VER_BUILD__ < 243)))
 #error STL1002: Unexpected compiler version, expected CUDA 10.1 Update 2 or newer.
-#endif  // ^^^ old CUDA ^^^
+#endif // ^^^ old CUDA ^^^
 #elif defined(__EDG__)
 // not attempting to detect __EDG_VERSION__ being less than expected
 #elif defined(__clang__)
 #if __clang_major__ < 11
 #error STL1000: Unexpected compiler version, expected Clang 11.0.0 or newer.
-#endif  // ^^^ old Clang ^^^
+#endif // ^^^ old Clang ^^^
 #elif defined(_MSC_VER)
-#if _MSC_VER < 1929  // Coarse-grained, not inspecting _MSC_FULL_VER
+#if _MSC_VER < 1929 // Coarse-grained, not inspecting _MSC_FULL_VER
 #error STL1001: Unexpected compiler version, expected MSVC 19.29 or newer.
-#endif  // ^^^ old MSVC ^^^
-#else   // vvv other compilers vvv
+#endif // ^^^ old MSVC ^^^
+#else  // vvv other compilers vvv
 // not attempting to detect other compilers
-#endif  // ^^^ other compilers ^^^
-#endif  // _ALLOW_COMPILER_AND_STL_VERSION_MISMATCH
+#endif // ^^^ other compilers ^^^
+#endif // _ALLOW_COMPILER_AND_STL_VERSION_MISMATCH
 
 #ifndef _HAS_STATIC_RTTI
 #define _HAS_STATIC_RTTI 1
-#endif  // _HAS_STATIC_RTTI
+#endif // _HAS_STATIC_RTTI
 
 #if defined(_CPPRTTI) && !_HAS_STATIC_RTTI
 #error /GR implies _HAS_STATIC_RTTI.
-#endif  // defined(_CPPRTTI) && !_HAS_STATIC_RTTI
+#endif // defined(_CPPRTTI) && !_HAS_STATIC_RTTI
 
 // N4842 [dcl.constexpr]/1: "A function or static data member declared with the
 // constexpr or consteval specifier is implicitly an inline function or
@@ -571,44 +571,44 @@
 // Functions that became constexpr in C++17
 #if _HAS_CXX17
 #define _CONSTEXPR17 constexpr
-#else  // ^^^ constexpr in C++17 and later / inline (not constexpr) in C++14 vvv
+#else // ^^^ constexpr in C++17 and later / inline (not constexpr) in C++14 vvv
 #define _CONSTEXPR17 inline
-#endif  // ^^^ inline (not constexpr) in C++14 ^^^
+#endif // ^^^ inline (not constexpr) in C++14 ^^^
 
 // Functions that became constexpr in C++20
 #if _HAS_CXX20
 #define _CONSTEXPR20 constexpr
-#else  // ^^^ constexpr in C++20 and later / inline (not constexpr) in C++17 and
-       // earlier vvv
+#else // ^^^ constexpr in C++20 and later / inline (not constexpr) in C++17 and
+      // earlier vvv
 #define _CONSTEXPR20 inline
-#endif  // ^^^ inline (not constexpr) in C++17 and earlier ^^^
+#endif // ^^^ inline (not constexpr) in C++17 and earlier ^^^
 
 // P0607R0 Inline Variables For The STL
 #if _HAS_CXX17
 #define _INLINE_VAR inline
-#else  // _HAS_CXX17
+#else // _HAS_CXX17
 #define _INLINE_VAR
-#endif  // _HAS_CXX17
+#endif // _HAS_CXX17
 
 // N4190 Removing auto_ptr, random_shuffle(), And Old <functional> Stuff
 #ifndef _HAS_AUTO_PTR_ETC
 #define _HAS_AUTO_PTR_ETC (!_HAS_CXX17)
-#endif  // _HAS_AUTO_PTR_ETC
+#endif // _HAS_AUTO_PTR_ETC
 
 // P0003R5 Removing Dynamic Exception Specifications
 #ifndef _HAS_UNEXPECTED
 #define _HAS_UNEXPECTED (!_HAS_CXX17)
-#endif  // _HAS_UNEXPECTED
+#endif // _HAS_UNEXPECTED
 
 // P0004R1 Removing Deprecated Iostreams Aliases
 #ifndef _HAS_OLD_IOSTREAMS_MEMBERS
 #define _HAS_OLD_IOSTREAMS_MEMBERS (!_HAS_CXX17)
-#endif  // _HAS_OLD_IOSTREAMS_MEMBERS
+#endif // _HAS_OLD_IOSTREAMS_MEMBERS
 
 // P0298R3 std::byte
 #ifndef _HAS_STD_BYTE
-#define _HAS_STD_BYTE _HAS_CXX17  // inspected by GSL, do not remove
-#endif                            // _HAS_STD_BYTE
+#define _HAS_STD_BYTE _HAS_CXX17 // inspected by GSL, do not remove
+#endif                           // _HAS_STD_BYTE
 
 // P0302R1 Removing Allocator Support In std::function
 // LWG-2385 function::assign allocator argument doesn't make sense
@@ -616,12 +616,12 @@
 // LWG-2976 Dangling uses_allocator specialization for packaged_task
 #ifndef _HAS_FUNCTION_ALLOCATOR_SUPPORT
 #define _HAS_FUNCTION_ALLOCATOR_SUPPORT (!_HAS_CXX17)
-#endif  // _HAS_FUNCTION_ALLOCATOR_SUPPORT
+#endif // _HAS_FUNCTION_ALLOCATOR_SUPPORT
 
 // The non-Standard std::tr1 namespace and TR1-only machinery
 #ifndef _HAS_TR1_NAMESPACE
 #define _HAS_TR1_NAMESPACE (!_HAS_CXX17)
-#endif  // _HAS_TR1_NAMESPACE
+#endif // _HAS_TR1_NAMESPACE
 
 // STL4000 is "_STATIC_CPPLIB is deprecated", currently in yvals.h
 // STL4001 is "/clr:pure is deprecated", currently in yvals.h
@@ -629,16 +629,16 @@
 #if _HAS_TR1_NAMESPACE
 #ifdef _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
 #define _DEPRECATE_TR1_NAMESPACE
-#else  // _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
-#define _DEPRECATE_TR1_NAMESPACE                                               \
-  [[deprecated(                                                                \
-      "warning STL4002: "                                                      \
-      "The non-Standard std::tr1 namespace and TR1-only machinery are "        \
-      "deprecated and will be REMOVED. You can "                               \
-      "define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that " \
-      "you have received this warning.")]]
-#endif  // _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
-#endif  // _HAS_TR1_NAMESPACE
+#else // _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
+#define _DEPRECATE_TR1_NAMESPACE                                                 \
+    [[deprecated(                                                                \
+        "warning STL4002: "                                                      \
+        "The non-Standard std::tr1 namespace and TR1-only machinery are "        \
+        "deprecated and will be REMOVED. You can "                               \
+        "define _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING to acknowledge that " \
+        "you have received this warning.")]]
+#endif // _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING
+#endif // _HAS_TR1_NAMESPACE
 
 // STL4003 was "The non-Standard std::identity struct is deprecated and will be
 // REMOVED."
@@ -646,38 +646,38 @@
 // Enforcement of matching allocator value_types
 #ifndef _ENFORCE_MATCHING_ALLOCATORS
 #define _ENFORCE_MATCHING_ALLOCATORS _HAS_CXX17
-#endif  // _ENFORCE_MATCHING_ALLOCATORS
+#endif // _ENFORCE_MATCHING_ALLOCATORS
 
-#define _MISMATCHED_ALLOCATOR_MESSAGE(_CONTAINER, _VALUE_TYPE)                 \
-  _CONTAINER                                                                   \
-      " requires that Allocator's value_type match " _VALUE_TYPE               \
-      " (See N4659 26.2.1 [container.requirements.general]/16 allocator_type)" \
-      " Either fix the allocator value_type or define "                        \
-      "_ENFORCE_MATCHING_ALLOCATORS=0"                                         \
-      " to suppress this diagnostic."
+#define _MISMATCHED_ALLOCATOR_MESSAGE(_CONTAINER, _VALUE_TYPE)               \
+    _CONTAINER                                                               \
+    " requires that Allocator's value_type match " _VALUE_TYPE               \
+    " (See N4659 26.2.1 [container.requirements.general]/16 allocator_type)" \
+    " Either fix the allocator value_type or define "                        \
+    "_ENFORCE_MATCHING_ALLOCATORS=0"                                         \
+    " to suppress this diagnostic."
 
 // Enforcement of Standard facet specializations
 #ifndef _ENFORCE_FACET_SPECIALIZATIONS
 #define _ENFORCE_FACET_SPECIALIZATIONS 0
-#endif  // _ENFORCE_FACET_SPECIALIZATIONS
+#endif // _ENFORCE_FACET_SPECIALIZATIONS
 
-#define _FACET_SPECIALIZATION_MESSAGE                                          \
-  "Unsupported facet specialization; see N4800 27.3.1.1.1 [locale.category]. " \
-  "Either use a Standard specialization or define "                            \
-  "_ENFORCE_FACET_SPECIALIZATIONS=0 "                                          \
-  "to suppress this diagnostic."
+#define _FACET_SPECIALIZATION_MESSAGE                                            \
+    "Unsupported facet specialization; see N4800 27.3.1.1.1 [locale.category]. " \
+    "Either use a Standard specialization or define "                            \
+    "_ENFORCE_FACET_SPECIALIZATIONS=0 "                                          \
+    "to suppress this diagnostic."
 
 // To improve compiler throughput, use 'hidden friend' operators in
 // <system_error> instead of non-members that are depicted in the Standard.
 #ifndef _STL_OPTIMIZE_SYSTEM_ERROR_OPERATORS
 #define _STL_OPTIMIZE_SYSTEM_ERROR_OPERATORS 1
-#endif  // _STL_OPTIMIZE_SYSTEM_ERROR_OPERATORS
+#endif // _STL_OPTIMIZE_SYSTEM_ERROR_OPERATORS
 
 #ifdef __cpp_consteval
 #define _CONSTEVAL consteval
-#else  // ^^^ supports consteval / no consteval vvv
+#else // ^^^ supports consteval / no consteval vvv
 #define _CONSTEVAL constexpr
-#endif  // ^^^ no consteval ^^^
+#endif // ^^^ no consteval ^^^
 
 // Controls whether the STL will force /fp:fast to enable vectorization of
 // algorithms defined in the standard as special cases; such as reduce,
@@ -685,11 +685,11 @@
 #ifndef _STD_VECTORIZE_WITH_FLOAT_CONTROL
 #ifdef _M_FP_EXCEPT
 #define _STD_VECTORIZE_WITH_FLOAT_CONTROL 0
-#else  // ^^^ floating-point exceptions enabled / floating-point exceptions
-       // disabled (default) vvv
+#else // ^^^ floating-point exceptions enabled / floating-point exceptions
+      // disabled (default) vvv
 #define _STD_VECTORIZE_WITH_FLOAT_CONTROL 1
-#endif  // _M_FP_EXCEPT
-#endif  // _STD_VECTORIZE_WITH_FLOAT_CONTROL
+#endif // _M_FP_EXCEPT
+#endif // _STD_VECTORIZE_WITH_FLOAT_CONTROL
 
 // P0174R2 Deprecating Vestigial Library Parts
 // P0521R0 Deprecating shared_ptr::unique()
@@ -698,79 +698,79 @@
 // N4659 D.4 [depr.cpp.headers]
 #if _HAS_CXX17 && !defined(_SILENCE_CXX17_C_HEADER_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_C_HEADER                                             \
-  [[deprecated(                                                               \
-      "warning STL4004: "                                                     \
-      "<ccomplex>, <cstdalign>, <cstdbool>, and <ctgmath> are deprecated in " \
-      "C++17. "                                                               \
-      "You can define _SILENCE_CXX17_C_HEADER_DEPRECATION_WARNING "           \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_C_HEADER                                               \
+    [[deprecated(                                                               \
+        "warning STL4004: "                                                     \
+        "<ccomplex>, <cstdalign>, <cstdbool>, and <ctgmath> are deprecated in " \
+        "C++17. "                                                               \
+        "You can define _SILENCE_CXX17_C_HEADER_DEPRECATION_WARNING "           \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_C_HEADER
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.6 [depr.str.strstreams]
 #if _HAS_CXX17 && !defined(_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_STRSTREAM                                          \
-  [[deprecated(                                                             \
-      "warning STL4005: <strstream> is deprecated in C++17. "               \
-      "You can define _SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING "        \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_STRSTREAM                                            \
+    [[deprecated(                                                             \
+        "warning STL4005: <strstream> is deprecated in C++17. "               \
+        "You can define _SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING "        \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_STRSTREAM
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.7 [depr.uncaught]
 #if _HAS_CXX17 &&                                                      \
     !defined(_SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_UNCAUGHT_EXCEPTION                                   \
-  [[deprecated(                                                               \
-      "warning STL4006: "                                                     \
-      "std::uncaught_exception() is deprecated in C++17. "                    \
-      "It is superseded by std::uncaught_exceptions(), plural. "              \
-      "You can define _SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_UNCAUGHT_EXCEPTION                                     \
+    [[deprecated(                                                               \
+        "warning STL4006: "                                                     \
+        "std::uncaught_exception() is deprecated in C++17. "                    \
+        "It is superseded by std::uncaught_exceptions(), plural. "              \
+        "You can define _SILENCE_CXX17_UNCAUGHT_EXCEPTION_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_UNCAUGHT_EXCEPTION
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.8.1 [depr.weak.result_type]
 // N4659 D.8.2 [depr.func.adaptor.typedefs]
 #if _HAS_CXX17 &&                                                    \
     !defined(_SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS                                     \
-  [[deprecated(                                                               \
-      "warning STL4007: Many result_type typedefs "                           \
-      "and all argument_type, first_argument_type, and second_argument_type " \
-      "typedefs are deprecated in C++17. "                                    \
-      "You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING "   \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS                                       \
+    [[deprecated(                                                               \
+        "warning STL4007: Many result_type typedefs "                           \
+        "and all argument_type, first_argument_type, and second_argument_type " \
+        "typedefs are deprecated in C++17. "                                    \
+        "You can define _SILENCE_CXX17_ADAPTOR_TYPEDEFS_DEPRECATION_WARNING "   \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_ADAPTOR_TYPEDEFS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.8.3 [depr.negators]
 #if _HAS_CXX17 && !defined(_SILENCE_CXX17_NEGATORS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_NEGATORS                                            \
-  [[deprecated(                                                              \
-      "warning STL4008: "                                                    \
-      "std::not1(), std::not2(), std::unary_negate, and std::binary_negate " \
-      "are deprecated in C++17. "                                            \
-      "They are superseded by std::not_fn(). "                               \
-      "You can define _SILENCE_CXX17_NEGATORS_DEPRECATION_WARNING "          \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_NEGATORS                                              \
+    [[deprecated(                                                              \
+        "warning STL4008: "                                                    \
+        "std::not1(), std::not2(), std::unary_negate, and std::binary_negate " \
+        "are deprecated in C++17. "                                            \
+        "They are superseded by std::not_fn(). "                               \
+        "You can define _SILENCE_CXX17_NEGATORS_DEPRECATION_WARNING "          \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_NEGATORS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // STL4009 was "std::allocator<void> is deprecated in C++17"
 
@@ -778,174 +778,174 @@
 #if _HAS_CXX17 &&                                                         \
     !defined(_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_OLD_ALLOCATOR_MEMBERS                              \
-  [[deprecated(                                                             \
-      "warning STL4010: "                                                   \
-      "Various members of std::allocator are deprecated in C++17. "         \
-      "Use std::allocator_traits instead of accessing these members "       \
-      "directly. "                                                          \
-      "You can define "                                                     \
-      "_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING "           \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_OLD_ALLOCATOR_MEMBERS                                \
+    [[deprecated(                                                             \
+        "warning STL4010: "                                                   \
+        "Various members of std::allocator are deprecated in C++17. "         \
+        "Use std::allocator_traits instead of accessing these members "       \
+        "directly. "                                                          \
+        "You can define "                                                     \
+        "_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING "           \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_OLD_ALLOCATOR_MEMBERS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.10 [depr.storage.iterator]
 #if _HAS_CXX17 &&                                                        \
     !defined(_SILENCE_CXX17_RAW_STORAGE_ITERATOR_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_RAW_STORAGE_ITERATOR                               \
-  [[deprecated(                                                             \
-      "warning STL4011: "                                                   \
-      "std::raw_storage_iterator is deprecated in C++17. "                  \
-      "Consider using the std::uninitialized_copy() family of algorithms "  \
-      "instead. "                                                           \
-      "You can define "                                                     \
-      "_SILENCE_CXX17_RAW_STORAGE_ITERATOR_DEPRECATION_WARNING "            \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_RAW_STORAGE_ITERATOR                                 \
+    [[deprecated(                                                             \
+        "warning STL4011: "                                                   \
+        "std::raw_storage_iterator is deprecated in C++17. "                  \
+        "Consider using the std::uninitialized_copy() family of algorithms "  \
+        "instead. "                                                           \
+        "You can define "                                                     \
+        "_SILENCE_CXX17_RAW_STORAGE_ITERATOR_DEPRECATION_WARNING "            \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_RAW_STORAGE_ITERATOR
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.11 [depr.temporary.buffer]
 #if _HAS_CXX17 &&                                                    \
     !defined(_SILENCE_CXX17_TEMPORARY_BUFFER_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_TEMPORARY_BUFFER                                   \
-  [[deprecated(                                                             \
-      "warning STL4012: "                                                   \
-      "std::get_temporary_buffer() and std::return_temporary_buffer() are " \
-      "deprecated in C++17. "                                               \
-      "You can define _SILENCE_CXX17_TEMPORARY_BUFFER_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_TEMPORARY_BUFFER                                     \
+    [[deprecated(                                                             \
+        "warning STL4012: "                                                   \
+        "std::get_temporary_buffer() and std::return_temporary_buffer() are " \
+        "deprecated in C++17. "                                               \
+        "You can define _SILENCE_CXX17_TEMPORARY_BUFFER_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_TEMPORARY_BUFFER
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.12 [depr.meta.types]
 #if _HAS_CXX17 &&                                                   \
     !defined(_SILENCE_CXX17_IS_LITERAL_TYPE_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_IS_LITERAL_TYPE                                    \
-  [[deprecated(                                                             \
-      "warning STL4013: "                                                   \
-      "std::is_literal_type and std::is_literal_type_v are deprecated in "  \
-      "C++17. "                                                             \
-      "You can define _SILENCE_CXX17_IS_LITERAL_TYPE_DEPRECATION_WARNING "  \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_IS_LITERAL_TYPE                                      \
+    [[deprecated(                                                             \
+        "warning STL4013: "                                                   \
+        "std::is_literal_type and std::is_literal_type_v are deprecated in "  \
+        "C++17. "                                                             \
+        "You can define _SILENCE_CXX17_IS_LITERAL_TYPE_DEPRECATION_WARNING "  \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_IS_LITERAL_TYPE
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.12 [depr.meta.types]
 #if _HAS_CXX17 && !defined(_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_RESULT_OF                                           \
-  [[deprecated(                                                              \
-      "warning STL4014: "                                                    \
-      "std::result_of and std::result_of_t are deprecated in C++17. "        \
-      "They are superseded by std::invoke_result and std::invoke_result_t. " \
-      "You can define _SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING "         \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_RESULT_OF                                             \
+    [[deprecated(                                                              \
+        "warning STL4014: "                                                    \
+        "std::result_of and std::result_of_t are deprecated in C++17. "        \
+        "They are superseded by std::invoke_result and std::invoke_result_t. " \
+        "You can define _SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING "         \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_RESULT_OF
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.13 [depr.iterator.primitives]
 #if _HAS_CXX17 &&                                                       \
     !defined(_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_ITERATOR_BASE_CLASS                                   \
-  [[deprecated(                                                                \
-      "warning STL4015: "                                                      \
-      "The std::iterator class template (used as a base class to provide "     \
-      "typedefs) is deprecated in C++17. "                                     \
-      "(The <iterator> header is NOT deprecated.) The C++ Standard has never " \
-      "required user-defined iterators to "                                    \
-      "derive from std::iterator. To fix this warning, stop deriving from "    \
-      "std::iterator and start providing "                                     \
-      "publicly accessible typedefs named iterator_category, value_type, "     \
-      "difference_type, pointer, and reference. "                              \
-      "Note that value_type is required to be non-const, even for constant "   \
-      "iterators. "                                                            \
-      "You can define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "    \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_ITERATOR_BASE_CLASS                                     \
+    [[deprecated(                                                                \
+        "warning STL4015: "                                                      \
+        "The std::iterator class template (used as a base class to provide "     \
+        "typedefs) is deprecated in C++17. "                                     \
+        "(The <iterator> header is NOT deprecated.) The C++ Standard has never " \
+        "required user-defined iterators to "                                    \
+        "derive from std::iterator. To fix this warning, stop deriving from "    \
+        "std::iterator and start providing "                                     \
+        "publicly accessible typedefs named iterator_category, value_type, "     \
+        "difference_type, pointer, and reference. "                              \
+        "Note that value_type is required to be non-const, even for constant "   \
+        "iterators. "                                                            \
+        "You can define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "    \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_ITERATOR_BASE_CLASS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.14 [depr.util.smartptr.shared.obs]
 #if _HAS_CXX17 &&                                                     \
     !defined(_SILENCE_CXX17_SHARED_PTR_UNIQUE_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_SHARED_PTR_UNIQUE                                   \
-  [[deprecated(                                                              \
-      "warning STL4016: "                                                    \
-      "std::shared_ptr::unique() is deprecated in C++17. "                   \
-      "You can define _SILENCE_CXX17_SHARED_PTR_UNIQUE_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_SHARED_PTR_UNIQUE                                     \
+    [[deprecated(                                                              \
+        "warning STL4016: "                                                    \
+        "std::shared_ptr::unique() is deprecated in C++17. "                   \
+        "You can define _SILENCE_CXX17_SHARED_PTR_UNIQUE_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "  \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_SHARED_PTR_UNIQUE
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4659 D.15 [depr.locale.stdcvt]
 // N4659 D.16 [depr.conversions]
 #if _HAS_CXX17 &&                                                  \
     !defined(_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_CODECVT_HEADER                                       \
-  [[deprecated(                                                               \
-      "warning STL4017: "                                                     \
-      "std::wbuffer_convert, std::wstring_convert, and the <codecvt> header " \
-      "(containing std::codecvt_mode, "                                       \
-      "std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) "  \
-      "are deprecated in C++17. "                                             \
-      "(The std::codecvt class template is NOT deprecated.) "                 \
-      "The C++ Standard doesn't provide equivalent non-deprecated "           \
-      "functionality; "                                                       \
-      "consider using MultiByteToWideChar() and WideCharToMultiByte() from "  \
-      "<Windows.h> instead. "                                                 \
-      "You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING "     \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_CODECVT_HEADER                                         \
+    [[deprecated(                                                               \
+        "warning STL4017: "                                                     \
+        "std::wbuffer_convert, std::wstring_convert, and the <codecvt> header " \
+        "(containing std::codecvt_mode, "                                       \
+        "std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) "  \
+        "are deprecated in C++17. "                                             \
+        "(The std::codecvt class template is NOT deprecated.) "                 \
+        "The C++ Standard doesn't provide equivalent non-deprecated "           \
+        "functionality; "                                                       \
+        "consider using MultiByteToWideChar() and WideCharToMultiByte() from "  \
+        "<Windows.h> instead. "                                                 \
+        "You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING "     \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_CODECVT_HEADER
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // STL4018 was "The non-Standard std::tr2::sys namespace is deprecated and will
 // be REMOVED."
 
 #ifdef _SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING
 #define _DEPRECATE_FPOS_SEEKPOS
-#else  // ^^^ warning disabled / warning enabled vvv
-#define _DEPRECATE_FPOS_SEEKPOS                                                \
-  [[deprecated(                                                                \
-      "warning STL4019: "                                                      \
-      "The member std::fpos::seekpos() is non-Standard, and is preserved "     \
-      "only for compatibility with "                                           \
-      "workarounds for old versions of Visual C++. It will be removed in a "   \
-      "future release, and in this "                                           \
-      "release always returns 0. Please use standards-conforming mechanisms "  \
-      "to manipulate fpos, such as "                                           \
-      "conversions to and from streamoff, or an integral type, instead. If "   \
-      "you are receiving this message "                                        \
-      "while compiling Boost.IOStreams, a fix has been submitted upstream to " \
-      "make Boost use "                                                        \
-      "standards-conforming mechanisms, as it does for other compilers. You "  \
-      "can define "                                                            \
-      "_SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you "     \
-      "have received this warning, "                                           \
-      "or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos "           \
-      "entirely.")]]
-#endif  // ^^^ warning enabled ^^^
+#else // ^^^ warning disabled / warning enabled vvv
+#define _DEPRECATE_FPOS_SEEKPOS                                                  \
+    [[deprecated(                                                                \
+        "warning STL4019: "                                                      \
+        "The member std::fpos::seekpos() is non-Standard, and is preserved "     \
+        "only for compatibility with "                                           \
+        "workarounds for old versions of Visual C++. It will be removed in a "   \
+        "future release, and in this "                                           \
+        "release always returns 0. Please use standards-conforming mechanisms "  \
+        "to manipulate fpos, such as "                                           \
+        "conversions to and from streamoff, or an integral type, instead. If "   \
+        "you are receiving this message "                                        \
+        "while compiling Boost.IOStreams, a fix has been submitted upstream to " \
+        "make Boost use "                                                        \
+        "standards-conforming mechanisms, as it does for other compilers. You "  \
+        "can define "                                                            \
+        "_SILENCE_FPOS_SEEKPOS_DEPRECATION_WARNING to acknowledge that you "     \
+        "have received this warning, "                                           \
+        "or define _REMOVE_FPOS_SEEKPOS to remove std::fpos::seekpos "           \
+        "entirely.")]]
+#endif // ^^^ warning enabled ^^^
 
 // P0482R6 Library Support For char8_t
 // Other C++20 deprecation warnings
@@ -954,279 +954,279 @@
 #if _HAS_CXX20 &&                                                  \
     !defined(_SILENCE_CXX20_CODECVT_FACETS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_CODECVT_FACETS                                        \
-  [[deprecated(                                                                \
-      "warning STL4020: "                                                      \
-      "std::codecvt<char16_t, char, mbstate_t>, std::codecvt<char32_t, char, " \
-      "mbstate_t>, "                                                           \
-      "std::codecvt_byname<char16_t, char, mbstate_t>, and "                   \
-      "std::codecvt_byname<char32_t, char, mbstate_t> "                        \
-      "are deprecated in C++20 and replaced by specializations with a second " \
-      "argument of type char8_t. "                                             \
-      "You can define _SILENCE_CXX20_CODECVT_FACETS_DEPRECATION_WARNING "      \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_CODECVT_FACETS                                          \
+    [[deprecated(                                                                \
+        "warning STL4020: "                                                      \
+        "std::codecvt<char16_t, char, mbstate_t>, std::codecvt<char32_t, char, " \
+        "mbstate_t>, "                                                           \
+        "std::codecvt_byname<char16_t, char, mbstate_t>, and "                   \
+        "std::codecvt_byname<char32_t, char, mbstate_t> "                        \
+        "are deprecated in C++20 and replaced by specializations with a second " \
+        "argument of type char8_t. "                                             \
+        "You can define _SILENCE_CXX20_CODECVT_FACETS_DEPRECATION_WARNING "      \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_CODECVT_FACETS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // N4810 D.17 [depr.fs.path.factory]
 #if _HAS_CXX20 && !defined(_SILENCE_CXX20_U8PATH_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_U8PATH                                             \
-  [[deprecated(                                                             \
-      "warning STL4021: "                                                   \
-      "The std::filesystem::u8path() overloads are deprecated in C++20. "   \
-      "The constructors of std::filesystem::path provide equivalent "       \
-      "functionality via construction from "                                \
-      "u8string, u8string_view, or iterators with value_type char8_t. "     \
-      "You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING "           \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_U8PATH                                               \
+    [[deprecated(                                                             \
+        "warning STL4021: "                                                   \
+        "The std::filesystem::u8path() overloads are deprecated in C++20. "   \
+        "The constructors of std::filesystem::path provide equivalent "       \
+        "functionality via construction from "                                \
+        "u8string, u8string_view, or iterators with value_type char8_t. "     \
+        "You can define _SILENCE_CXX20_U8PATH_DEPRECATION_WARNING "           \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_U8PATH
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if !defined(_SILENCE_STDEXT_HASH_LOWER_BOUND_DEPRECATION_WARNING)
-#define _DEPRECATE_STDEXT_HASH_LOWER_BOUND                                     \
-  [[deprecated(                                                                \
-      "warning STL4022: "                                                      \
-      "The hash_meow and unordered_meow containers' non-Standard "             \
-      "lower_bound() member was provided for interface "                       \
-      "compatibility with the ordered associative containers, and doesn't "    \
-      "match the semantics of the "                                            \
-      "hash_meow or unordered_meow containers. Please use the find() member "  \
-      "instead. You can define "                                               \
-      "_SILENCE_STDEXT_HASH_LOWER_BOUND_DEPRECATION_WARNING to suppress this " \
-      "deprecation.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _DEPRECATE_STDEXT_HASH_LOWER_BOUND                                       \
+    [[deprecated(                                                                \
+        "warning STL4022: "                                                      \
+        "The hash_meow and unordered_meow containers' non-Standard "             \
+        "lower_bound() member was provided for interface "                       \
+        "compatibility with the ordered associative containers, and doesn't "    \
+        "match the semantics of the "                                            \
+        "hash_meow or unordered_meow containers. Please use the find() member "  \
+        "instead. You can define "                                               \
+        "_SILENCE_STDEXT_HASH_LOWER_BOUND_DEPRECATION_WARNING to suppress this " \
+        "deprecation.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _DEPRECATE_STDEXT_HASH_LOWER_BOUND
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if !defined(_SILENCE_STDEXT_HASH_UPPER_BOUND_DEPRECATION_WARNING)
-#define _DEPRECATE_STDEXT_HASH_UPPER_BOUND                                     \
-  [[deprecated(                                                                \
-      "warning STL4023: "                                                      \
-      "The hash_meow and unordered_meow containers' non-Standard "             \
-      "upper_bound() member was provided for interface "                       \
-      "compatibility with the ordered associative containers, and doesn't "    \
-      "match the semantics of the "                                            \
-      "hash_meow or unordered_meow containers. Please use the second "         \
-      "iterator returned by the "                                              \
-      "equal_range() member instead. You can define "                          \
-      "_SILENCE_STDEXT_HASH_UPPER_BOUND_DEPRECATION_WARNING to suppress this " \
-      "deprecation.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _DEPRECATE_STDEXT_HASH_UPPER_BOUND                                       \
+    [[deprecated(                                                                \
+        "warning STL4023: "                                                      \
+        "The hash_meow and unordered_meow containers' non-Standard "             \
+        "upper_bound() member was provided for interface "                       \
+        "compatibility with the ordered associative containers, and doesn't "    \
+        "match the semantics of the "                                            \
+        "hash_meow or unordered_meow containers. Please use the second "         \
+        "iterator returned by the "                                              \
+        "equal_range() member instead. You can define "                          \
+        "_SILENCE_STDEXT_HASH_UPPER_BOUND_DEPRECATION_WARNING to suppress this " \
+        "deprecation.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _DEPRECATE_STDEXT_HASH_UPPER_BOUND
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // P0966R1 [depr.string.capacity]
 #if _HAS_CXX20 &&                                                              \
     !defined(                                                                  \
         _SILENCE_CXX20_STRING_RESERVE_WITHOUT_ARGUMENT_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_STRING_RESERVE_WITHOUT_ARGUMENT                    \
-  [[deprecated(                                                             \
-      "warning STL4024: "                                                   \
-      "std::string::reserve() without an argument is deprecated in C++20. " \
-      "To shrink the string's capacity, use std::string::shrink_to_fit() "  \
-      "instead. Otherwise, provide an "                                     \
-      "argument to std::string::reserve(). "                                \
-      "You can define "                                                     \
-      "_SILENCE_CXX20_STRING_RESERVE_WITHOUT_ARGUMENT_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_STRING_RESERVE_WITHOUT_ARGUMENT                      \
+    [[deprecated(                                                             \
+        "warning STL4024: "                                                   \
+        "std::string::reserve() without an argument is deprecated in C++20. " \
+        "To shrink the string's capacity, use std::string::shrink_to_fit() "  \
+        "instead. Otherwise, provide an "                                     \
+        "argument to std::string::reserve(). "                                \
+        "You can define "                                                     \
+        "_SILENCE_CXX20_STRING_RESERVE_WITHOUT_ARGUMENT_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_STRING_RESERVE_WITHOUT_ARGUMENT
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // P0767R1 [depr.meta.types]
 #if _HAS_CXX20 && !defined(_SILENCE_CXX20_IS_POD_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_IS_POD                                               \
-  [[deprecated(                                                               \
-      "warning STL4025: "                                                     \
-      "std::is_pod and std::is_pod_v are deprecated in C++20. "               \
-      "The std::is_trivially_copyable and/or std::is_standard_layout traits " \
-      "likely suit your use case. "                                           \
-      "You can define _SILENCE_CXX20_IS_POD_DEPRECATION_WARNING "             \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_IS_POD                                                 \
+    [[deprecated(                                                               \
+        "warning STL4025: "                                                     \
+        "std::is_pod and std::is_pod_v are deprecated in C++20. "               \
+        "The std::is_trivially_copyable and/or std::is_standard_layout traits " \
+        "likely suit your use case. "                                           \
+        "You can define _SILENCE_CXX20_IS_POD_DEPRECATION_WARNING "             \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_IS_POD
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX20 && !defined(_SILENCE_EXPERIMENTAL_ERASE_DEPRECATION_WARNING)
-#define _DEPRECATE_EXPERIMENTAL_ERASE                                         \
-  [[deprecated(                                                               \
-      "warning STL4026: "                                                     \
-      "std::experimental::erase() and std::experimental::erase_if() are "     \
-      "deprecated by Microsoft and will "                                     \
-      "be REMOVED. They are superseded by std::erase() and std::erase_if(). " \
-      "You can define _SILENCE_EXPERIMENTAL_ERASE_DEPRECATION_WARNING to "    \
-      "acknowledge that you have "                                            \
-      "received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _DEPRECATE_EXPERIMENTAL_ERASE                                           \
+    [[deprecated(                                                               \
+        "warning STL4026: "                                                     \
+        "std::experimental::erase() and std::experimental::erase_if() are "     \
+        "deprecated by Microsoft and will "                                     \
+        "be REMOVED. They are superseded by std::erase() and std::erase_if(). " \
+        "You can define _SILENCE_EXPERIMENTAL_ERASE_DEPRECATION_WARNING to "    \
+        "acknowledge that you have "                                            \
+        "received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _DEPRECATE_EXPERIMENTAL_ERASE
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // P0768R1 [depr.relops]
 #if _HAS_CXX20 && !defined(_SILENCE_CXX20_REL_OPS_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_REL_OPS                                              \
-  [[deprecated(                                                               \
-      "warning STL4027: "                                                     \
-      "The namespace std::rel_ops and its contents are deprecated in C++20. " \
-      "Their use is superseded by C++20's <=> operator and automatic "        \
-      "rewrites of relational expressions. "                                  \
-      "You can define _SILENCE_CXX20_REL_OPS_DEPRECATION_WARNING or "         \
-      "_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you have " \
-      "received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_REL_OPS                                                \
+    [[deprecated(                                                               \
+        "warning STL4027: "                                                     \
+        "The namespace std::rel_ops and its contents are deprecated in C++20. " \
+        "Their use is superseded by C++20's <=> operator and automatic "        \
+        "rewrites of relational expressions. "                                  \
+        "You can define _SILENCE_CXX20_REL_OPS_DEPRECATION_WARNING or "         \
+        "_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you have " \
+        "received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_REL_OPS
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX20 && !defined(_SILENCE_CXX20_ATOMIC_INIT_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_ATOMIC_INIT                                        \
-  [[deprecated(                                                             \
-      "warning STL4028: "                                                   \
-      "std::atomic_init() overloads are deprecated in C++20. "              \
-      "The constructors of std::atomic provide equivalent functionality. "  \
-      "You can define _SILENCE_CXX20_ATOMIC_INIT_DEPRECATION_WARNING "      \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_ATOMIC_INIT                                          \
+    [[deprecated(                                                             \
+        "warning STL4028: "                                                   \
+        "std::atomic_init() overloads are deprecated in C++20. "              \
+        "The constructors of std::atomic provide equivalent functionality. "  \
+        "You can define _SILENCE_CXX20_ATOMIC_INIT_DEPRECATION_WARNING "      \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_ATOMIC_INIT
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX20 &&                                                            \
     !defined(                                                                \
         _SILENCE_CXX20_OLD_SHARED_PTR_ATOMIC_SUPPORT_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_OLD_SHARED_PTR_ATOMIC_SUPPORT                      \
-  [[deprecated(                                                             \
-      "warning STL4029: "                                                   \
-      "std::atomic_*() overloads for shared_ptr are deprecated in C++20. "  \
-      "The shared_ptr specialization of std::atomic provides superior "     \
-      "functionality. "                                                     \
-      "You can define "                                                     \
-      "_SILENCE_CXX20_OLD_SHARED_PTR_ATOMIC_SUPPORT_DEPRECATION_WARNING "   \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_OLD_SHARED_PTR_ATOMIC_SUPPORT                        \
+    [[deprecated(                                                             \
+        "warning STL4029: "                                                   \
+        "std::atomic_*() overloads for shared_ptr are deprecated in C++20. "  \
+        "The shared_ptr specialization of std::atomic provides superior "     \
+        "functionality. "                                                     \
+        "You can define "                                                     \
+        "_SILENCE_CXX20_OLD_SHARED_PTR_ATOMIC_SUPPORT_DEPRECATION_WARNING "   \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you " \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_OLD_SHARED_PTR_ATOMIC_SUPPORT
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX20 && !defined(_SILENCE_CXX20_VOLATILE_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_VOLATILE                                              \
-  [[deprecated(                                                                \
-      "warning STL4030: "                                                      \
-      "Some operations on volatile-qualified types in the STL are deprecated " \
-      "in C++20. "                                                             \
-      "You can define _SILENCE_CXX20_VOLATILE_DEPRECATION_WARNING "            \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_VOLATILE                                                \
+    [[deprecated(                                                                \
+        "warning STL4030: "                                                      \
+        "Some operations on volatile-qualified types in the STL are deprecated " \
+        "in C++20. "                                                             \
+        "You can define _SILENCE_CXX20_VOLATILE_DEPRECATION_WARNING "            \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_VOLATILE
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX20 &&                                                       \
     !defined(_SILENCE_CXX20_MOVE_ITERATOR_ARROW_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS)
-#define _CXX20_DEPRECATE_MOVE_ITERATOR_ARROW                                   \
-  [[deprecated(                                                                \
-      "warning STL4031: "                                                      \
-      "std::move_iterator::operator->() is deprecated in C++20. "              \
-      "You can define _SILENCE_CXX20_MOVE_ITERATOR_ARROW_DEPRECATION_WARNING " \
-      "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX20_DEPRECATE_MOVE_ITERATOR_ARROW                                     \
+    [[deprecated(                                                                \
+        "warning STL4031: "                                                      \
+        "std::move_iterator::operator->() is deprecated in C++20. "              \
+        "You can define _SILENCE_CXX20_MOVE_ITERATOR_ARROW_DEPRECATION_WARNING " \
+        "or _SILENCE_ALL_CXX20_DEPRECATION_WARNINGS to acknowledge that you "    \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX20_DEPRECATE_MOVE_ITERATOR_ARROW
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 #if _HAS_CXX17 &&                                                            \
     !defined(                                                                \
         _SILENCE_CXX17_POLYMORPHIC_ALLOCATOR_DESTROY_DEPRECATION_WARNING) && \
     !defined(_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
-#define _CXX17_DEPRECATE_POLYMORPHIC_ALLOCATOR_DESTROY                        \
-  [[deprecated(                                                               \
-      "warning STL4032: "                                                     \
-      "std::pmr::polymorphic_allocator::destroy() is deprecated in C++17 by " \
-      "LWG-3036. "                                                            \
-      "Prefer std::destroy_at() or "                                          \
-      "std::allocator_traits<polymorphic_allocator>::destroy(). "             \
-      "You can define "                                                       \
-      "_SILENCE_CXX17_POLYMORPHIC_ALLOCATOR_DESTROY_DEPRECATION_WARNING "     \
-      "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
-      "have received this warning.")]]
-#else  // ^^^ warning enabled / warning disabled vvv
+#define _CXX17_DEPRECATE_POLYMORPHIC_ALLOCATOR_DESTROY                          \
+    [[deprecated(                                                               \
+        "warning STL4032: "                                                     \
+        "std::pmr::polymorphic_allocator::destroy() is deprecated in C++17 by " \
+        "LWG-3036. "                                                            \
+        "Prefer std::destroy_at() or "                                          \
+        "std::allocator_traits<polymorphic_allocator>::destroy(). "             \
+        "You can define "                                                       \
+        "_SILENCE_CXX17_POLYMORPHIC_ALLOCATOR_DESTROY_DEPRECATION_WARNING "     \
+        "or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you "   \
+        "have received this warning.")]]
+#else // ^^^ warning enabled / warning disabled vvv
 #define _CXX17_DEPRECATE_POLYMORPHIC_ALLOCATOR_DESTROY
-#endif  // ^^^ warning disabled ^^^
+#endif // ^^^ warning disabled ^^^
 
 // next warning number: STL4033
 
 // P0619R4 Removing C++17-Deprecated Features
 #ifndef _HAS_FEATURES_REMOVED_IN_CXX20
 #define _HAS_FEATURES_REMOVED_IN_CXX20 (!_HAS_CXX20)
-#endif  // _HAS_FEATURES_REMOVED_IN_CXX20
+#endif // _HAS_FEATURES_REMOVED_IN_CXX20
 
 #ifndef _HAS_DEPRECATED_ADAPTOR_TYPEDEFS
 #define _HAS_DEPRECATED_ADAPTOR_TYPEDEFS (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_ADAPTOR_TYPEDEFS
+#endif // _HAS_DEPRECATED_ADAPTOR_TYPEDEFS
 
 #ifndef _HAS_DEPRECATED_ALLOCATOR_MEMBERS
 #define _HAS_DEPRECATED_ALLOCATOR_MEMBERS (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_ALLOCATOR_MEMBERS
+#endif // _HAS_DEPRECATED_ALLOCATOR_MEMBERS
 
 #ifndef _HAS_DEPRECATED_IS_LITERAL_TYPE
 #define _HAS_DEPRECATED_IS_LITERAL_TYPE (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_IS_LITERAL_TYPE
+#endif // _HAS_DEPRECATED_IS_LITERAL_TYPE
 
 #ifndef _HAS_DEPRECATED_NEGATORS
 #define _HAS_DEPRECATED_NEGATORS (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_NEGATORS
+#endif // _HAS_DEPRECATED_NEGATORS
 
 #ifndef _HAS_DEPRECATED_RAW_STORAGE_ITERATOR
 #define _HAS_DEPRECATED_RAW_STORAGE_ITERATOR (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_RAW_STORAGE_ITERATOR
+#endif // _HAS_DEPRECATED_RAW_STORAGE_ITERATOR
 
 #ifndef _HAS_DEPRECATED_RESULT_OF
 #define _HAS_DEPRECATED_RESULT_OF (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_RESULT_OF
+#endif // _HAS_DEPRECATED_RESULT_OF
 
 #ifndef _HAS_DEPRECATED_SHARED_PTR_UNIQUE
 #define _HAS_DEPRECATED_SHARED_PTR_UNIQUE (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_SHARED_PTR_UNIQUE
+#endif // _HAS_DEPRECATED_SHARED_PTR_UNIQUE
 
 #ifndef _HAS_DEPRECATED_TEMPORARY_BUFFER
 #define _HAS_DEPRECATED_TEMPORARY_BUFFER (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_TEMPORARY_BUFFER
+#endif // _HAS_DEPRECATED_TEMPORARY_BUFFER
 
 #ifndef _HAS_DEPRECATED_UNCAUGHT_EXCEPTION
 #define _HAS_DEPRECATED_UNCAUGHT_EXCEPTION (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_DEPRECATED_UNCAUGHT_EXCEPTION
+#endif // _HAS_DEPRECATED_UNCAUGHT_EXCEPTION
 
 #if _HAS_DEPRECATED_ADAPTOR_TYPEDEFS
 #define _ARGUMENT_TYPE_NAME argument_type
 #define _FIRST_ARGUMENT_TYPE_NAME first_argument_type
 #define _SECOND_ARGUMENT_TYPE_NAME second_argument_type
 #define _RESULT_TYPE_NAME result_type
-#else  // ^^^ _HAS_DEPRECATED_ADAPTOR_TYPEDEFS /
-       // !_HAS_DEPRECATED_ADAPTOR_TYPEDEFS vvv
+#else // ^^^ _HAS_DEPRECATED_ADAPTOR_TYPEDEFS /
+      // !_HAS_DEPRECATED_ADAPTOR_TYPEDEFS vvv
 #define _ARGUMENT_TYPE_NAME _Unnameable_argument
 #define _FIRST_ARGUMENT_TYPE_NAME _Unnameable_first_argument
 #define _SECOND_ARGUMENT_TYPE_NAME _Unnameable_second_argument
 #define _RESULT_TYPE_NAME _Unnameable_result
-#endif  // !_HAS_DEPRECATED_ADAPTOR_TYPEDEFS
+#endif // !_HAS_DEPRECATED_ADAPTOR_TYPEDEFS
 
 // P1423R3 char8_t Backward Compatibility Remediation
 // Controls whether we allow the stream insertions this proposal forbids
 #ifndef _HAS_STREAM_INSERTION_OPERATORS_DELETED_IN_CXX20
 #define _HAS_STREAM_INSERTION_OPERATORS_DELETED_IN_CXX20 \
-  (_HAS_FEATURES_REMOVED_IN_CXX20)
-#endif  // _HAS_STREAM_INSERTION_OPERATORS_DELETED_IN_CXX20
+    (_HAS_FEATURES_REMOVED_IN_CXX20)
+#endif // _HAS_STREAM_INSERTION_OPERATORS_DELETED_IN_CXX20
 
 // LIBRARY FEATURE-TEST MACROS
 
@@ -1247,7 +1247,7 @@
 #define __cpp_lib_robust_nonmodifying_seq_ops 201304L
 #ifndef _M_CEE
 #define __cpp_lib_shared_timed_mutex 201402L
-#endif  // _M_CEE
+#endif // _M_CEE
 #define __cpp_lib_string_udls 201304L
 #define __cpp_lib_transformation_trait_aliases 201304L
 #define __cpp_lib_tuple_element_t 201402L
@@ -1278,7 +1278,7 @@
 #define __cpp_lib_boyer_moore_searcher 201603L
 #if _HAS_STD_BYTE
 #define __cpp_lib_byte 201603L
-#endif  // _HAS_STD_BYTE
+#endif // _HAS_STD_BYTE
 #define __cpp_lib_clamp 201603L
 #define __cpp_lib_filesystem 201703L
 #define __cpp_lib_gcd_lcm 201606L
@@ -1297,7 +1297,7 @@
 #define __cpp_lib_optional 201606L
 #ifndef _M_CEE
 #define __cpp_lib_parallel_algorithm 201603L
-#endif  // _M_CEE
+#endif // _M_CEE
 #define __cpp_lib_raw_memory_algorithms 201606L
 #define __cpp_lib_sample 201603L
 #define __cpp_lib_scoped_lock 201703L
@@ -1305,7 +1305,7 @@
 #define __cpp_lib_string_view 201803L
 #define __cpp_lib_to_chars 201611L
 #define __cpp_lib_variant 201606L
-#endif  // _HAS_CXX17
+#endif // _HAS_CXX17
 
 // C++20
 #define __cpp_lib_atomic_value_initialization 201911L
@@ -1326,19 +1326,19 @@
 
 #ifdef __cpp_char8_t
 #define __cpp_lib_char8_t 201907L
-#endif  // __cpp_char8_t
+#endif // __cpp_char8_t
 
 #if !defined(__EDG__) || \
-    defined(__INTELLISENSE__)  // TRANSITION, EDG concepts support
+    defined(__INTELLISENSE__) // TRANSITION, EDG concepts support
 #define __cpp_lib_concepts 201907L
-#endif  // !defined(__EDG__) || defined(__INTELLISENSE__)
+#endif // !defined(__EDG__) || defined(__INTELLISENSE__)
 
 #define __cpp_lib_constexpr_algorithms 201806L
 #define __cpp_lib_constexpr_complex 201711L
 
 #ifdef __cpp_constexpr_dynamic_alloc
 #define __cpp_lib_constexpr_dynamic_alloc 201907L
-#endif  // __cpp_constexpr_dynamic_alloc
+#endif // __cpp_constexpr_dynamic_alloc
 
 #define __cpp_lib_constexpr_functional 201907L
 #define __cpp_lib_constexpr_iterator 201811L
@@ -1346,26 +1346,26 @@
 #define __cpp_lib_constexpr_numeric 201911L
 
 #if defined(__cpp_constexpr_dynamic_alloc) && \
-    !defined(__clang__)  // TRANSITION, LLVM-48606
+    !defined(__clang__) // TRANSITION, LLVM-48606
 #define __cpp_lib_constexpr_string 201907L
-#endif  // defined(__cpp_constexpr_dynamic_alloc) && !defined(__clang__)
+#endif // defined(__cpp_constexpr_dynamic_alloc) && !defined(__clang__)
 
 #define __cpp_lib_constexpr_string_view 201811L
 #define __cpp_lib_constexpr_tuple 201811L
 #define __cpp_lib_constexpr_utility 201811L
 
 #if defined(__cpp_constexpr_dynamic_alloc) && \
-    !defined(__clang__)  // TRANSITION, LLVM-48606
+    !defined(__clang__) // TRANSITION, LLVM-48606
 #define __cpp_lib_constexpr_vector 201907L
-#endif  // defined(__cpp_constexpr_dynamic_alloc) && !defined(__clang__)
+#endif // defined(__cpp_constexpr_dynamic_alloc) && !defined(__clang__)
 
 #define __cpp_lib_destroying_delete 201806L
 #define __cpp_lib_endian 201907L
 #define __cpp_lib_erase_if 202002L
 
-#ifdef __cpp_lib_concepts  // TRANSITION, GH-395
+#ifdef __cpp_lib_concepts // TRANSITION, GH-395
 #define __cpp_lib_format 201907L
-#endif  // __cpp_lib_concepts
+#endif // __cpp_lib_concepts
 
 #define __cpp_lib_generic_unordered_lookup 201811L
 #define __cpp_lib_int_pow2 202002L
@@ -1373,19 +1373,19 @@
 #define __cpp_lib_interpolate 201902L
 #define __cpp_lib_is_constant_evaluated 201811L
 
-#ifndef __EDG__    // TRANSITION, VSO-1268984
-#ifndef __clang__  // TRANSITION, LLVM-48860
+#ifndef __EDG__   // TRANSITION, VSO-1268984
+#ifndef __clang__ // TRANSITION, LLVM-48860
 #define __cpp_lib_is_layout_compatible 201907L
-#endif  // __clang__
-#endif  // __EDG__
+#endif // __clang__
+#endif // __EDG__
 
 #define __cpp_lib_is_nothrow_convertible 201806L
 
-#ifndef __EDG__    // TRANSITION, VSO-1268984
-#ifndef __clang__  // TRANSITION, LLVM-48860
+#ifndef __EDG__   // TRANSITION, VSO-1268984
+#ifndef __clang__ // TRANSITION, LLVM-48860
 #define __cpp_lib_is_pointer_interconvertible 201907L
-#endif  // __clang__
-#endif  // __EDG__
+#endif // __clang__
+#endif // __EDG__
 
 #define __cpp_lib_jthread 201911L
 #define __cpp_lib_latch 201907L
@@ -1393,9 +1393,9 @@
 #define __cpp_lib_math_constants 201907L
 #define __cpp_lib_polymorphic_allocator 201902L
 
-#ifdef __cpp_lib_concepts  // TRANSITION, GH-395
+#ifdef __cpp_lib_concepts // TRANSITION, GH-395
 #define __cpp_lib_ranges 201911L
-#endif  // __cpp_lib_concepts
+#endif // __cpp_lib_concepts
 
 #define __cpp_lib_remove_cvref 201711L
 #define __cpp_lib_semaphore 201907L
@@ -1404,59 +1404,59 @@
 
 #ifdef __cpp_consteval
 #define __cpp_lib_source_location 201907L
-#endif  // __cpp_consteval
+#endif // __cpp_consteval
 
 #define __cpp_lib_span 202002L
 #define __cpp_lib_ssize 201902L
 #define __cpp_lib_starts_ends_with 201711L
 #define __cpp_lib_syncbuf 201803L
 
-#ifdef __cpp_lib_concepts  // TRANSITION, GH-395
+#ifdef __cpp_lib_concepts // TRANSITION, GH-395
 #define __cpp_lib_three_way_comparison 201907L
-#endif  // __cpp_lib_concepts
+#endif // __cpp_lib_concepts
 
 #define __cpp_lib_to_address 201711L
 #define __cpp_lib_to_array 201907L
 #define __cpp_lib_type_identity 201806L
 #define __cpp_lib_unwrap_ref 201811L
-#endif  // _HAS_CXX20
+#endif // _HAS_CXX20
 
 #ifndef _M_CEE
 #if _HAS_CXX20
-#define __cpp_lib_execution 201902L  // P1001R2 execution::unseq
+#define __cpp_lib_execution 201902L // P1001R2 execution::unseq
 #elif _HAS_CXX17
-#define __cpp_lib_execution 201603L  // P0024R2 Parallel Algorithms
-#endif                               // language mode
-#endif                               // _M_CEE
+#define __cpp_lib_execution 201603L // P0024R2 Parallel Algorithms
+#endif                              // language mode
+#endif                              // _M_CEE
 
 #if _HAS_CXX20
-#define __cpp_lib_array_constexpr 201811L  // P1032R1 Miscellaneous constexpr
-#elif _HAS_CXX17                           // ^^^ _HAS_CXX20 / _HAS_CXX17 vvv
+#define __cpp_lib_array_constexpr 201811L // P1032R1 Miscellaneous constexpr
+#elif _HAS_CXX17                          // ^^^ _HAS_CXX20 / _HAS_CXX17 vvv
 #define __cpp_lib_array_constexpr 201803L
-#endif  // _HAS_CXX17
+#endif // _HAS_CXX17
 
-#if _HAS_CXX20 && defined(__cpp_lib_concepts)  // TRANSITION, GH-395
+#if _HAS_CXX20 && defined(__cpp_lib_concepts) // TRANSITION, GH-395
 #define __cpp_lib_chrono \
-  201907L  // P1466R3 Miscellaneous Minor Fixes For <chrono>
+    201907L // P1466R3 Miscellaneous Minor Fixes For <chrono>
 #elif _HAS_CXX17
-#define __cpp_lib_chrono 201611L  // P0505R0 constexpr For <chrono> (Again)
-#else                             // _HAS_CXX17
+#define __cpp_lib_chrono 201611L // P0505R0 constexpr For <chrono> (Again)
+#else                            // _HAS_CXX17
 #define __cpp_lib_chrono \
-  201510L  // P0092R1 <chrono> floor(), ceil(), round(), abs()
-#endif     // _HAS_CXX17
+    201510L // P0092R1 <chrono> floor(), ceil(), round(), abs()
+#endif      // _HAS_CXX17
 
 #if _HAS_CXX20
-#define __cpp_lib_shared_ptr_arrays 201707L  // P0674R1 make_shared() For Arrays
-#else                                        // _HAS_CXX20
+#define __cpp_lib_shared_ptr_arrays 201707L // P0674R1 make_shared() For Arrays
+#else                                       // _HAS_CXX20
 #define __cpp_lib_shared_ptr_arrays \
-  201611L  // P0497R0 Fixing shared_ptr For Arrays
-#endif     // _HAS_CXX20
+    201611L // P0497R0 Fixing shared_ptr For Arrays
+#endif      // _HAS_CXX20
 
 #if defined(__cpp_impl_coroutine) || \
-    defined(_DOWNLEVEL_COROUTINES_SUPPORTED)  // TRANSITION, Clang coroutine
-                                              // support
+    defined(_DOWNLEVEL_COROUTINES_SUPPORTED) // TRANSITION, Clang coroutine
+                                             // support
 #define __cpp_lib_coroutine 201902L
-#endif  // __cpp_impl_coroutine
+#endif // __cpp_impl_coroutine
 
 // EXPERIMENTAL
 #define __cpp_lib_experimental_erase_if 201411L
@@ -1471,7 +1471,7 @@
 
 // Functions that became constexpr in C++20 via P0980R1 or P1004R2
 #if defined(__cpp_lib_constexpr_dynamic_alloc) && \
-    !defined(__clang__)  // TRANSITION, LLVM-48606
+    !defined(__clang__) // TRANSITION, LLVM-48606
 #define _CONSTEXPR20_CONTAINER constexpr
 #else
 #define _CONSTEXPR20_CONTAINER inline
@@ -1481,15 +1481,17 @@
 #ifndef _ALLOW_RTCc_IN_STL
 #error /RTCc rejects conformant code, so it is not supported by the C++ Standard Library. Either remove this \
 compiler option, or define _ALLOW_RTCc_IN_STL to acknowledge that you have received this warning.
-#endif  // _ALLOW_RTCc_IN_STL
-#endif  // _RTC_CONVERSION_CHECKS_ENABLED
+#endif // _ALLOW_RTCc_IN_STL
+#endif // _RTC_CONVERSION_CHECKS_ENABLED
 
 #define _STRINGIZEX(x) #x
 #define _STRINGIZE(x) _STRINGIZEX(x)
-#define _EMPTY_ARGUMENT  // for empty macro argument
+#define _EMPTY_ARGUMENT // for empty macro argument
 
 // NAMESPACE
-#define _STD_BEGIN namespace std {
+#define _STD_BEGIN \
+    namespace std  \
+    {
 #define _STD_END }
 #define _STD ::std::
 #define _CHRONO ::std::chrono::
@@ -1497,44 +1499,48 @@ compiler option, or define _ALLOW_RTCc_IN_STL to acknowledge that you have recei
 
 // We use the stdext (standard extension) namespace to contain extensions that
 // are not part of the current standard
-#define _STDEXT_BEGIN namespace stdext {
+#define _STDEXT_BEGIN \
+    namespace stdext  \
+    {
 #define _STDEXT_END }
 #define _STDEXT ::stdext::
 
 #ifdef __cplusplus
 #define _CSTD ::
 
-#define _EXTERN_C extern "C" {
+#define _EXTERN_C \
+    extern "C"    \
+    {
 #define _END_EXTERN_C }
-#else  // ^^^ __cplusplus / !__cplusplus vvv
+#else // ^^^ __cplusplus / !__cplusplus vvv
 #define _CSTD
 
 #define _EXTERN_C
 #define _END_EXTERN_C
-#endif  // __cplusplus
+#endif // __cplusplus
 
 #ifdef _M_CEE_PURE
 #define _EXTERN_C_UNLESS_PURE
 #define _END_EXTERN_C_UNLESS_PURE
-#else  // ^^^ _M_CEE_PURE / !_M_CEE_PURE vvv
+#else // ^^^ _M_CEE_PURE / !_M_CEE_PURE vvv
 #define _EXTERN_C_UNLESS_PURE _EXTERN_C
 #define _END_EXTERN_C_UNLESS_PURE _END_EXTERN_C
-#endif  // _M_CEE_PURE
+#endif // _M_CEE_PURE
 
 #if defined(MRTDLL) && !defined(_CRTBLD)
 #error In yvals_core.h, defined(MRTDLL) implies defined(_CRTBLD); !defined(_CRTBLD) implies !defined(MRTDLL)
-#endif  // defined(MRTDLL) && !defined(_CRTBLD)
+#endif // defined(MRTDLL) && !defined(_CRTBLD)
 
 #if defined(MRTDLL) && !defined(_M_CEE_PURE)
 #error In yvals_core.h, defined(MRTDLL) implies defined(_M_CEE_PURE); !defined(_M_CEE_PURE) implies !defined(MRTDLL)
-#endif  // defined(MRTDLL) && !defined(_M_CEE_PURE)
+#endif // defined(MRTDLL) && !defined(_M_CEE_PURE)
 
-#define _STL_WIN32_WINNT_WINXP 0x0501  // _WIN32_WINNT_WINXP from sdkddkver.h
-#define _STL_WIN32_WINNT_VISTA 0x0600  // _WIN32_WINNT_VISTA from sdkddkver.h
-#define _STL_WIN32_WINNT_WIN8 0x0602   // _WIN32_WINNT_WIN8 from sdkddkver.h
+#define _STL_WIN32_WINNT_WINXP 0x0501 // _WIN32_WINNT_WINXP from sdkddkver.h
+#define _STL_WIN32_WINNT_VISTA 0x0600 // _WIN32_WINNT_VISTA from sdkddkver.h
+#define _STL_WIN32_WINNT_WIN8 0x0602  // _WIN32_WINNT_WIN8 from sdkddkver.h
 #define _STL_WIN32_WINNT_WINBLUE \
-  0x0603                               // _WIN32_WINNT_WINBLUE from sdkddkver.h
-#define _STL_WIN32_WINNT_WIN10 0x0A00  // _WIN32_WINNT_WIN10 from sdkddkver.h
+    0x0603                            // _WIN32_WINNT_WINBLUE from sdkddkver.h
+#define _STL_WIN32_WINNT_WIN10 0x0A00 // _WIN32_WINNT_WIN10 from sdkddkver.h
 
 // Note that the STL DLL builds will set this to XP for ABI compatibility with
 // VS2015 which supported XP.
@@ -1545,18 +1551,18 @@ compiler option, or define _ALLOW_RTCc_IN_STL to acknowledge that you have recei
 #elif defined(_M_ARM) || defined(_ONECORE) || defined(_CRT_APP)
 // The first ARM or OneCore or App Windows was Windows 8
 #define _STL_WIN32_WINNT _STL_WIN32_WINNT_WIN8
-#else  // ^^^ default to Win8 // default to Vista vvv
+#else // ^^^ default to Win8 // default to Vista vvv
 // The earliest Windows supported by this implementation is Windows Vista
 #define _STL_WIN32_WINNT _STL_WIN32_WINNT_VISTA
-#endif  // ^^^ !defined(_M_ARM) && !defined(_M_ARM64) && !defined(_ONECORE) &&
-        // !defined(_CRT_APP) ^^^
-#endif  // _STL_WIN32_WINNT
+#endif // ^^^ !defined(_M_ARM) && !defined(_M_ARM64) && !defined(_ONECORE) &&
+       // !defined(_CRT_APP) ^^^
+#endif // _STL_WIN32_WINNT
 
 #ifdef __cpp_noexcept_function_type
 #define _NOEXCEPT_FNPTR noexcept
 #else
 #define _NOEXCEPT_FNPTR
-#endif  // __cpp_noexcept_function_type
+#endif // __cpp_noexcept_function_type
 
-#endif  // _STL_COMPILER_PREPROCESSOR
-#endif  // _YVALS_CORE_H_
+#endif // _STL_COMPILER_PREPROCESSOR
+#endif // _YVALS_CORE_H_

@@ -12,12 +12,13 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-class TZ_WIDGETS_EXPORT WidgetsCommonUtils {
- public:
+class TZ_WIDGETS_EXPORT WidgetsCommonUtils
+{
+public:
   WidgetsCommonUtils();
   ~WidgetsCommonUtils();
 };
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_WIDGETS_WIDGETS_COMMON_UTILS_H_
+#endif // SOURCE_INCLUDE_WIDGETS_WIDGETS_COMMON_UTILS_H_

@@ -10,28 +10,36 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides a tool with the capabilities of a basic 64-bit codec.
- * @file main.cpp
+ * @brief This file provides some test cases for boost::apply_permutation as example.
+ * @file boost_apply_permutaion_test_cases.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-07-23
- * @date Created: 2022-07-23
- * @date Last modified: 2022-07-23
+ * @since 2022-08-04
+ * @date Created: 2022-08-04
+ * @date Last modified: 2022-08-04
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
+ * RefLink: @link https://en.jinzhao.wiki/wiki/Boyer%E2%80%93Moore_string-search_algorithm @endlink
  */
 
-#ifndef BASIC_BASE64_H
-#define BASIC_BASE64_H
+#ifndef BOOST_APPLY_PERMUTATION_TEST_CASES_H
+#define BOOST_APPLY_PERMUTATION_TEST_CASES_H
 
-#include "basic_export.h"
-#include <string>
+#include "BoostTestCases/boost_test_cases_export.h"
 
-namespace Basic
+namespace TzSoft
 {
-    std::string TZ_BASIC_STATIC_EXPORT base64Encode(unsigned char const*, unsigned int len);
-    std::string TZ_BASIC_STATIC_EXPORT base64Decode(const std::string& s);
-} // namespace Basic
+    namespace UnitTests
+    {
+        class TZ_BOOST_TEST_CASES_STATIC_EXPORT ApplyPermutationTestCases final
+        {
+        public:
+            static void testCaseEntry();
+            static void boostExampleCase();
+            static void personalCase();
+        };
+    } // namesapce UnitTests
+} // namespace TzSoft
 
-#endif // BASIC_BASE64_H
+#endif // BOOST_APPLY_PERMUTATION_TEST_CASES_H

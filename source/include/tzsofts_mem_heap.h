@@ -17,8 +17,9 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-class TZ_ROOT_STATIC_EXPORT TzcHeap {
- public:
+class TZ_ROOT_STATIC_EXPORT TzcHeap
+{
+public:
   static TZ_ROOT_EXPORT_STATIC TZPVOID TZ_FASTCALL operator new(size_t size);
   static TZ_ROOT_EXPORT_STATIC void TZ_FASTCALL operator delete(TZPVOID p);
 };
@@ -28,4 +29,4 @@ class TZ_ROOT_STATIC_EXPORT TzcHeap {
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_TZSOFTS_MEM_HEAP_H_
+#endif // SOURCE_INCLUDE_TZSOFTS_MEM_HEAP_H_

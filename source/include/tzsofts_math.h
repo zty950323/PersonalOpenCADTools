@@ -86,22 +86,26 @@ const double kArbitraryEpsilon =
 #endif
 
 template <class T>
-inline const T& min(const T& a, const T& b) {
+inline const T &min(const T &a, const T &b)
+{
   return a < b ? a : b;
 }
 
 template <class T>
-inline const T& min(const T& a, const T& b, const T& c) {
+inline const T &min(const T &a, const T &b, const T &c)
+{
   return a < b ? min(a, c) : min(b, c);
 }
 
 template <class T>
-inline const T& max(const T& a, const T& b) {
+inline const T &max(const T &a, const T &b)
+{
   return a > b ? a : b;
 }
 
 template <class T>
-inline const T& max(const T& a, const T& b, const T& c) {
+inline const T &max(const T &a, const T &b, const T &c)
+{
   return a < b ? max(a, c) : max(b, c);
 }
 
@@ -115,62 +119,80 @@ inline float floor(float x) { return ::floorf(x); }
 
 inline double ceil(double x) { return ::ceil(x); }
 
-inline float ceil(float x) {
+inline float ceil(float x)
+{
   return static_cast<float>(static_cast<double>(x));
 }
 
 inline TZLONG truncate(float x) { return static_cast<TZLONG>(x); }
 
-inline double round(double x) {
+inline double round(double x)
+{
   double xFloor = ::floor(x);
   return (x - xFloor >= 0.5) ? (xFloor + 1.0) : xFloor;
 }
 
-inline double round(float x) {
+inline double round(float x)
+{
   float xFloor = ::floor(x);
   return (x - xFloor >= 0.5f) ? (xFloor + 1.0f) : xFloor;
 }
 
-inline bool isOverflowedToLong(double x) {
+inline bool isOverflowedToLong(double x)
+{
   x += 0.5;
   return ((TZLONG)x) > kLongMax;
 }
 
-inline bool isUnderflowedToLong(double x) {
+inline bool isUnderflowedToLong(double x)
+{
   x -= 0.5;
   return ((TZLONG)x) < -kLongMax;
 }
 
-inline TZLONG roundToLong(double x) {
+inline TZLONG roundToLong(double x)
+{
   x += (x > -0.0) ? 0.5 : -0.5;
   return static_cast<TZLONG>(min(static_cast<double>(kLongMax), x));
 }
 
 inline TZLONG roundToLong(float x) { return static_cast<TZLONG>(round(x)); }
 
-inline bool isOverflowedToInt(double x) {
+inline bool isOverflowedToInt(double x)
+{
   x += 0.5;
   return (static_cast<int>(x)) > kIntMax;
 }
 
-inline bool isUnderflowedToInt(double x) {
+inline bool isUnderflowedToInt(double x)
+{
   x -= 0.5;
   return (static_cast<int>(x)) < -kIntMax;
 }
 
-inline int roundToInt(double x) {
-  if (x >= 0.) {
+inline int roundToInt(double x)
+{
+  if (x >= 0.)
+  {
     x += .5;
-    if (x > static_cast<double>(kIntMax)) {
+    if (x > static_cast<double>(kIntMax))
+    {
       return kIntMax;
-    } else {
+    }
+    else
+    {
       return static_cast<int>(x);
     }
-  } else {
+  }
+  else
+  {
     x -= .5;
-    if (x < static_cast<double>(kIntMin)) {
+    if (x < static_cast<double>(kIntMin))
+    {
       return kIntMin;
-    } else {
+    }
+    else
+    {
       return static_cast<int>(x);
     }
   }
@@ -179,38 +201,50 @@ inline int roundToInt(double x) {
 inline int roundToInt(float x) { return static_cast<int>(round(x)); }
 
 template <class T>
-inline T lerp(const T& a, const T& b, float t) {
+inline T lerp(const T &a, const T &b, float t)
+{
   return static_cast<T>(a * (1.0f - t) + b * t);
 }
 
 template <class T>
-inline T lerp(const T& a, const T& b, double t) {
+inline T lerp(const T &a, const T &b, double t)
+{
   return static_cast<T>(a * (1.0 - t) + b * t);
 }
 
 template <class T>
-inline const T clamp(const T& t, const T& low, const T& high) {
-  if (t < low) {
+inline const T clamp(const T &t, const T &low, const T &high)
+{
+  if (t < low)
+  {
     return low;
   }
-  if (t > high) {
+  if (t > high)
+  {
     return high;
   }
   return t;
 }
 
 template <class T>
-inline const T abs(const T& a) {
+inline const T abs(const T &a)
+{
   return a < static_cast<T>(0) ? -a : a;
 }
 
 template <class T>
-inline const T sign(const T& a) {
-  if (a == static_cast<T>(0)) {
+inline const T sign(const T &a)
+{
+  if (a == static_cast<T>(0))
+  {
     return 0;
-  } else if (a > static_cast<T>(0)) {
+  }
+  else if (a > static_cast<T>(0))
+  {
     return 1;
-  } else {
+  }
+  else
+  {
     return -1;
   }
 }
@@ -229,191 +263,232 @@ inline bool isNegative(double x, double tol = kEpsilon) { return (x < -tol); }
 
 inline bool isNegative(float x, float tol = kFEpsilon) { return (x < -tol); }
 
-inline bool isZero(double x, double tol = kEpsilon) {
+inline bool isZero(double x, double tol = kEpsilon)
+{
   return !isPositive(x, tol) && !isNegative(x, tol);
 }
 
-inline bool isZero(float x, float tol = kFEpsilon) {
+inline bool isZero(float x, float tol = kFEpsilon)
+{
   return !isPositive(x, tol) && !isNegative(x, tol);
 }
 
 template <typename T>
-inline bool isZero(const T& x) {
+inline bool isZero(const T &x)
+{
   return (x == (T)0);
 }
 
-inline bool isNonZero(double x, double tol = kEpsilon) {
+inline bool isNonZero(double x, double tol = kEpsilon)
+{
   return isPositive(x, tol) || isNonZero(x, tol);
 }
 
-inline bool isEqual(double x, double y, double tol = kEpsilon) {
+inline bool isEqual(double x, double y, double tol = kEpsilon)
+{
   return isZero(x - y, tol);
 }
 
-inline bool isEqual(float x, float y, float tol = kFEpsilon) {
+inline bool isEqual(float x, float y, float tol = kFEpsilon)
+{
   return isZero(x - y, tol);
 }
 
-inline bool isEqual(TZLONG x, TZLONG y, TZLONG tol = 0) {
+inline bool isEqual(TZLONG x, TZLONG y, TZLONG tol = 0)
+{
   return ((x - y) <= tol && (x - y) >= -tol);
 }
 
 template <typename T>
-inline bool isEqual(const T& x, const T& y) {
+inline bool isEqual(const T &x, const T &y)
+{
   return (x == y);
 }
 
-inline int doubleCmp(double x, double y, double tol = kEpsilon) {
-  if (isPositive(x - y, tol)) {
+inline int doubleCmp(double x, double y, double tol = kEpsilon)
+{
+  if (isPositive(x - y, tol))
+  {
     return 1;
   }
-  if (isNegative(x - y, tol)) {
+  if (isNegative(x - y, tol))
+  {
     return -1;
   }
   return 0;
 }
 
 template <typename TInteger>
-inline void divide(const TInteger& number, const TInteger& denom,
-                   TInteger& quotient, TInteger& remainder) {
+inline void divide(const TInteger &number, const TInteger &denom,
+                   TInteger &quotient, TInteger &remainder)
+{
   quotient = number / denom;
   remainder = number % denom;
 }
 
-inline double safeDivide(double a, double b) {
-  if (a == 0.) {
+inline double safeDivide(double a, double b)
+{
+  if (a == 0.)
+  {
     return 0.;
   }
-  if (b != 0.) {
+  if (b != 0.)
+  {
     static const int maxBinExp = 997;
     int nExpA, nExpB;
     double dMantissa = frexp(a, &nExpA);
     dMantissa = frexp(b, &nExpB);
-    if ((nExpA - nExpB) < maxBinExp) {
+    if ((nExpA - nExpB) < maxBinExp)
+    {
       return a / b;
     }
   }
 
   bool bNeg = (a < 0.);
-  if (b < 0.) {
+  if (b < 0.)
+  {
     bNeg = !bNeg;
   }
   return bNeg ? -1.e+300 : 1.e+300;
 }
 
-inline double sqrt(double x) {
+inline double sqrt(double x)
+{
   TZ_ASSERT(x >= 0.0);
   return ::sqrt(x);
 }
 
-inline float sqrt(float x) {
+inline float sqrt(float x)
+{
   TZ_ASSERT(x >= 0.0f);
   return static_cast<float>(::sqrt(static_cast<double>(x)));
 }
 
 template <typename T>
-inline const T sqsum(const T& x, const T& y) {
+inline const T sqsum(const T &x, const T &y)
+{
   return x * x + y * y;
 }
 
 template <typename T>
-inline const T sqsum(const T& x, const T& y, const T& z) {
+inline const T sqsum(const T &x, const T &y, const T &z)
+{
   return x * x + y * y + z * z;
 }
 
 template <typename T>
-inline double sqrt(const T& x, const T& y) {
+inline double sqrt(const T &x, const T &y)
+{
   return sqrt(static_cast<double>(sqsum(x, y)));
 }
 
 template <typename T>
-inline double sqrt(const T& x, const T& y, const T& z) {
+inline double sqrt(const T &x, const T &y, const T &z)
+{
   return sqrt(static_cast<double>(sqsum(x, y, z)));
 }
 
 template <typename TFloat>
-inline TFloat pow(TFloat x, TFloat y) {
+inline TFloat pow(TFloat x, TFloat y)
+{
   return ::pow(x, y);
 }
 
 template <typename TFloat>
-inline TFloat pow(TFloat x, int y) {
+inline TFloat pow(TFloat x, int y)
+{
   return ::pow(x, y);
 }
 
-inline double loge(double x) {
+inline double loge(double x)
+{
   TZ_ASSERT(x >= 0.0);
   return ::log(x);
 }
 
-inline float loge(float x) {
+inline float loge(float x)
+{
   TZ_ASSERT(x >= 0.f);
   return static_cast<float>(loge(static_cast<double>(x)));
 }
 
-inline double log10(double x) {
+inline double log10(double x)
+{
   TZ_ASSERT(x >= 0.0);
   return ::log10(x);
 }
 
-inline float log10(float x) {
+inline float log10(float x)
+{
   TZ_ASSERT(x >= 0.f);
   return static_cast<float>(log10(static_cast<double>(x)));
 }
 
 template <typename TFloat>
-inline TFloat fmod(TFloat x, TFloat y) {
+inline TFloat fmod(TFloat x, TFloat y)
+{
   return ::fmod(x, y);
 }
 
 template <typename TFloat>
-inline TFloat modf(TFloat x, TFloat* integer) {
+inline TFloat modf(TFloat x, TFloat *integer)
+{
   return ::modf(x, integer);
 }
 
-inline double degNormalize(double deg) {
+inline double degNormalize(double deg)
+{
   double degNor = fmod(deg, 360.0);
-  if (degNor < -180.0) {
+  if (degNor < -180.0)
+  {
     degNor += 360.0;
   }
-  if (degNor > 180.0) {
+  if (degNor > 180.0)
+  {
     degNor -= 360.0;
   }
 
   return degNor;
 }
 
-inline float degNormalize(float deg) {
+inline float degNormalize(float deg)
+{
   return static_cast<float>(degNormalize(static_cast<double>(deg)));
 }
 
-inline double radNormalize(double rad) {
+inline double radNormalize(double rad)
+{
   double radNor = fmod(rad, TWO_PI);
-  if (radNor < -TZPI) {
+  if (radNor < -TZPI)
+  {
     radNor += TWO_PI;
   }
-  if (radNor > TZPI) {
+  if (radNor > TZPI)
+  {
     radNor -= TWO_PI;
   }
 
   return radNor;
 }
 
-inline float radNormalize(float rad) {
+inline float radNormalize(float rad)
+{
   return static_cast<float>(radNormalize(static_cast<double>(rad)));
 }
 
-inline bool isValidNonZeroIEEEDouble(double val) {
-  const TZUINT8* buf = (const TZUINT8*)&val;
+inline bool isValidNonZeroIEEEDouble(double val)
+{
+  const TZUINT8 *buf = (const TZUINT8 *)&val;
 #if TZ_RADIAN == TZ_ENDIAN_BIG
   int nExponent = (buf[0] & 0x7F) << 4 | (buf[1] & 0xF0) >> 4;
 #else
   int nExponent = (buf[7] & 0x7F) << 4 | (buf[6] & 0xF0) >> 4;
 #endif
-  switch (nExponent) {
-    case 0:
-    case 2047:
-      return false;
+  switch (nExponent)
+  {
+  case 0:
+  case 2047:
+    return false;
   }
 
   return true;
@@ -421,11 +496,13 @@ inline bool isValidNonZeroIEEEDouble(double val) {
 
 inline TZUINT16 byteSwap(TZUINT16 n) { return (n << 8 | n >> 8); }
 
-inline TZUINT32 byteSwap(TZUINT32 n) {
+inline TZUINT32 byteSwap(TZUINT32 n)
+{
   return (n << 24 | (n & 0x0000ff00) << 8 | (n & 0x00ff0000) >> 8 | n >> 24);
 }
 
-inline TZUINT64 byteSwap(TZUINT64 n) {
+inline TZUINT64 byteSwap(TZUINT64 n)
+{
   return (n << 56 | (n & 0x000000000000ff00) << 40 |
           (n & 0x0000000000ff0000) << 24 | (n & 0x00000000ff000000) << 8 |
           (n & 0x000000ff00000000) >> 8 | (n & 0x0000ff0000000000) >> 24 |
@@ -438,162 +515,192 @@ inline TZINT32 byteSwap(TZINT32 n) { return (TZINT32)byteSwap((TZUINT32)n); }
 
 inline TZINT64 byteSwap(TZINT64 n) { return (TZINT64)byteSwap((TZUINT64)n); }
 
-inline TZFLOAT32 byteSwap(TZFLOAT32 f) {
+inline TZFLOAT32 byteSwap(TZFLOAT32 f)
+{
   return (TZFLOAT32)byteSwap((TZUINT32)f);
 }
 
-inline TZFLOAT64 byteSwap(TZFLOAT64 f) {
+inline TZFLOAT64 byteSwap(TZFLOAT64 f)
+{
   return (TZFLOAT64)byteSwap((TZUINT64)f);
 }
 
-inline void fixDouble(double& val) {
+inline void fixDouble(double &val)
+{
   TzByteSwap(val);
-  if (!isValidNonZeroIEEEDouble(val)) {
+  if (!isValidNonZeroIEEEDouble(val))
+  {
     val = 0.;
   }
 }
 
 template <typename T>
-inline const T asInt(const T& f) {
-  if (f > kIntMax) {
+inline const T asInt(const T &f)
+{
+  if (f > kIntMax)
+  {
     return floor(f);
   }
-  if (f < kIntMin) {
+  if (f < kIntMin)
+  {
     return ceil(f);
   }
 
-  return static_cast<const T&>(static_cast<int>(f));
+  return static_cast<const T &>(static_cast<int>(f));
 }
 
 template <typename T>
-inline const T fixAngle(const T& angle) {
+inline const T fixAngle(const T &angle)
+{
   T retAng = 0.0;
-  if (angle - 1.0 != angle) {
+  if (angle - 1.0 != angle)
+  {
     retAng = (T)(angle / TWO_PI);
   }
 
   retAng = (T)(retAng - asInt(retAng)) * TWO_PI;
-  if (retAng < (T)0.0) {
+  if (retAng < (T)0.0)
+  {
     retAng += TWO_PI;
   }
-  if (retAng >= (T)TWO_PI) {
+  if (retAng >= (T)TWO_PI)
+  {
     retAng -= TWO_PI;
   }
 
   return retAng;
 }
 
-inline bool isAngleEqual(const double& x, const double& y) {
+inline bool isAngleEqual(const double &x, const double &y)
+{
   double rDeltaAngle = (x) - (y) + TzSoft::kEpsilon6;
   return (TzSoft::fixAngle(rDeltaAngle) < 2 * TzSoft::kEpsilon6);
 }
 
-inline bool isAngleZero(const double& x) {
+inline bool isAngleZero(const double &x)
+{
   double rDeltaAngle = (x) + TzSoft::kEpsilon6;
   return (TzSoft::fixAngle(rDeltaAngle) < 2 * TzSoft::kEpsilon6);
 }
 
-inline void validateDoubleRange(double& d) {
-  if (d > TzSoft::dEpsilon100) {
+inline void validateDoubleRange(double &d)
+{
+  if (d > TzSoft::dEpsilon100)
+  {
     d = TzSoft::dEpsilon100;
-  } else if (d < -TzSoft::dEpsilon100) {
+  }
+  else if (d < -TzSoft::dEpsilon100)
+  {
     d = -TzSoft::dEpsilon100;
   }
 }
 
-inline double tzsin(const double& x) { return ::sin(x); }
+inline double tzsin(const double &x) { return ::sin(x); }
 
-inline float tzsin(const float& x) { return sinf(x); }
+inline float tzsin(const float &x) { return sinf(x); }
 
 template <typename T>
-inline T tzsin(const T& x) {
+inline T tzsin(const T &x)
+{
   return ::sin(x);
 }
 
-inline double tzcos(const double& x) { return ::cos(x); }
+inline double tzcos(const double &x) { return ::cos(x); }
 
-inline float tzcos(const float& x) { return cosf(x); }
+inline float tzcos(const float &x) { return cosf(x); }
 
 template <typename T>
-inline T tzcos(const T& x) {
+inline T tzcos(const T &x)
+{
   return ::cos(x);
 }
 
-inline double tztan(const double& x) { return ::tan(x); }
+inline double tztan(const double &x) { return ::tan(x); }
 
-inline float tztan(const float& x) { return tanf(x); }
+inline float tztan(const float &x) { return tanf(x); }
 
 template <typename T>
-inline T tztan(const T& x) {
+inline T tztan(const T &x)
+{
   return ::tan(x);
 }
 
-inline double tzasin(const double& x) { return ::asin(x); }
+inline double tzasin(const double &x) { return ::asin(x); }
 
-inline float tzasin(const float& x) { return asinf(x); }
+inline float tzasin(const float &x) { return asinf(x); }
 
 template <typename T>
-inline T tzasin(const T& x) {
+inline T tzasin(const T &x)
+{
   return ::asin(x);
 }
 
-inline double tzacos(const double& x) { return ::acos(x); }
+inline double tzacos(const double &x) { return ::acos(x); }
 
-inline float tzacos(const float& x) { return acosf(x); }
+inline float tzacos(const float &x) { return acosf(x); }
 
 template <typename T>
-inline T tzacos(const T& x) {
+inline T tzacos(const T &x)
+{
   return ::acos(x);
 }
 
-inline double tzatan(const double& x) { return ::atan(x); }
+inline double tzatan(const double &x) { return ::atan(x); }
 
-inline float tzatan(const float& x) { return ::atanf(x); }
+inline float tzatan(const float &x) { return ::atanf(x); }
 
 template <typename T>
-inline T tzatan(const T& x) {
+inline T tzatan(const T &x)
+{
   return ::atan(x);
 }
 
-inline double tzatan2(const double& x, const double& y) {
+inline double tzatan2(const double &x, const double &y)
+{
   return ::atan2(x, y);
 }
 
-inline float tzatan2(const float& x, const float& y) { return ::atan2f(x, y); }
+inline float tzatan2(const float &x, const float &y) { return ::atan2f(x, y); }
 
 template <typename T>
-inline T tzatan2(const T& x, const T& y) {
+inline T tzatan2(const T &x, const T &y)
+{
   return ::atan2(x, y);
 }
 
 template <typename T>
-inline void tzSinCos(const T& angle, T* sine, T* cosine) {
+inline void tzSinCos(const T &angle, T *sine, T *cosine)
+{
   *sine = sin(angle);
   *cosine = cos(angle);
 }
 
 template <typename T>
-inline const T dist2dSq(const T& x1, const T& y1, const T& x2, const T& y2) {
+inline const T dist2dSq(const T &x1, const T &y1, const T &x2, const T &y2)
+{
   const T dx = x1 - x2;
   const T dy = y1 - y2;
   return sqsum(dx, dy);
 }
 
 template <typename T>
-inline const T dist2dSq(const T* pt1, const T* pt2) {
+inline const T dist2dSq(const T *pt1, const T *pt2)
+{
   const T dx = pt1[0] - pt2[0];
   const T dy = pt1[1] - pt2[1];
   return sqsum(dx, dy);
 }
 
 template <typename T>
-inline const T dist2d(const T& x1, const T& y1, const T& x2, const T& y2) {
+inline const T dist2d(const T &x1, const T &y1, const T &x2, const T &y2)
+{
   return sqrt(dist2dSq(x1, y1, x2, y2));
 }
 
 template <typename T>
-inline const T dist3dSq(const T& x1, const T& y1, const T& z1, const T& x2,
-                        const T& y2, const T& z2) {
+inline const T dist3dSq(const T &x1, const T &y1, const T &z1, const T &x2,
+                        const T &y2, const T &z2)
+{
   const T dx = x1 - x2;
   const T dy = y1 - y2;
   const T dz = z1 - z2;
@@ -601,13 +708,15 @@ inline const T dist3dSq(const T& x1, const T& y1, const T& z1, const T& x2,
 }
 
 template <typename T>
-inline const T dist3d(const T& x1, const T& y1, const T& z1, const T& x2,
-                      const T& y2, const T& z2) {
+inline const T dist3d(const T &x1, const T &y1, const T &z1, const T &x2,
+                      const T &y2, const T &z2)
+{
   return sqrt(dist3dSq(x1, y1, z1, x2, y2, z2));
 }
 
 template <typename T>
-inline const T dist3dSq(const T* pt1, const T* pt2) {
+inline const T dist3dSq(const T *pt1, const T *pt2)
+{
   const T dx = pt1[0] - pt2[0];
   const T dy = pt1[1] - pt2[1];
   const T dz = pt1[2] - pt2[2];
@@ -615,23 +724,26 @@ inline const T dist3dSq(const T* pt1, const T* pt2) {
 }
 
 template <typename T>
-inline const T dist3d(const T* pt1, const T* pt2) {
+inline const T dist3d(const T *pt1, const T *pt2)
+{
   return sqrt(dist3dSq(pt1, pt2));
 }
 
 template <typename T>
-inline const T angle(const T& x1, const T& y1, const T& x2, const T& y2) {
+inline const T angle(const T &x1, const T &y1, const T &x2, const T &y2)
+{
   return fixAngle(atan2((y2 - y1), (x2 - x1)));
 }
 
 template <class T>
-inline TZBYTE getByte(T t, short idxByte) {
+inline TZBYTE getByte(T t, short idxByte)
+{
   TZ_ASSERT(idxByte >= 1);
   TZ_ASSERT(idxByte <= 8);
   TZ_ASSERT(idxByte <= (short)sizeof(T));
 
   static const T BYTE_MAP[] = {
-      (T)0x00,       (T)0xff,         (T)0xff00,         (T)0xff0000,
+      (T)0x00, (T)0xff, (T)0xff00, (T)0xff0000,
       (T)0xff000000, (T)0xff00000000, (T)0xff0000000000, (T)0xff000000000000};
 
   static const unsigned int BIT_MAP[] = {0, 0, 8, 16, 24, 32, 40, 48, 56, 64};
@@ -640,7 +752,8 @@ inline TZBYTE getByte(T t, short idxByte) {
 }
 
 template <typename T>
-inline bool getBit(T t, short idxBit) {
+inline bool getBit(T t, short idxBit)
+{
   TZ_ASSERT(idxBit >= 1);
   TZ_ASSERT(idxBit <= (short)(sizeof(T) * CHAR_BIT));
   T m = ((T)1) << (idxBit - 1);
@@ -651,36 +764,42 @@ inline void tzsrand(unsigned int n) { ::srand(n); }
 
 inline int tzrand() { return ::rand(); }
 
-inline int tzrand(int low, int high) {
+inline int tzrand(int low, int high)
+{
   return static_cast<int>(static_cast<int>(low + (high - low)) *
                           static_cast<float>(rand()) /
                           static_cast<float>(RAND_MAX));
 }
 
-inline float tzrand(float low, float high) {
+inline float tzrand(float low, float high)
+{
   return low + (high - low) * static_cast<float>(tzrand()) /
                    static_cast<float>(RAND_MAX);
 }
 
-inline double tzrand(double low, double high) {
+inline double tzrand(double low, double high)
+{
   return low + (high - low) * static_cast<double>(tzrand()) /
                    static_cast<double>(RAND_MAX);
 }
 
 template <typename T>
-inline T tzrand(T low, T high) {
+inline T tzrand(T low, T high)
+{
   return static_cast<T>((low + (high - low)) * static_cast<T>(tzrand()) /
                         static_cast<T>(RAND_MAX));
 }
 
 template <typename T>
-inline void swapInt(T& x, T& y) {
+inline void swapInt(T &x, T &y)
+{
   x = x ^ y;
   y = x ^ y;
   x = x ^ y;
 }
 
-inline TZLONG interlockedIncrement(volatile TZLONG* l) {
+inline TZLONG interlockedIncrement(volatile TZLONG *l)
+{
 #ifdef TZ_WINDOWS
   return ::InterlockedIncrement(l);
 #else
@@ -690,7 +809,8 @@ inline TZLONG interlockedIncrement(volatile TZLONG* l) {
 #endif
 }
 
-inline TZLONG interlockedDecrement(volatile TZLONG* l) {
+inline TZLONG interlockedDecrement(volatile TZLONG *l)
+{
 #ifdef TZ_WINDOWS
   return ::InterlockedDecrement(l);
 #else
@@ -702,4 +822,4 @@ inline TZLONG interlockedDecrement(volatile TZLONG* l) {
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // !_TZSOFTS_MATH_H_H_
+#endif // !_TZSOFTS_MATH_H_H_

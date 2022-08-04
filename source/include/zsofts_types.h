@@ -20,13 +20,13 @@
 #define TZ_SIZEOF_SHORT 2
 #else
 #error "Unsupported short size!\n"
-#endif  // #if USHRT_MAX == 0xFFFFU
+#endif // #if USHRT_MAX == 0xFFFFU
 
 #ifdef __LP64__
 #define TZ_SIZEOF_LONG 8
 #else
 #define TZ_SIZEOF_LONG 4
-#endif  // __LP64__
+#endif // __LP64__
 
 #if TZ_ARCHITECURE_BIT == TZ_ARCHITECTURE_BIT64
 #define TZ_SIZEOF_POINTER 8
@@ -34,7 +34,7 @@
 #define TZ_SIZOF_POINTER 4
 #else
 #error "Unsupported architecture bit!\n"
-#endif  // TZ_ARCHITECURE_BIT == TZ_ARCHITECTURE_BIT32
+#endif // TZ_ARCHITECURE_BIT == TZ_ARCHITECTURE_BIT32
 
 #if (defined(WIN32) || defined(WIN64))
 #define TZCHAR_IS_INT16LE 1
@@ -43,7 +43,7 @@
 #endif
 
 using RTContext =
-    void *;  // Running time context, refers to fiber or coroutine.
+    void *; // Running time context, refers to fiber or coroutine.
 using TZINT8 = int8_t;
 using TZUINT8 = uint8_t;
 using TZINT16 = int16_t;
@@ -65,7 +65,7 @@ using TZUINT64 = uint64_t;
 #else
 using TZINT64 = __int64;
 using TZUINT64 = unsigned __int64;
-#endif  // TZ_WINDOWS
+#endif // TZ_WINDOWS
 
 using TZFLOAT32 = float;
 using TZFLOAT64 = double;
@@ -102,7 +102,7 @@ using TZLONGPTR = __w64 long;
 using TZULONGPTR = __w64 unsigned long;
 using TZINTPTR = __w64 int;
 using TZUINGPTR = __w64 unsigned int;
-#else  // TZ_X64
+#else // TZ_X64
 #ifndef TZ_WINDOWS
 using TZLONGPTR = int64_t;
 using TZULONGPTR = uint64_t;
@@ -113,8 +113,8 @@ using TZLONGPTR = __int64;
 using TZULONGPTR = unsigned __int64;
 using TZ_INTPTR = __int64;
 using TZUINTPTR = unsigned __int64;
-#endif  // TZ_WINDOWS
-#endif  // TZ_X64
+#endif // TZ_WINDOWS
+#endif // TZ_X64
 
 using TZADDRESS = TZULONGPTR;
 
@@ -124,7 +124,7 @@ using TZBYTE = unsigned char;
 using TZBOOL = int;
 #else
 using TZBOOL = bool;
-#endif  // __LP64__
+#endif // __LP64__
 
 using TZSHORT = short;
 using TZINT = int;
@@ -199,7 +199,7 @@ using WindowId = TZLONGPTR;
 #else
 #define NULL ((void *)0)
 #endif
-#endif  // __cplusplus
+#endif // __cplusplus
 
 // Constant
 #ifndef TRUE

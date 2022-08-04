@@ -22,10 +22,13 @@ SET(_LIBRARY_SDK_INCLUDE
 
 SET(_LIBRIRAY_UNIT_TESTS_INCLUDE
     # TODO: future add more file
+    ${TZ_UNIT_TESTS_INCLUDE_DIR}/boost_any_test_tools.h
+    ${TZ_UNIT_TESTS_INCLUDE_DIR}/boost_apply_permutation_test_cases.h
 )
 
 SET(TZ_LIBRARY_INCLUDE
     ${_LIBRARY_SDK_INCLUDE}
+    ${_LIBRIRAY_UNIT_TESTS_INCLUDE}
 )
 
 SET(TZ_LIBRARY_INC
@@ -41,6 +44,7 @@ ENDIF()
 
 SET(_LIBRARY_BOOST_TEST_CASES_SRC
     src/boost_test_cases_private.cpp
+    src/boost_apply_permutation_test_cases.cpp
 )
 
 SET(TZ_LIBRARY_SRC
@@ -83,7 +87,8 @@ SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
 SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
     ${TZ_BASIC_INCLUDE_DIR}
     ${TZ_SDK_INCLUDE_DIR}
-    ${TZ_THIRDPARTY_ROOT}/boost_1_76_0
+    ${TZ_THIRDPARTY_ROOT}/boost_1_79_0
+    ${TZ_UNIT_TESTS_INCLUDE_DIR}
     inc
 )
 
@@ -97,6 +102,7 @@ SET(TZ_LIBRARY_USE_MODULES_PRIVATE
 
 SET(TZ_LIBRARY_INSTALL_HEADERS
     ${_LIBRARY_SDK_INCLUDE}
+    ${_LIBRIRAY_UNIT_TESTS_INCLUDE}
 )
 
 TZ_SETUP_LIBRARY()
@@ -106,6 +112,10 @@ IF(TZ_WINDOWS)
     SOURCE_GROUP("include\\Common"
         FILES
         ${_LIBRARY_SDK_INCLUDE}
+    )
+    SOURCE_GROUP("include\\UnitTests"
+        FILES
+        ${_LIBRARY_UNIT_TESTS_INCLUDE}
     )
     SOURCE_GROUP("inc"
         FILES

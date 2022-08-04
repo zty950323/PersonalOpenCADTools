@@ -11,11 +11,13 @@
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-enum class WidgetsCommonFlag : unsigned short {
+enum class WidgetsCommonFlag : unsigned short
+{
   TZ_NEED_WIDGETS = 0,
 };
 
-enum class WidgetsBasicColor : unsigned short {
+enum class WidgetsBasicColor : unsigned short
+{
   Green = 0,
   Red,
   Yellow,
@@ -32,4 +34,4 @@ enum class WidgetsBasicColor : unsigned short {
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_WIDGETS_WIDGETS_DEFINES_H_
+#endif // SOURCE_INCLUDE_WIDGETS_WIDGETS_DEFINES_H_

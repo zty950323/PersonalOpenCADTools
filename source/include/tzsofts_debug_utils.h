@@ -25,7 +25,8 @@
 #define TZ_FAIL_ONCE()                    \
   {                                       \
     static bool s_bFailedAlready = false; \
-    if (!s_bFailedAlready) {              \
+    if (!s_bFailedAlready)                \
+    {                                     \
       s_bFailedAlready = true;            \
       TZ_FAIL();                          \
     }                                     \
@@ -36,7 +37,8 @@
 #define TZ_ASSERT_ONCE(exp)                                   \
   {                                                           \
     static bool s_bAssertAlready = false;                     \
-    if (!s_bAssertAlready && !(exp)) {                        \
+    if (!s_bAssertAlready && !(exp))                          \
+    {                                                         \
       s_bAssertAlready = true;                                \
       TzSoft::Asserter(TZ_T(#exp), TZ_T(__FILE__), __LINE__); \
     }                                                         \
@@ -90,4 +92,4 @@
 #define TZ_MAKEMESSAGE(desc) message(#desc)
 #endif
 
-#endif  // _TZSOFTS_DEBUG_UTILS_H_H
+#endif // _TZSOFTS_DEBUG_UTILS_H_H

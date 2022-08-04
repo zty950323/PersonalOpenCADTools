@@ -17,17 +17,18 @@ using Basic::TzSingleTon;
 
 TZ_NAMESPACE_BEGIN(TzSoft)
 
-class BasicColorDataTools : public TzSingleTon<BasicColorDataTools> {
- public:
-  BasicColorDataTools();
-  virtual ~BasicColorDataTools() = default;
+class BasicColorDataTools : public TzSingleTon<BasicColorDataTools>
+{
+public:
+    BasicColorDataTools();
+    virtual ~BasicColorDataTools() = default;
 
-  QColor findColor(const WidgetsBasicColor& color);
+    QColor findColor(const WidgetsBasicColor& color);
 
- private:
-  QMap<WidgetsBasicColor, QColor> m_basicColorMap;
+private:
+    QMap<WidgetsBasicColor, QColor> m_basicColorMap;
 };
 
 TZ_NAMESPACE_END(TzSoft)
 
-#endif  // SOURCE_INCLUDE_WIDGETS_WIDGETS_BASIC_COLOR_ENUM_MAP_H_
+#endif // SOURCE_INCLUDE_WIDGETS_WIDGETS_BASIC_COLOR_ENUM_MAP_H_

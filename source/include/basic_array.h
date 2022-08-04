@@ -29,18 +29,24 @@ TZ_NAMESPACE_BEGIN(TzSoft)
  */
 
 template <class T>
-class TzArrayMemAssignor {
- public:
+class TzArrayMemAssignor
+{
+public:
   static void copy(T *pDest, size_t nBufLen, const T *pSource, size_t nCount,
-                   TZBOOL bMove, TZBOOL bSameBuffer) {
+                   TZBOOL bMove, TZBOOL bSameBuffer)
+  {
     TZ_ASSERT((nCount <= nBufLen) && (nCount >= 0 && nCount < 0x40000000));
     TZ_ASSERT(pSource > pDest || (pDest >= pSource + nCount));
     TZ_ASSERT(bMove || !bSameBuffer);
 
-    if (nCount > 0) {
-      if (bSameBuffer) {
+    if (nCount > 0)
+    {
+      if (bSameBuffer)
+      {
         memmove_s(pDest, nBufLen * sizeof(T), pSource, nCount * sizeof(T));
-      } else {
+      }
+      else
+      {
         memcpy_s(pDest, nBufLen * sizeof(T), pSource, nCount * sizeof(T));
       }
     }
@@ -48,15 +54,18 @@ class TzArrayMemAssignor {
 };
 
 template <class T>
-class TzArrayObjectAssignor {
- public:
+class TzArrayObjectAssignor
+{
+public:
   static void copy(T *pDest, size_t nBufLen, const T *pSource, size_t nCount,
-                   TZBOOL bMove, TZBOOL bSameBuffer) {
+                   TZBOOL bMove, TZBOOL bSameBuffer)
+  {
     TZ_ASSERT((nCount <= nBufLen) && (nCount >= 0 && nCount < 0x40000000));
     TZ_ASSERT(pSource > pDest || (pDest >= pSource + nCount));
     TZ_ASSERT(bMove || !bSameBuffer);
 
-    while (nCount--) {
+    while (nCount--)
+    {
       *pDest = *pSource;
       pDest++;
       pSource++;
@@ -68,19 +77,23 @@ template <typename T, TZBOOL>
 struct TzArrayElementAssignorSelector;
 
 template <typename T>
-struct TzArrayElementAssignorSelector<T, false> {
+struct TzArrayElementAssignorSelector<T, false>
+{
   using assignor = TzArrayObjectAssignor<T>;
 };
 
 template <typename T>
-struct TzArrayElementAssignorSelector<T, true> {
+struct TzArrayElementAssignorSelector<T, true>
+{
   using assignor = TzArrayObjectAssignor<T>;
 };
 
 template <typename T>
 struct ArrayElementAssignor
     : public TzArrayElementAssignorSelector<T,
-                                            std::is_pod<T>::value>::assignor {};
+                                            std::is_pod<T>::value>::assignor
+{
+};
 
 /**
  *        @~English
@@ -92,8 +105,9 @@ struct ArrayElementAssignor
  */
 
 template <typename T, typename A = typename ArrayElementAssignor<T>>
-class TzArray {
- public:
+class TzArray
+{
+public:
   /**
    *        @~English
    *        @brief Constructor for the TzArray class.
@@ -818,12 +832,12 @@ class TzArray {
    */
   T *end();
 
- protected:
+protected:
   TZBOOL allocPhysBuf();
   TZBOOL deletePhysBuf(T *pBuf, size_t nCount);
   TZBOOL isValid(index_t) const;
 
- public:
+public:
   static const TZBOOL m_bSafeToMemCpy =
       std::is_same<A, TzArrayMemAssignor<T>>::value;
   T *m_pArray;
@@ -840,16 +854,19 @@ class TzArray {
 
 template <class T, class A>
 inline TZBOOL TzArray<T, A>::contains(const T &value,
-                                      index_t start /* = 0 */) const {
+                                      index_t start /* = 0 */) const
+{
   return findFrom(value, start) != -1;
 }
 
 template <typename T, typename A>
 inline TZBOOL TzArray<T, A>::find(const T &value, index_t &index,
-                                  index_t start) const {
+                                  index_t start) const
+{
   const index_t nFoundAt = findFrom(value, start);
 
-  if (nFoundAt == invalid_index) {
+  if (nFoundAt == invalid_index)
+  {
     return FALSE;
   }
 
@@ -858,19 +875,24 @@ inline TZBOOL TzArray<T, A>::find(const T &value, index_t &index,
 }
 
 template <typename T, typename A>
-inline index_t TzArray<T, A>::find(const T &value) const {
+inline index_t TzArray<T, A>::find(const T &value) const
+{
   return findFrom(value, 0);
 }
 
 template <typename T, typename A>
-inline index_t TzArray<T, A>::findFrom(const T &value, index_t start) const {
+inline index_t TzArray<T, A>::findFrom(const T &value, index_t start) const
+{
   TZ_ASSERT(start >= 0);
-  if (start < 0) {
+  if (start < 0)
+  {
     return -1;
   }
 
-  for (index_t i = start; i < (index_t)m_logicalLen; ++i) {
-    if (m_pArray[i] == value) {
+  for (index_t i = start; i < (index_t)m_logicalLen; ++i)
+  {
+    if (m_pArray[i] == value)
+    {
       return i;
     }
   }
@@ -878,34 +900,41 @@ inline index_t TzArray<T, A>::findFrom(const T &value, index_t start) const {
 }
 
 template <class T, class A>
-inline size_t TzArray<T, A>::length() const {
+inline size_t TzArray<T, A>::length() const
+{
   return m_logicalLen;
 }
 
 template <class T, class A>
-inline TZBOOL TzArray<T, A>::isEmpty() const {
+inline TZBOOL TzArray<T, A>::isEmpty() const
+{
   return m_logicalLen == 0;
 }
 
 template <class T, class A>
-inline size_t TzArray<T, A>::logicalLength() const {
+inline size_t TzArray<T, A>::logicalLength() const
+{
   return m_logicalLen;
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::setLogicalLength(size_t n) {
+inline TzArray<T, A> &TzArray<T, A>::setLogicalLength(size_t n)
+{
   TZ_ASSERT(n >= 0);
-  if (n < 0) {
+  if (n < 0)
+  {
     n = 0;
   }
   TZ_ASSERT(n < 0x40000000);
-  if (n > m_physicalLen) {
+  if (n > m_physicalLen)
+  {
     const size_t growth = (m_physicalLen * sizeof(T)) < TZARRAY_GROWTH_THRESHOLD
                               ? m_physicalLen
                               : TZARRAY_GROWTH_THRESHOLD / sizeof(T);
 
     size_t minSize = m_physicalLen + std::max<size_t>(growth, m_growLen);
-    if (n > minSize) {
+    if (n > minSize)
+    {
       minSize = n;
     }
     setPhysicalLength(minSize);
@@ -916,14 +945,17 @@ inline TzArray<T, A> &TzArray<T, A>::setLogicalLength(size_t n) {
 }
 
 template <class T, class A>
-inline size_t TzArray<T, A>::physicalLength() const {
+inline size_t TzArray<T, A>::physicalLength() const
+{
   return m_physicalLen;
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::setPhysicalLength(size_t n) {
+inline TzArray<T, A> &TzArray<T, A>::setPhysicalLength(size_t n)
+{
   TZ_ASSERT(n >= 0 && n < 0x40000000);
-  if (n == m_physicalLen || n < 0) {
+  if (n == m_physicalLen || n < 0)
+  {
     return *this;
   }
 
@@ -934,10 +966,12 @@ inline TzArray<T, A> &TzArray<T, A>::setPhysicalLength(size_t n) {
 
   m_physicalLen = n;
   m_pArray = nullptr;
-  if (m_physicalLen < m_logicalLen) {
+  if (m_physicalLen < m_logicalLen)
+  {
     m_logicalLen = m_physicalLen;
   }
-  if ((m_physicalLen != 0) && allocPhysBuf()) {
+  if ((m_physicalLen != 0) && allocPhysBuf())
+  {
     A::copy(m_pArray, m_physicalLen, pOldArray, m_logicalLen, TRUE, FALSE);
   }
 
@@ -946,48 +980,57 @@ inline TzArray<T, A> &TzArray<T, A>::setPhysicalLength(size_t n) {
 }
 
 template <class T, class A>
-inline TZINT32 TzArray<T, A>::growLength() const {
+inline TZINT32 TzArray<T, A>::growLength() const
+{
   return m_growLen;
 }
 
 template <class T, class A>
-inline const T *TzArray<T, A>::asArrayPtr() const {
+inline const T *TzArray<T, A>::asArrayPtr() const
+{
   m_pArray;
 }
 
 template <class T, class A>
-inline T *TzArray<T, A>::asArrayPtr() {
+inline T *TzArray<T, A>::asArrayPtr()
+{
   return m_pArray;
 }
 
 template <class T, class A>
-inline const T *TzArray<T, A>::begin() const {
+inline const T *TzArray<T, A>::begin() const
+{
   return m_pArray;
 }
 
 template <class T, class A>
-inline T *TzArray<T, A>::begin() {
+inline T *TzArray<T, A>::begin()
+{
   return m_pArray;
 }
 
 template <class T, class A>
-inline const T *TzArray<T, A>::end() const {
+inline const T *TzArray<T, A>::end() const
+{
   return m_pArray + m_logicalLen;
 }
 
 template <class T, class A>
-inline T *TzArray<T, A>::end() {
+inline T *TzArray<T, A>::end()
+{
   return m_pArray + m_logicalLen;
 }
 
 template <typename T, typename A>
-inline TZBOOL TzArray<T, A>::allocPhysBuf() {
+inline TZBOOL TzArray<T, A>::allocPhysBuf()
+{
   TZ_ASSERT(m_physicalLen > 0);
   TZ_ASSERT(nullptr == m_pArray);
   m_pArray = new T[m_physicalLen];
   TZ_ASSERT(nullptr != m_pArray);
 
-  if (nullptr == m_pArray) {
+  if (nullptr == m_pArray)
+  {
     m_physicalLen = 0;
     m_logicalLen = 0;
     return FALSE;
@@ -996,10 +1039,14 @@ inline TZBOOL TzArray<T, A>::allocPhysBuf() {
 }
 
 template <typename T, typename A>
-inline TZBOOL TzArray<T, A>::deletePhysBuf(T *pBuf, size_t nCount) {
-  if (nullptr == pBuf) {
+inline TZBOOL TzArray<T, A>::deletePhysBuf(T *pBuf, size_t nCount)
+{
+  if (nullptr == pBuf)
+  {
     TZ_ASSERT(0 == nCount);
-  } else {
+  }
+  else
+  {
     TZ_ASSERT(nCount > 0);
     delete[] pBuf;
   }
@@ -1007,88 +1054,104 @@ inline TZBOOL TzArray<T, A>::deletePhysBuf(T *pBuf, size_t nCount) {
 }
 
 template <class T, class A>
-inline TZBOOL TzArray<T, A>::isValid(index_t i) const {
+inline TZBOOL TzArray<T, A>::isValid(index_t i) const
+{
   return i >= 0 && i < (index_t)m_logicalLen;
 }
 
 template <class T, class A>
-inline const T &TzArray<T, A>::operator[](index_t i) const {
+inline const T &TzArray<T, A>::operator[](index_t i) const
+{
   TZ_ASSERT(isValid(i));
   return m_pArray[i];
 }
 
 template <class T, class A>
-inline T &TzArray<T, A>::operator[](index_t i) {
+inline T &TzArray<T, A>::operator[](index_t i)
+{
   TZ_ASSERT(isValid(i));
   return m_pArray[i];
 }
 
 template <class T, class A>
-inline const T &TzArray<T, A>::at(index_t i) const {
+inline const T &TzArray<T, A>::at(index_t i) const
+{
   TZ_ASSERT(isValid(i));
   return m_pArray[i];
 }
 
 template <class T, class A>
-inline T &TzArray<T, A>::at(index_t i) {
+inline T &TzArray<T, A>::at(index_t i)
+{
   TZ_ASSERT(isValid(i));
   return m_pArray[i];
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::setAt(index_t index, const T &value) {
+inline TzArray<T, A> &TzArray<T, A>::setAt(index_t index, const T &value)
+{
   TZ_ASSERT(isValid(index));
   m_pArray[index] = value;
   return *this;
 }
 
 template <class T, class A>
-inline const T &TzArray<T, A>::first() const {
+inline const T &TzArray<T, A>::first() const
+{
   TZ_ASSERT(!isEmpty());
   return m_pArray[0];
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::setAll(const T &value) {
-  for (index_t i = 0; i < m_logicalLen; ++i) {
+inline TzArray<T, A> &TzArray<T, A>::setAll(const T &value)
+{
+  for (index_t i = 0; i < m_logicalLen; ++i)
+  {
     m_pArray[i] = value;
   }
   return *this;
 }
 
 template <class T, class A>
-inline T &TzArray<T, A>::first() {
+inline T &TzArray<T, A>::first()
+{
   TZ_ASSERT(!isEmpty());
   return m_pArray[0];
 }
 
 template <class T, class A>
-inline const T &TzArray<T, A>::last() const {
+inline const T &TzArray<T, A>::last() const
+{
   TZ_ASSERT(!isEmpty());
   return m_pArray[m_logicalLen - 1];
 }
 
 template <class T, class A>
-inline T &TzArray<T, A>::last() {
+inline T &TzArray<T, A>::last()
+{
   TZ_ASSERT(!isEmpty());
   return m_pArray[m_logicalLen - 1];
 }
 
 template <class T, class A>
-inline size_t TzArray<T, A>::append(const T &value) {
+inline size_t TzArray<T, A>::append(const T &value)
+{
   insertAt(m_logicalLen, value);
   return m_logicalLen - 1;
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::append(const TzArray<T, A> &array) {
+inline TzArray<T, A> &TzArray<T, A>::append(const TzArray<T, A> &array)
+{
   const size_t otherLen = array.length();
-  if (0 == otherLen) {
+  if (0 == otherLen)
+  {
     return *this;
   }
 
   size_t newLen = m_logicalLen + otherLen;
-  if (newLen > m_physicalLen) {
+  if (newLen > m_physicalLen)
+  {
     setPhysicalLength(m_logicalLen + std::max<size_t>(otherLen, m_growLen));
   }
   A::copy(m_pArray + m_logicalLen, (m_physicalLen - m_logicalLen),
@@ -1096,13 +1159,16 @@ inline TzArray<T, A> &TzArray<T, A>::append(const TzArray<T, A> &array) {
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::insertAt(index_t index, const T &value) {
+inline TzArray<T, A> &TzArray<T, A>::insertAt(index_t index, const T &value)
+{
   TZ_ASSERT(index >= 0 && index <= (index_t)m_logicalLen);
-  if (index < 0 || index > (index_t)m_logicalLen) {
+  if (index < 0 || index > (index_t)m_logicalLen)
+  {
     return *this;
   }
   const T tmp(value);
-  if (m_logicalLen >= m_physicalLen) {
+  if (m_logicalLen >= m_physicalLen)
+  {
     TZ_ASSERT(m_logicalLen == m_physicalLen);
     size_t growth = (m_logicalLen * sizeof(T)) < TZARRAY_GROWTH_THRESHOLD
                         ? m_logicalLen
@@ -1110,11 +1176,13 @@ inline TzArray<T, A> &TzArray<T, A>::insertAt(index_t index, const T &value) {
     setPhysicalLength(m_logicalLen + std::max<size_t>(growth, m_growLen));
   }
 
-  if (index != (index_t)m_logicalLen) {
+  if (index != (index_t)m_logicalLen)
+  {
     TZ_ASSERT(m_logicalLen >= 0);
     T *p = m_pArray + m_logicalLen;
     T *pStop = m_pArray + index;
-    do {
+    do
+    {
       *p = *(p - 1);
     } while (--p != pStop);
   }
@@ -1124,15 +1192,18 @@ inline TzArray<T, A> &TzArray<T, A>::insertAt(index_t index, const T &value) {
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::removeAt(index_t index) {
+inline TzArray<T, A> &TzArray<T, A>::removeAt(index_t index)
+{
   TZ_ASSERT(isValid(index));
   TZ_ASSERT(m_logicalLen <= m_physicalLen);
   TZ_ASSERT(!isEmpty());
-  if (isEmpty() || !isValid(index)) {
+  if (isEmpty() || !isValid(index))
+  {
     return *this;
   }
 
-  if (index < (index_t)m_logicalLen - 1) {
+  if (index < (index_t)m_logicalLen - 1)
+  {
     A::copy(m_pArray + index, m_physicalLen - index, m_pArray + index + 1,
             m_logicalLen - 1 - index, TRUE, TRUE);
   }
@@ -1141,9 +1212,11 @@ inline TzArray<T, A> &TzArray<T, A>::removeAt(index_t index) {
 }
 
 template <typename T, typename A>
-inline TZBOOL TzArray<T, A>::remove(const T &value, index_t start) {
+inline TZBOOL TzArray<T, A>::remove(const T &value, index_t start)
+{
   const index_t i = findFrom(value, start);
-  if (invalid_index == i) {
+  if (invalid_index == i)
+  {
     return FALSE;
   }
   removeAt(i);
@@ -1151,33 +1224,39 @@ inline TZBOOL TzArray<T, A>::remove(const T &value, index_t start) {
 }
 
 template <class T, class A>
-inline TzArray<T, A> &TzArray<T, A>::removeFirst() {
+inline TzArray<T, A> &TzArray<T, A>::removeFirst()
+{
   TZ_ASSERT(!isEmpty());
   return removeAt(0);
 }
 
 template <class T, class A>
-inline TzArray<T, A> &TzArray<T, A>::removeLast() {
+inline TzArray<T, A> &TzArray<T, A>::removeLast()
+{
   TZ_ASSERT(!isEmpty());
-  if (!isEmpty()) {
+  if (!isEmpty())
+  {
     m_logicalLen--;
   }
   return *this;
 }
 
 template <class T, class A>
-inline TzArray<T, A> &TzArray<T, A>::removeAll() {
+inline TzArray<T, A> &TzArray<T, A>::removeAll()
+{
   setLogicalLength(0);
   return *this;
 }
 
 template <typename T, typename A>
 inline TzArray<T, A> &TzArray<T, A>::removeSubArray(index_t startIndex,
-                                                    index_t endIndex) {
+                                                    index_t endIndex)
+{
   TZ_ASSERT(isValid(startIndex));
   TZ_ASSERT(startIndex <= endIndex);
 
-  if (endIndex >= m_logicalLen - 1) {
+  if (endIndex >= m_logicalLen - 1)
+  {
     m_logicalLen = startIndex;
     return *this;
   }
@@ -1192,15 +1271,18 @@ inline TzArray<T, A> &TzArray<T, A>::removeSubArray(index_t startIndex,
 }
 
 template <class T, class A>
-inline TzArray<T, A> &TzArray<T, A>::setGrowLength(TZINT32 glen) {
+inline TzArray<T, A> &TzArray<T, A>::setGrowLength(TZINT32 glen)
+{
   TZ_ASSERT(glen > 0);
   m_growLen = glen;
   return *this;
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::reverse() {
-  for (size_t i = 0; i < m_logicalLen / 2; ++i) {
+inline TzArray<T, A> &TzArray<T, A>::reverse()
+{
+  for (size_t i = 0; i < m_logicalLen / 2; ++i)
+  {
     const T tmp = m_pArray[i];
     m_pArray[i] = m_pArray[m_logicalLen - 1 - i];
     m_pArray[m_logicalLen - 1 - i] = tmp;
@@ -1209,11 +1291,13 @@ inline TzArray<T, A> &TzArray<T, A>::reverse() {
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::swap(index_t i1, index_t i2) {
+inline TzArray<T, A> &TzArray<T, A>::swap(index_t i1, index_t i2)
+{
   TZ_ASSERT(isValid(i1));
   TZ_ASSERT(isValid(i2));
 
-  if (i1 == i2) {
+  if (i1 == i2)
+  {
     return *this;
   }
 
@@ -1227,9 +1311,11 @@ inline TzArray<T, A> &TzArray<T, A>::swap(index_t i1, index_t i2) {
 
 template <class T, class A>
 TzArray<T, A>::TzArray(size_t ph1, TZINT32 gr1)
-    : m_pArray(nullptr), m_physicalLen(ph1), m_logicalLen(0), m_growLen(gr1) {
+    : m_pArray(nullptr), m_physicalLen(ph1), m_logicalLen(0), m_growLen(gr1)
+{
   TZ_ASSERT(m_growLen > 0);
-  if (m_physicalLen > 0) {
+  if (m_physicalLen > 0)
+  {
     allocPhysBuf();
   }
 }
@@ -1239,17 +1325,23 @@ TzArray<T, A>::TzArray(const TzArray<T, A> &src)
     : m_pArray(nullptr),
       m_physicalLen(src.m_physicalLen),
       m_logicalLen(src.m_logicalLen),
-      m_growLen(src.m_growLen) {
+      m_growLen(src.m_growLen)
+{
   TZ_ASSERT(m_physicalLen > m_logicalLen);
-  if (m_logicalLen <= 0) {
+  if (m_logicalLen <= 0)
+  {
     TZ_ASSERT(0 == m_logicalLen);
     m_physicalLen = 0;
   }
-  if (m_physicalLen <= 0) {
+  if (m_physicalLen <= 0)
+  {
     TZ_ASSERT((0 == m_physicalLen) && (0 == m_logicalLen));
-  } else {
+  }
+  else
+  {
     TZ_ASSERT(m_logicalLen > 0);
-    if (allocPhysBuf()) {
+    if (allocPhysBuf())
+    {
       A::copy(m_pArray, m_physicalLen, src.m_pArray, m_logicalLen, FALSE,
               FALSE);
     }
@@ -1261,7 +1353,8 @@ TzArray<T, A>::TzArray(TzArray<T, A> &src)
     : m_pArray(nullptr),
       m_physicalLen(src.m_physicalLen),
       m_logicalLen(src.m_logicalLen),
-      m_growLen(src.m_growLen) {
+      m_growLen(src.m_growLen)
+{
   src.m_pArray = nullptr;
   src.m_physicalLen = 0;
   src.m_logicalLen = 0;
@@ -1269,24 +1362,33 @@ TzArray<T, A>::TzArray(TzArray<T, A> &src)
 }
 
 template <class T, class A>
-TzArray<T, A>::~TzArray() {
+TzArray<T, A>::~TzArray()
+{
   deletePhysBuf(m_pArray, m_physicalLen);
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::operator=(const TzArray<T, A> &src) {
-  if (this != src) {
-    if (src.m_logicalLen <= 0) {
+inline TzArray<T, A> &TzArray<T, A>::operator=(const TzArray<T, A> &src)
+{
+  if (this != src)
+  {
+    if (src.m_logicalLen <= 0)
+    {
       TZ_ASSERT(0 == src.m_logicalLen);
       m_logicalLen = 0;
-    } else {
-      if (m_physicalLen < src.m_logicalLen) {
-        if (nullptr != m_pArray) {
+    }
+    else
+    {
+      if (m_physicalLen < src.m_logicalLen)
+      {
+        if (nullptr != m_pArray)
+        {
           deletePhysBuf(m_pArray, m_physicalLen);
           m_pArray = nullptr;
         }
         m_physicalLen = src.m_logicalLen;
-        if (!allocPhysBuf()) {
+        if (!allocPhysBuf())
+        {
           return *this;
         }
       }
@@ -1300,8 +1402,10 @@ inline TzArray<T, A> &TzArray<T, A>::operator=(const TzArray<T, A> &src) {
 }
 
 template <typename T, typename A>
-inline TzArray<T, A> &TzArray<T, A>::operator=(TzArray<T, A> &src) {
-  if (this != src) {
+inline TzArray<T, A> &TzArray<T, A>::operator=(TzArray<T, A> &src)
+{
+  if (this != src)
+  {
     m_physicalLen = src.m_physicalLen;
     m_pArray = src.m_pArray;
     m_logicalLen = src.m_logicalLen;
@@ -1313,10 +1417,14 @@ inline TzArray<T, A> &TzArray<T, A>::operator=(TzArray<T, A> &src) {
 }
 
 template <typename T, typename A>
-inline TZBOOL TzArray<T, A>::operator==(const TzArray<T, A> &cpr) const {
-  if (m_logicalLen == cpr.m_logicalLen) {
-    for (index_t i = 0; i < m_logicalLen; ++i) {
-      if (m_pArray[i] != cpr.m_pArray[i]) {
+inline TZBOOL TzArray<T, A>::operator==(const TzArray<T, A> &cpr) const
+{
+  if (m_logicalLen == cpr.m_logicalLen)
+  {
+    for (index_t i = 0; i < m_logicalLen; ++i)
+    {
+      if (m_pArray[i] != cpr.m_pArray[i])
+      {
         return FALSE;
       }
     }

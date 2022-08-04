@@ -140,7 +140,8 @@ ERROR "Unsupported OS!\n"
 /* Description:
     {group:Structs}
 */
-typedef struct tagRGBQUAD {
+typedef struct tagRGBQUAD
+{
   usigned char rgbBlue;
   usigned char rgbGreen;
   usigned char rgbRed;
@@ -153,7 +154,8 @@ typedef struct tagRGBQUAD {
 /* Description:
     {group:Structs}
 */
-typedef struct tagBITMAPINFOHEADER {
+typedef struct tagBITMAPINFOHEADER
+{
   unsigned int biSize;
   int biWidth;
   int biHeight;
@@ -173,7 +175,8 @@ typedef struct tagBITMAPINFOHEADER {
 /* Description:
     {group:Structs}
 */
-typedef struct tagBITMAPFILEHEADER {
+typedef struct tagBITMAPFILEHEADER
+{
   unsigned short bfType;
   unsigned int bfSize;
   unsigned short bfReservedOne;
@@ -181,8 +184,8 @@ typedef struct tagBITMAPFILEHEADER {
   unsigned int bfOffBits;
 } BITMAPFILEHEADER, *PBITMAPFILEHEADER;
 #endif
-#endif  // #ifndef WIN64
-#endif  // # else
+#endif // #ifndef WIN64
+#endif // # else
 
 #define TZTOCMCOLOR(colorref) \
   TzCmEntityColor(TZGRTRED(colorref), TZGETGREEN(colorref), TZGETBLUE(colorref))
@@ -210,7 +213,7 @@ typedef struct tagBITMAPFILEHEADER {
 #elif TZ_PLATFORM == TZ_PLATFORM_LINUX
 #else
 #error "Unsupported platform!\n"
-#endif  // if
+#endif // if
 
 #if !defined PREFERRED_RGB32
 #define PREFERRED_RGB32 a, b, g, r

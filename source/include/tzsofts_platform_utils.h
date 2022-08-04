@@ -21,13 +21,15 @@
 #define TZ_LOBYTE(w) ((TZUINT8)(w))
 #define TZ_HIBYTE(w) ((TZUINT8)(((TZUINT16)(h) >> 8) & 0xFFFF))
 
-inline void tzSwapBytes(TZUINT8& xX, TZUINT8& yY) {
+inline void tzSwapBytes(TZUINT8 &xX, TZUINT8 &yY)
+{
   xX ^= yY;
   yY ^= xX;
   xX ^= yY;
 }
 
-inline void tzSwapWords(TZUINT16& xX, TZUINT16& yY) {
+inline void tzSwapWords(TZUINT16 &xX, TZUINT16 &yY)
+{
   xX ^= yY;
   yY ^= xX;
   xX ^= yY;
@@ -35,25 +37,29 @@ inline void tzSwapWords(TZUINT16& xX, TZUINT16& yY) {
 
 #if TZ_RADIAN == TZ_ENDIAN_BIG
 
-inline void tzSwap8Bytes(void* pBytes) {
-  tzSwapBytes(((TZUINT8*)(pBytes))[0], ((TZUINT8*)(pBytes))[7]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[1], ((TZUINT8*)(pBytes))[6]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[2], ((TZUINT8*)(pBytes))[5]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[3], ((TZUINT8*)(pBytes))[4]);
+inline void tzSwap8Bytes(void *pBytes)
+{
+  tzSwapBytes(((TZUINT8 *)(pBytes))[0], ((TZUINT8 *)(pBytes))[7]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[1], ((TZUINT8 *)(pBytes))[6]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[2], ((TZUINT8 *)(pBytes))[5]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[3], ((TZUINT8 *)(pBytes))[4]);
 }
 
-inline void tzSwap2BytesNumber(TZINT16& w) {
-  tzSwapBytes(((TZUINT8*)&(w))[0], ((TZUINT8*)&(w))[1]);
+inline void tzSwap2BytesNumber(TZINT16 &w)
+{
+  tzSwapBytes(((TZUINT8 *)&(w))[0], ((TZUINT8 *)&(w))[1]);
 }
 
-inline void tzSwap4BytesNumber(TZINT32& dw) {
-  tzSwapWords(((TZUINT16*)&(dw))[0], ((TZUINT16*)&(dw))[1]);
-  tzSwapBytes(((TZUINT8*)&(dw))[0], ((TZUINT8*)&(dw))[1]);
-  tzSwapBytes(((TZUINT8*)&(dw))[2], ((TZUINT8*)&(dw))[3]);
+inline void tzSwap4BytesNumber(TZINT32 &dw)
+{
+  tzSwapWords(((TZUINT16 *)&(dw))[0], ((TZUINT16 *)&(dw))[1]);
+  tzSwapBytes(((TZUINT8 *)&(dw))[0], ((TZUINT8 *)&(dw))[1]);
+  tzSwapBytes(((TZUINT8 *)&(dw))[2], ((TZUINT8 *)&(dw))[3]);
 }
 
-inline void tzSwap4BytesNumber_t(TZINT32& dw) {
-  TZINT8* p = (TZINT8*)&dw;
+inline void tzSwap4BytesNumber_t(TZINT32 &dw)
+{
+  TZINT8 *p = (TZINT8 *)&dw;
   TZINT8 tmp;
   tmp = p[0];
   p[0] = p[3];
@@ -63,55 +69,62 @@ inline void tzSwap4BytesNumber_t(TZINT32& dw) {
   p[2] = tmp;
 }
 
-inline void tzSwapInt64(void* pBytes) {
-  tzSwapBytes(((TZUINT8*)(pBytes))[0], ((TZUINT8*)(pBytes))[4]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[1], ((TZUINT8*)(pBytes))[5]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[2], ((TZUINT8*)(pBytes))[6]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[3], ((TZUINT8*)(pBytes))[7]);
+inline void tzSwapInt64(void *pBytes)
+{
+  tzSwapBytes(((TZUINT8 *)(pBytes))[0], ((TZUINT8 *)(pBytes))[4]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[1], ((TZUINT8 *)(pBytes))[5]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[2], ((TZUINT8 *)(pBytes))[6]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[3], ((TZUINT8 *)(pBytes))[7]);
 }
 
-#else  // #if TZ_RADIAN == TZ_ENDIAN_BIG
+#else // #if TZ_RADIAN == TZ_ENDIAN_BIG
 
 // Not implemented yet....
 #define tzSwap2BytesNumber(n)
 #define tzSwap4BytesNumber(n)
 #define tzSwap8Bytes(bytes)
 
-inline void tzSwapInt64(void* pBytes) {
-  tzSwapBytes(((TZUINT8*)(pBytes))[0], ((TZUINT8*)(pBytes))[4]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[1], ((TZUINT8*)(pBytes))[5]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[2], ((TZUINT8*)(pBytes))[6]);
-  tzSwapBytes(((TZUINT8*)(pBytes))[3], ((TZUINT8*)(pBytes))[7]);
+inline void tzSwapInt64(void *pBytes)
+{
+  tzSwapBytes(((TZUINT8 *)(pBytes))[0], ((TZUINT8 *)(pBytes))[4]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[1], ((TZUINT8 *)(pBytes))[5]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[2], ((TZUINT8 *)(pBytes))[6]);
+  tzSwapBytes(((TZUINT8 *)(pBytes))[3], ((TZUINT8 *)(pBytes))[7]);
 }
 
-#endif  // #if TZ_RADIAN == TZ_ENDIAN_BIG
+#endif // #if TZ_RADIAN == TZ_ENDIAN_BIG
 
-inline bool isValidNonZeroIEEEDouble(const TZUINT8* buf) {
+inline bool isValidNonZeroIEEEDouble(const TZUINT8 *buf)
+{
 #if TZ_RADIAN == TZ_ENDIAN_BIG
   TZINT nExponent = (buf[0] & 0x7F) << 4 | (buf[1] & 0xF0) >> 4;
 #else
   TZINT nExponent = (buf[7] & 0x7F) << 4 | (buf[6] & 0xF0) >> 4;
 #endif
-  switch (nExponent) {
-    case 0:
-    case 2047:
-      return false;
-    default:
-      break;
+  switch (nExponent)
+  {
+  case 0:
+  case 2047:
+    return false;
+  default:
+    break;
   }
   return true;
 }
 
-inline void fixDouble(TZDOUBLE* pd) {
+inline void fixDouble(TZDOUBLE *pd)
+{
   TZ_ASSERT(sizeof(TZDOUBLE) == 8);
   tzSwap8Bytes(pd);
-  if (!isValidNonZeroIEEEDouble((TZUINT8*)pd)) {
+  if (!isValidNonZeroIEEEDouble((TZUINT8 *)pd))
+  {
     *pd = 0.;
   }
 }
 
 #define TZ_INT8_FORM_BUFFPTR(pBuffPtr) *(pBuffPtr++)
-inline TZUINT64 TZ_INT64_FROM_BUFFPTR(const TZUINT8* pBuffPtr) {
+inline TZUINT64 TZ_INT64_FROM_BUFFPTR(const TZUINT8 *pBuffPtr)
+{
   TZUINT32 low(*pBuffPtr++);
   low |= ((TZUINT32)*pBuffPtr++) << 8;
   low |= ((TZUINT32)*pBuffPtr++) << 16;
@@ -142,7 +155,8 @@ inline TZUINT64 TZ_INT64_FROM_BUFFPTR(const TZUINT8* pBuffPtr) {
 #pragma warning(disable : 4035)
 #pragma warning(disable : 4793)
 
-inline int TzInterlockedExchange(volatile int* dest, int val) {
+inline int TzInterlockedExchange(volatile int *dest, int val)
+{
   __asm
   {
         mov edx, dest
@@ -151,7 +165,8 @@ inline int TzInterlockedExchange(volatile int* dest, int val) {
   }
 }
 
-inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
+inline int TzInterlockedExchangeAdd(volatile int *dest, int incr)
+{
   __asm {
         mov edx, dest
         mov ead, incr
@@ -159,7 +174,8 @@ inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
   }
 }
 
-inline int TzInterlockedIncrement(volatile int* dest) {
+inline int TzInterlockedIncrement(volatile int *dest)
+{
   __asm {
         mov edx, dest
         mov ead, 1
@@ -168,7 +184,8 @@ inline int TzInterlockedIncrement(volatile int* dest) {
   }
 }
 
-inline int TzInterlockedDecrement(volatile int* dest) {
+inline int TzInterlockedDecrement(volatile int *dest)
+{
   __asm {
         mov edx, dest
         mov eax, -1
@@ -181,15 +198,16 @@ inline int TzInterlockedDecrement(volatile int* dest) {
 
 #elif (defined(_WIN32) || defined(_WIN64)) && !defined(_WIN32_WCE)
 
-#define TzInterlockedExchange(dest, val) InterlockedExchange((LONG*)(dest), val)
+#define TzInterlockedExchange(dest, val) InterlockedExchange((LONG *)(dest), val)
 #define TzInterlockedExchangeAdd(dest, incr) \
-  InterlockedExchangeAdd((LONG*)(dest), incr)
-#define TzInterlockedIncrement(dest) InterlockedIncrement((LONG*)(dest))
-#define TzInterlockedDecrement(dest) InterlockedDecrement((LONG*)(dest))
+  InterlockedExchangeAdd((LONG *)(dest), incr)
+#define TzInterlockedIncrement(dest) InterlockedIncrement((LONG *)(dest))
+#define TzInterlockedDecrement(dest) InterlockedDecrement((LONG *)(dest))
 
 #elif defined(__GNUC__) && (defined(__i386) || defined(__x86_64__))
 
-inline int TzInterlockedExchange(volatile int* dest, int val) {
+inline int TzInterlockedExchange(volatile int *dest, int val)
+{
   int ret;
   __asm__ __volatile__("lock; xchgl %0, (%1)"
                        : "=r"(ret)
@@ -198,7 +216,8 @@ inline int TzInterlockedExchange(volatile int* dest, int val) {
   return ret;
 }
 
-inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
+inline int TzInterlockedExchangeAdd(volatile int *dest, int incr)
+{
   int ret;
   __asm__ __volatile__("lock; xaddl %0, (%1)"
                        : "=r"(ret)
@@ -207,17 +226,20 @@ inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
   return ret;
 }
 
-inline int TzInterlockedIncrement(volatile int* dest) {
+inline int TzInterlockedIncrement(volatile int *dest)
+{
   return TzInterlockedExchangeAdd(dest, 1) + 1;
 }
 
-inline int TzInterlockedDecrement(volatile int* dest) {
+inline int TzInterlockedDecrement(volatile int *dest)
+{
   return TzInterlockedExchangeAdd(dest, -1) - 1;
 }
 
 #elif defined(__GNUC__) && defined(__POWERPC__)
 
-inline int TzInterlockedExchange(volatile int* dest, int val) {
+inline int TzInterlockedExchange(volatile int *dest, int val)
+{
   int ret = 0;
   __asm__ __volatile__(
       "0: lwarx %0, 0, %1\n"
@@ -230,7 +252,8 @@ inline int TzInterlockedExchange(volatile int* dest, int val) {
   return ret;
 }
 
-inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
+inline int TzInterlockedExchangeAdd(volatile int *dest, int incr)
+{
   int ret = 0;
   int zero = 0;
   __asm__ __volatile__(
@@ -245,11 +268,13 @@ inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
   return ret;
 }
 
-inline int TzInterlockedIncrement(volatile int* dest) {
+inline int TzInterlockedIncrement(volatile int *dest)
+{
   return TzInterlockedExchangeAdd(dest, 1) + 1;
 }
 
-inline int TzInterlockedDecrement(volatile int* dest) {
+inline int TzInterlockedDecrement(volatile int *dest)
+{
   return TzInterlockedExchangeAdd(dest, -1) - 1;
 }
 
@@ -259,24 +284,28 @@ inline int TzInterlockedDecrement(volatile int* dest) {
 
 #pragma TZ_MARKMESSAGE(!!!TZ Single thread is defined !!!)
 
-inline int TzInterlockedExchange(volatile int* dest, int val) { *dest = val; }
+inline int TzInterlockedExchange(volatile int *dest, int val)
+{
+  *dest = val;
+}
 
-inline int TzInterlockedExchangeAdd(volatile int* dest, int incr) {
+inline int TzInterlockedExchangeAdd(volatile int *dest, int incr)
+{
   *dest += incr;
 }
 
-inline int TzInterlockedIncrement(volatile int* dest) { (*dest)++; }
+inline int TzInterlockedIncrement(volatile int *dest) { (*dest)++; }
 
-inline int TzInterlockedDecrement(volatile int* dest) { (*dest)--; }
+inline int TzInterlockedDecrement(volatile int *dest) { (*dest)--; }
 
-#endif  // #if defined(_MSC_VER) && _M_IX86 >= 400 && !defined(_WIN32_WCE)
+#endif // #if defined(_MSC_VER) && _M_IX86 >= 400 && !defined(_WIN32_WCE)
 
 // Utilities:
-#define LOW_RES 0    // Low resolution
-#define STD_RES 1    // Most common resolution(eg: 1440, 900)
-#define TWOK_RES 2   // 2K resolution
-#define FOURK_RES 3  // 4K resolution
-#define HIGH_RES 4   // Resolution higher than 4K
+#define LOW_RES 0   // Low resolution
+#define STD_RES 1   // Most common resolution(eg: 1440, 900)
+#define TWOK_RES 2  // 2K resolution
+#define FOURK_RES 3 // 4K resolution
+#define HIGH_RES 4  // Resolution higher than 4K
 
 // Windows versions:
 #define TZ_WINUNK -1
@@ -296,11 +325,11 @@ inline int TzInterlockedDecrement(volatile int* dest) { (*dest)--; }
 
 #if defined(TZ_WINDOWS)
 TZ_PLATFORM_C_EXPORT TZINT32 TZ_STDCALL
-tzGetWindowsVersion(TZUINT32* pMajorVer = NULL, TZUINT32* pMinorVer = NULL,
-                    TZUINT32* pBuildNmb = NULL);
+tzGetWindowsVersion(TZUINT32 *pMajorVer = NULL, TZUINT32 *pMinorVer = NULL,
+                    TZUINT32 *pBuildNmb = NULL);
 #else
 // TO Put functions which to get the version of other OS here.
-#endif  // if defined(TZ_WINDOWS)
+#endif // if defined(TZ_WINDOWS)
 
 /* Get the total number of cores that current computer have.
  *  This function will sum all cores of
@@ -313,4 +342,4 @@ tzGetWindowsVersion(TZUINT32* pMajorVer = NULL, TZUINT32* pMinorVer = NULL,
 TZ_PLATFORM_C_EXPORT TZINT32
 tzGetProcessorCoreCount(TZBOOL bGetLogicalCount = TRUE);
 
-#endif  // _TZSOFT_PLATFORM_UTILS_H_H
+#endif // _TZSOFT_PLATFORM_UTILS_H_H
