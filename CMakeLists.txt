@@ -85,10 +85,8 @@ INCLUDE(TzSoftGlobalSetting)
 INCLUDE(TzSoftApplySetting)
 
 ADD_SUBDIRECTORY(source)
-# ADD_SUBDIRECTORY(samples)
 
 IF(TZ_BUILD_EXAMPLES)
-    ADD_SUBDIRECTORY(samples)
     ADD_SUBDIRECTORY(examples)
 ENDIF()
 

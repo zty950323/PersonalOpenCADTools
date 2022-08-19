@@ -166,6 +166,6 @@ ELSE(TZ_WINDOWS)
 ENDIF(TZ_WINDOWS)
 
 OPTION(TZ_GLOBAL_DYNAMIC "Set to on to build all library for dynamic linking. Use OFF for static linking" ON)
-
+OPTION(TZ_BUILD_EXAMPLES "Set to build some examples in our project" ON)
 OPTION(TZ_LIBRARY_INSTALL "Install the library or not when called with 'cmake --install' command" ON)
 OPTION(TZ_APPLICATION_INSTALL "Install the application or not when called with 'cmake --install' command" ON)
