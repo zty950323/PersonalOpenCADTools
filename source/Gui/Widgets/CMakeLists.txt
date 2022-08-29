@@ -43,8 +43,18 @@ SET(TZ_LIBRARY_MOC_SRCS
     ${TZ_GUI_WIDGETS_CONTROLS_PATH}/widgets_alarm_button.h
 )
 
-SET(TZ_LIBRARY_INC
+
+SET(TZ_LIBRARY_UTILITY_INC
+    inc/Utility/widgets_utility.h
+)
+
+SET(TZ_LIBRARY_INNER_INC
     inc/widgets_private.h
+)
+
+SET(TZ_LIBRARY_INC
+    ${TZ_LIBRARY_INNER_INC}
+    ${TZ_LIBRARY_UTILITY_INC}
 )
 
 IF(TZ_WINDOWS)
@@ -66,11 +76,16 @@ SET(_LIBRARY_WIDGETS_COMMON_SRC
     src/Common/widgets_basic_color_enum_map.cpp
 )
 
+SET(_LIBRARY_WIDGETS_UTILITY_SRC
+    src/Utility/widgets_utility.cpp
+)
+
 SET(TZ_LIBRARY_SRC
     ${_TZ_WIDGETS_SRC}
     ${_LIBRARY_WIDGETS_SRC}
     ${_LIBRARY_WIDGETS_COMMON_SRC}
     ${_LIBRARY_WIDGETS_CONTROLS_SRC}
+    ${_LIBRARY_WIDGETS_UTILITY_SRC}
 )
 
 SET(TZ_LIBRARY_CUSTOM_GROUP ON)
@@ -144,7 +159,10 @@ IF(TZ_WINDOWS)
     )
     SOURCE_GROUP("inc"
         FILES
-        ${TZ_LIBRARY_INC}
+        ${TZ_LIBRARY_INNER_INC}
+    )
+    SOURCE_GROUP("inc\\Utility"
+        ${TZ_LIBRARY_UTILITY_INC}
     )
     # source file group
     SOURCE_GROUP("src"
@@ -162,5 +180,9 @@ IF(TZ_WINDOWS)
     SOURCE_GROUP("src\\Common"
         FILES
         ${_LIBRARY_WIDGETS_COMMON_SRC}
+    )
+    SOURCE_GROUP("src\\Utility"
+        FILES
+        ${_LIBRARY_WIDGETS_UTILITY_SRC}
     )
 ENDIF()
