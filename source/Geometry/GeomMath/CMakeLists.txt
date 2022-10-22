@@ -1,0 +1,119 @@
+#[================================================================[.rst:
+    Copyright (c)2021, Tom Zhao personal. ("TZOpenTools")
+    This software is a personal tools project by Tom Zhao.
+    Description:
+#]================================================================]
+
+TZ_CHECK_LIBRARY_LINKING()
+
+IF(TZ_RESULT_LIBRARY_LINK_DYNAMIC)
+    ADD_DEFINITIONS(-DTZ_SOFT_GEOM_MATH_MODULE)
+ELSE()
+    MESSAGE(FATAL_ERROR "GeomMath not support static lib yet!")
+ENDIF()
+
+SET(TZ_LIBRARY_NAME GeomMath)
+
+SET(_LIBRARY_SDK_INCLUDE
+    ${TZ_GEOM_MATH_SDK_PATH}/geom_math_common_utils.h
+    ${TZ_GEOM_MATH_SDK_PATH}/geom_math_defines.h
+    ${TZ_GEOM_MATH_SDK_PATH}/geom_math_export.h
+)
+
+SET(TZ_LIBRARY_INCLUDE
+    ${_LIBRARY_SDK_INCLUDE}
+    # TODO: future add more file
+)
+
+SET(TZ_LIBRARY_INC
+    # TODO: future add more file
+)
+
+IF(TZ_WINDOWS)
+    SET(_TZ_PLATFORM_SRC
+        src/dllmain.cpp
+        src/GeomMath.def
+    )
+ENDIF()
+
+SET(TZ_LIBRARY_SRC
+    ${_TZ_PLATFORM_SRC}
+)
+
+SET(TZ_LIBRARY_CUSTOM_GROUP ON)
+
+SET(TZ_LIBRARY_FOLDER "Geometry")
+
+# COMPILE_OPTIONS
+
+SET(TZ_LIBRARY_GENERAL_OPTIONS
+    ${__TZ_PLATFORM_COMPILE_OPTIONS}
+)
+
+SET(TZ_LIBRARY_GENERAL_OPTIONS_DEBUG
+    ${__TZ_PLATFORM_COMPILE_OPTIONS_DEBUG}
+)
+
+SET(TZ_LIBRARY_GENERAL_OPTIONS_RELEASE
+    ${__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE}
+)
+
+# LINK FLAGS
+
+SET(TZ_LIBRARY_GENERAL_LINK_FLAGS
+    ${__TZ_PLATFORM_LINK_FLAGS}
+)
+
+SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_DEBUG
+    ${__TZ_PLATFORM_LINK_FLAGS_DEBUG}
+)
+
+SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
+    ${__TZ_PLATFORM_LINK_FLAGS_RELEASE}
+)
+
+SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
+    ${TZ_GEOMETRY_INCLUDE_DIR}
+    ${TZ_SDK_INCLUDE_DIR}
+    ${TZ_THIRDPARTY_ROOT}/boost_1_79_0
+    inc
+)
+
+IF(TZ_BUILD_GEOM_WITH_CGAL)
+SET(TZ_EXTRA_GEOM_MODULE_PRIVATE
+    CGAL::CGAL
+)
+ELSE()
+SET(TZ_EXTRA_GEOM_MODULE_PRIVATE
+)
+ENDIF()
+
+SET(TZ_LIBRARY_USE_MODULES_PRIVATE
+    BasicTools
+    Platform
+    Root
+    ${TZ_EXTRA_GEOM_MODULE_PRIVATE}
+)
+
+SET(TZ_LIBRARY_INSTALL_HEADERS
+    ${_LIBRARY_SDK_INCLUDE}
+)
+
+IF(TZ_BUILD_GEOM_WITH_CGAL)
+    FIND_PACKAGE(CGAL REQUIRED)
+ENDIF()
+
+TZ_SETUP_LIBRARY()
+
+IF(TZ_WINDOWS)
+
+    SOURCE_GROUP("include"
+        FILES
+        ${_LIBRARY_SDK_INCLUDE}
+    )
+
+    SOURCE_GROUP("src"
+        FILES
+    )
+
+ENDIF()

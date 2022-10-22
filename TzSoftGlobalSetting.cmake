@@ -60,7 +60,7 @@ IF(TZ_WINDOWS)
         "/wd 4812"
         "/wd 4819"
         "/we 4715"
-        "/we 4244"
+        #"/we 4244"
         "/we 4553"
         "/we 4002"
         "/we 4090"
@@ -167,5 +167,6 @@ ENDIF(TZ_WINDOWS)
 
 OPTION(TZ_GLOBAL_DYNAMIC "Set to on to build all library for dynamic linking. Use OFF for static linking" ON)
 OPTION(TZ_BUILD_EXAMPLES "Set to build some examples in our project" ON)
+OPTION(TZ_BUILD_GEOM_WITH_CGAL "Set to build some geometry with CGAL as the third party" ON)
 OPTION(TZ_LIBRARY_INSTALL "Install the library or not when called with 'cmake --install' command" ON)
 OPTION(TZ_APPLICATION_INSTALL "Install the application or not when called with 'cmake --install' command" ON)
