@@ -23,8 +23,11 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="TzArrayTestTab" name="ArrayTestTab">
        <attribute name="title">
@@ -150,6 +153,30 @@
            </size>
           </property>
          </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="TreeViewTestTab">
+       <attribute name="title">
+        <string>TreeView_Test</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QPushButton" name="Add_tree_item_button">
+          <property name="text">
+           <string>AddItemButton</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTreeView" name="AimTreeView">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

@@ -23,15 +23,19 @@ SET(_LIBRARY_SDK_INCLUDE
 )
 
 SET(_LIBRIRAY_GUI_INCLUDE
-    # TODO: future add more file
+    # TODO: future add more file.
+    ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_object.h
+    ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_error_unit.h
 )
 
 SET(TZ_LIBRARY_INCLUDE
     ${_LIBRARY_SDK_INCLUDE}
+    ${_LIBRIRAY_GUI_INCLUDE}
 )
 
 SET(TZ_LIBRARY_INC
     inc/core_private.h
+    inc/gui_core_object_p.h
 )
 
 IF(TZ_WINDOWS)
@@ -43,6 +47,7 @@ ENDIF()
 
 SET(_LIBRARY_CORE_SRC
     src/core_private.cpp
+    src/gui_core_object.cpp
 )
 
 SET(TZ_LIBRARY_SRC
@@ -85,7 +90,9 @@ SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
 SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
     ${TZ_BASIC_INCLUDE_DIR}
     ${TZ_SDK_INCLUDE_DIR}
-    ${TZ_THIRDPARTY_ROOT}/boost_1_76_0
+    ${TZ_GUI_CORE_PATH}
+    ${TZ_GUI_CORE_INCLUDE_DIR}
+    ${TZ_THIRDPARTY_ROOT}/boost_1_79_0
     inc
 )
 
@@ -108,7 +115,7 @@ IF(TZ_WINDOWS)
     # header file group
     SOURCE_GROUP("include\\Common"
         FILES
-        ${_LIBRARY_SDK_INCLUDE}
+        ${TZ_LIBRARY_INCLUDE}
     )
     SOURCE_GROUP("inc"
         FILES

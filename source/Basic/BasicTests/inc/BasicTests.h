@@ -11,18 +11,20 @@
 
 #include "ui_BasicTests.h"
 
-class BasicTests : public QMainWindow {
-  Q_OBJECT
+class BasicTests : public QMainWindow
+{
+    Q_OBJECT
 
- public:
-  BasicTests(QWidget* parent = Q_NULLPTR);
+public:
+    BasicTests(QWidget* parent = Q_NULLPTR);
 
- public slots:
-  void on_Array_start_pushButton_clicked(bool checked);
-  void on_Array_end_pushButton_clicked(bool checked);
+public slots:
+    void on_Add_tree_item_button_clicked(bool checked);
+    void on_Array_start_pushButton_clicked(bool checked);
+    void on_Array_end_pushButton_clicked(bool checked);
 
- private:
-  Ui::BasicTestsClass ui;
+private:
+    Ui::BasicTestsClass ui;
 };
 
 #endif  // _BASIC_TESTS_H_
