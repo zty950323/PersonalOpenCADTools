@@ -26,6 +26,8 @@ SET(_LIBRIRAY_GUI_INCLUDE
     # TODO: future add more file.
     ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_object.h
     ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_error_unit.h
+    ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_expected_tools.h
+    ${TZ_GUI_CORE_INCLUDE_DIR}/gui_core_singleton.h
 )
 
 SET(TZ_LIBRARY_INCLUDE

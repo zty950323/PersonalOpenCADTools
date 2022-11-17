@@ -18,4 +18,6 @@ enum class CoreCommonFlag : unsigned short
 
 TZ_NAMESPACE_END(TzSoft)
 
+#define __builtin_expect(EXP, C)  (EXP)
+
 #endif // SOURCE_INCLUDE_GUI_CORE_CORE_DEFINES_H_

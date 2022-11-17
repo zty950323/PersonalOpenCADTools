@@ -12,7 +12,7 @@
  * @version 1.0
  * @brief This file provides basic error service in Ui projects used.
  * codec.
- * @file gui_core_error_service.h
+ * @file gui_core_error_unit.h
  * @author Tom Zhao(18872770445@163.com)
  * @since 2022-10-25
  * @date Created: 2022-10-31
@@ -23,8 +23,8 @@
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#ifndef _GUI_CORE_ERROR_SERVICE_H_
-#define _GUI_CORE_ERROR_SERVICE_H_
+#ifndef _GUI_CORE_ERROR_UNITS_H_
+#define _GUI_CORE_ERROR_UNITS_H_
 
 #include "zsofts_compiler_specific.h"
 #include "core_export.h"
@@ -38,61 +38,56 @@ namespace TzSoft
     {
     public:
         /*!
-         * @brief Ä¬ÈÏ¹¹Ôìº¯Êı
-         * @attention ´íÎó´úÂëÄ¬ÈÏÎª-1£¬´íÎóĞÅÏ¢Ä¬ÈÏÎª¿Õ
+         * @brief é»˜è®¤æ„é€ å‡½æ•°
+         * @attention é”™è¯¯ä»£ç é»˜è®¤ä¸º-1ï¼Œé”™è¯¯ä¿¡æ¯é»˜è®¤ä¸ºç©º
          */
         TErrorUnit() noexcept
-            : m_code(-1)
-            , m_msg()
+            : m_code(-1), m_msg()
         {
         }
 
         /*!
-         * @brief ¿½±´¹¹Ôìº¯Êı
+         * @brief æ‹·è´æ„é€ å‡½æ•°
          */
         TErrorUnit(const TErrorUnit& other) noexcept
-            : m_code(other.m_code)
-            , m_msg(other.m_msg)
+            : m_code(other.m_code), m_msg(other.m_msg)
         {
         }
 
         /*!
-         * @brief ÒÆ¶¯¹¹Ôìº¯Êı
-         * @attention ÒÆ¶¯ºóÔ­¶ÔÏó²»¿ÉÓÃ
+         * @brief ç§»åŠ¨æ„é€ å‡½æ•°
+         * @attention ç§»åŠ¨ååŸå¯¹è±¡ä¸å¯ç”¨
          */
         TErrorUnit(TErrorUnit&& other) noexcept
-            : m_code(other.m_code)
-            , m_msg(std::move(other).m_msg)
+            : m_code(other.m_code), m_msg(std::move(other).m_msg)
         {
         }
 
         /*!
-         * @brief ¹¹Ôìº¯Êı
-         * @param[in] code ´íÎó´úÂë
-         * @param[in] msg  ´íÎóĞÅÏ¢
+         * @brief æ„é€ å‡½æ•°
+         * @param[in] code é”™è¯¯ä»£ç 
+         * @param[in] msg  é”™è¯¯ä¿¡æ¯
          */
-        TErrorUnit(qint64 code, const QString &msg) noexcept
-            : m_code(code)
-            , m_msg(msg)
+        TErrorUnit(qint64 code, const QString& msg) noexcept
+            : m_code(code), m_msg(msg)
         {
         }
 
         /*!
-         * @brief ¹¹Ôìº¯Êı
-         * @param[in] code ´íÎó´úÂë
-         * @param[in] msg  ´íÎóĞÅÏ¢
-         * @attention Ê¹ÓÃ´Ë¹¹Ôìº¯ÊıºóÔ­´íÎóĞÅÏ¢²»¿ÉÓÃ
+         * @brief æ„é€ å‡½æ•°
+         * @param[in] code é”™è¯¯ä»£ç 
+         * @param[in] msg  é”™è¯¯ä¿¡æ¯
+         * @attention ä½¿ç”¨æ­¤æ„é€ å‡½æ•°ååŸé”™è¯¯ä¿¡æ¯ä¸å¯ç”¨
          */
-        TErrorUnit(qint64 code, QString &&msg) noexcept
-            : m_code(code)
-            , m_msg(std::move(msg))
+        TErrorUnit(qint64 code, QString&& msg) noexcept
+            : m_code(code), m_msg(std::move(msg))
         {
         }
 
         /*!
-         * @brief ÖØÔØ¿½±´¸³ÖµÔËËã·û
+         * @brief é‡è½½æ‹·è´èµ‹å€¼è¿ç®—ç¬¦
          */
-        TErrorUnit &operator=(const TErrorUnit& other)
+        TErrorUnit& operator=(const TErrorUnit& other)
         {
             m_code = other.m_code;
             m_msg = other.m_msg;
@@ -100,8 +95,8 @@ namespace TzSoft
         }
 
         /*!
-         * @brief ÖØÔØÒÆ¶¯¸³ÖµÔËËã·û
-         * @attention ¸³ÖµºóÔ­¶ÔÏó²»¿ÉÓÃ
+         * @brief é‡è½½ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦
+         * @attention èµ‹å€¼ååŸå¯¹è±¡ä¸å¯ç”¨
          */
         TErrorUnit& operator=(TErrorUnit&& other)
         {
@@ -111,55 +106,55 @@ namespace TzSoft
         }
 
         /*!
-         * @brief Ä¬ÈÏÎö¹¹º¯Êı
+         * @brief é»˜è®¤ææ„å‡½æ•°
          */
         ~TErrorUnit() = default;
 
         /*!
-         * @brief »ñÈ¡´íÎó´úÂë
-         * @return ´íÎó´úÂë
+         * @brief è·å–é”™è¯¯ä»£ç 
+         * @return é”™è¯¯ä»£ç 
          */
         qint64 getErrorCode() const noexcept { return m_code; }
 
         /*!
-         * @brief ÉèÖÃ´íÎó´úÂë
-         * @param[in] code ´íÎó´úÂë
+         * @brief è®¾ç½®é”™è¯¯ä»£ç 
+         * @param[in] code é”™è¯¯ä»£ç 
          */
-        void setErrorCode(qint64 code) &noexcept { m_code = code; }
+        void setErrorCode(qint64 code) & noexcept { m_code = code; }
 
         /*!
-         * @brief »ñÈ¡´íÎóĞÅÏ¢
-         * @return ´íÎóĞÅÏ¢µÄconstÒıÓÃ
+         * @brief è·å–é”™è¯¯ä¿¡æ¯
+         * @return é”™è¯¯ä¿¡æ¯çš„constå¼•ç”¨
          */
         const QString& getErrorMessage() const& { return m_msg; }
 
         /*!
-         * @brief »ñÈ¡´íÎóĞÅÏ¢
-         * @attention º¯Êı·µ»Ø´íÎóĞÅÏ¢ºó£¬Ô­ĞÅÏ¢²»¿ÉÓÃ
-         * @return ´íÎóĞÅÏ¢
+         * @brief è·å–é”™è¯¯ä¿¡æ¯
+         * @attention å‡½æ•°è¿”å›é”™è¯¯ä¿¡æ¯åï¼ŒåŸä¿¡æ¯ä¸å¯ç”¨
+         * @return é”™è¯¯ä¿¡æ¯
          */
         QString getErrorMessage() const&& { return std::move(m_msg); }
 
         /*!
-         * @brief ÉèÖÃ´íÎóĞÅÏ¢
-         * @param[in] msg ´íÎóĞÅÏ¢
+         * @brief è®¾ç½®é”™è¯¯ä¿¡æ¯
+         * @param[in] msg é”™è¯¯ä¿¡æ¯
          */
-        void setErrorMessage(const QString& msg) & { m_msg = msg; }
+        void setErrorMessage(const QString& msg)& { m_msg = msg; }
 
         /*!
-         * @brief ÖØÔØÏàµÈÔËËã·û
+         * @brief é‡è½½ç›¸ç­‰è¿ç®—ç¬¦
          */
-        friend bool operator==(const TErrorUnit &x, const TErrorUnit &y) noexcept { return x.m_code == y.m_code and x.m_msg == y.m_msg; }
+        friend bool operator==(const TErrorUnit& x, const TErrorUnit& y) noexcept { return x.m_code == y.m_code and x.m_msg == y.m_msg; }
 
         /*!
-         * @brief ÖØÔØ²»µÈÔËËã·û
+         * @brief é‡è½½ä¸ç­‰è¿ç®—ç¬¦
          */
-        friend bool operator!=(const TErrorUnit &x, const TErrorUnit &y) noexcept { return !(x == y); }
+        friend bool operator!=(const TErrorUnit& x, const TErrorUnit& y) noexcept { return !(x == y); }
 
         /*!
-         * @brief ÖØÔØÊä³öÔËËã·û
+         * @brief é‡è½½è¾“å‡ºè¿ç®—ç¬¦
          */
-        friend QDebug operator<<(QDebug debug, const TErrorUnit &e)
+        friend QDebug operator<<(QDebug debug, const TErrorUnit& e)
         {
             debug << "Error Code:" << e.m_code << "Message:" << e.m_msg;
             return debug;
@@ -169,6 +164,6 @@ namespace TzSoft
         qint64 m_code;
         QString m_msg;
     };
-}  // namespace TzSoft
+} // namespace TzSoft
 
-#endif // _GUI_CORE_ERROR_SERVICE_H_
+#endif // _GUI_CORE_ERROR_UNITS_H_

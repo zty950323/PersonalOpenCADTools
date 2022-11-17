@@ -20,10 +20,12 @@ SET(_LIBRARY_SDK_INCLUDE
     ${TZ_GUI_TOOLS_PATH}/gui_tools_common_utils.h
     ${TZ_GUI_TOOLS_PATH}/gui_tools_defines.h
     ${TZ_GUI_TOOLS_PATH}/gui_tools_export.h
+    ${TZ_GUI_TOOLS_PATH}/gui_tools_utility_base.h
 )
 
 SET(_LIBRIRAY_GUI_INCLUDE
     ${TZ_GUI_INCLUDE_DIR}/gui_tools_drawhelpers.h
+    ${TZ_GUI_TOOLS_INCLUDE_DIR}/gui_tools_utility_imp.h
 )
 
 SET(TZ_LIBRARY_INCLUDE
@@ -34,6 +36,7 @@ SET(TZ_LIBRARY_INCLUDE
 SET(TZ_LIBRARY_INC
     inc/gui_tools_private.h
     inc/gui_tools_dpi_helper_p.h
+    inc/gui_tools_utility_imp_p.h
 )
 
 IF(TZ_WINDOWS)
@@ -46,6 +49,8 @@ ENDIF()
 SET(_LIBRARY_GUI_TOOLS_SRC
     src/gui_tools_private.cpp
     src/gui_tools_drawhelpers.cpp
+    src/gui_tools_utility_imp.cpp
+    src/gui_tools_utility_imp_p.cpp
 )
 
 SET(TZ_LIBRARY_SRC
@@ -88,8 +93,9 @@ SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
 SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
     ${TZ_BASIC_INCLUDE_DIR}
     ${TZ_SDK_INCLUDE_DIR}
-    ${TZ_THIRDPARTY_ROOT}/boost_1_76_0
+    ${TZ_THIRDPARTY_ROOT}/boost_1_79_0
     ${TZ_GUI_INCLUDE_DIR}
+    ${TZ_GUI_CORE_INCLUDE_DIR}
     inc
 )
 
