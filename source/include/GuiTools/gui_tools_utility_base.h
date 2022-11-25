@@ -23,7 +23,6 @@
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_export.h"
 #include "zsofts_compiler_specific.h"
 
 #ifndef _GUI_TOOLS_UTILITY_BASE_H_

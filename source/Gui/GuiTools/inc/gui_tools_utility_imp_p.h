@@ -22,10 +22,8 @@
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#ifndef _GUI_TOOLS_UTILITY_IMP_H_
-#define _GUI_TOOLS_UTILITY_IMP_H_
-
-#include "gui_core_singleton.h"
+#ifndef _GUI_TOOLS_UTILITY_IMP_P_H_
+#define _GUI_TOOLS_UTILITY_IMP_P_H_
 
 namespace TzSoft
 {
@@ -34,7 +32,7 @@ namespace TzSoft
     {
     public:
         UiToolsUtilityImpPrivate(void);
-        ~UiToolsUtilityImpPrivate();
+        ~UiToolsUtilityImpPrivate(void);
 
         TzDrawHelpers *drawHelpers(void);
         const TzDrawHelpers *cDrawHeplers(void);
@@ -43,8 +41,8 @@ namespace TzSoft
 
     private:
         friend class UiToolsUtilityImp;
-        TzDrawHelpers *m_pDrawHelper;
+        TzDrawHelpers* m_pDrawHelper = nullptr;
     };
 } // namespace TzSoft
 
-#endif // _GUI_TOOLS_UTILITY_IMP_H_
+#endif // _GUI_TOOLS_UTILITY_IMP_P_H_

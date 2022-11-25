@@ -24,23 +24,27 @@
  */
 
 #include "gui_tools_utility_base.h"
+#include "gui_tools_utility_imp_p.h"
+#include "gui_tools_export.h"
+
+#include "DesignPatternTools/basic_open_singleTon.h"
 
 #ifndef _GUI_TOOLS_UTILITY_IMP_H_
 #define _GUI_TOOLS_UTILITY_IMP_H_
 
 namespace TzSoft
 {
-    class TZ_GUI_TOOLS_STATIC_EXPORT UiToolsUtilityImp final : public UiToolsUitlityBase
+    class TZ_GUI_TOOLS_STATIC_EXPORT UiToolsUtilityImp final : public UiToolsUtilityBase, public Basic::TzSingleTon<UiToolsUtilityImp>
     {
     public:
-        UiToolsUtilityImp(void);
-        ~UiToolsUtilityImp() override;
-
         TzDrawHelpers *drawHelpers(void) override;
         const TzDrawHelpers *cDrawHeplers(void) override;
         // TODO (Tom Zhao) : Add some new tools in our gui project and provide them here.
 
     private:
+        UiToolsUtilityImp(void);
+        ~UiToolsUtilityImp(void);
+
         friend class UiToolsUtilityImpPrivate;
         UiToolsUtilityImpPrivate *m_pPrivate;
     };

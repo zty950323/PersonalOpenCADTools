@@ -21,3 +21,17 @@
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
+
+#include "gui_tools_utility_imp.h"
+
+namespace TzSoft
+{
+    UiToolsUtilityImp::UiToolsUtilityImp(void)
+        : m_pPrivate(new UiToolsUtilityImpPrivate())
+    {
+    }
+
+    UiToolsUtilityImp::~UiToolsUtilityImp(void)
+    {
+    }
+}  // namespace TzSoft
