@@ -10,38 +10,33 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief This file provides a serious common utils about GuiCore and some other modules.
+ * codec.
+ * @file gui_core_common_utils.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2023-01-30
+ * @date Created: 2023-01-30
+ * @date Last modified: 2023-01-30
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#ifndef _GUI_CORE_COMMON_UTILS_H_H_
+#define _GUI_CORE_COMMON_UTILS_H_H_
 
-namespace TzSoft
+#include "gui_core_export.h"
+
+TZ_NAMESPACE_BEGIN(TzSoft)
+
+class TZ_GUI_CORE_EXPORT CoreCommonUtils
 {
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
+public:
+  CoreCommonUtils();
+  ~CoreCommonUtils();
+};
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
+TZ_NAMESPACE_END(TzSoft)
 
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
-
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft
+#endif // _GUI_CORE_COMMON_UTILS_H_H_

@@ -21,3 +21,30 @@
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
+
+#include "gui_tools_utility_imp_p.h"
+
+namespace TzSoft
+{
+    UiToolsUtilityImpPrivate::UiToolsUtilityImpPrivate(void)
+    {
+    }
+
+    UiToolsUtilityImpPrivate::~UiToolsUtilityImpPrivate(void)
+    {
+    }
+
+    TzDrawHelpers* UiToolsUtilityImpPrivate::drawHelpers(void)
+    {
+        return nullptr;
+    }
+
+    const TzDrawHelpers* UiToolsUtilityImpPrivate::cDrawHeplers(void)
+    {
+        return nullptr;
+    }
+
+    void UiToolsUtilityImpPrivate::setDrawHelper(TzDrawHelpers* pDrawHelper)
+    {
+    }
+}  // namespace TzSoft

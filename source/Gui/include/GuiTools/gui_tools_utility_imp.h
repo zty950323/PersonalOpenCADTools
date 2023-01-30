@@ -41,10 +41,10 @@ namespace TzSoft
         const TzDrawHelpers *cDrawHeplers(void) override;
         // TODO (Tom Zhao) : Add some new tools in our gui project and provide them here.
 
-    private:
         UiToolsUtilityImp(void);
         ~UiToolsUtilityImp(void);
 
+    private:
         friend class UiToolsUtilityImpPrivate;
         UiToolsUtilityImpPrivate *m_pPrivate;
     };

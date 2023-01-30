@@ -10,38 +10,26 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief This file provides basic object private in Ui projects used.
+ * codec.
+ * @file gui_core_object_p.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2022-10-25
+ * @date Created: 2022-10-25
+ * @date Last modified: 2022-10-25
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#include "gui_core_private.h"
 
-namespace TzSoft
-{
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
+TZ_NAMESPACE_BEGIN(TzSoft)
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
+TzCorePrivate::TzCorePrivate(const CorePrivateFlags &flag)
+    : m_privateFlag(flag) {}
 
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
+TzCorePrivate::~TzCorePrivate() {}
 
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft
+TZ_NAMESPACE_END(TzSoft)

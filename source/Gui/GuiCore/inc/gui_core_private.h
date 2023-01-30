@@ -10,38 +10,40 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief This file provides private defines area for some flags.
+ * @file gui_core_private.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2023-01-30
+ * @date Created: 2023-01-30
+ * @date Last modified: 2023-01-30
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#ifndef SOURCE_GUI_CORE_INC_CORE_PRIVATE_H_
+#define SOURCE_GUI_CORE_INC_CORE_PRIVATE_H_
 
-namespace TzSoft
+#include "zsofts_compiler_specific.h"
+
+TZ_NAMESPACE_BEGIN(TzSoft)
+
+enum CorePrivateFlags
 {
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
+  kPrivateNone = 0,
+};
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
+class TzCorePrivate
+{
+public:
+  explicit TzCorePrivate(const CorePrivateFlags &flag);
+  ~TzCorePrivate();
 
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
+private:
+  CorePrivateFlags m_privateFlag;
+};
 
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft
+TZ_NAMESPACE_END(TzSoft)
+
+#endif // SOURCE_GUI_CORE_INC_CORE_PRIVATE_H_

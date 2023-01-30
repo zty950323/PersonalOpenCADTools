@@ -27,7 +27,7 @@
 #define _GUI_CORE_OBJECT_H_
 
 #include "zsofts_compiler_specific.h"
-#include "core_export.h"
+#include "gui_core_export.h"
 
 #include <QScopedPointer>
 

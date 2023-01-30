@@ -10,38 +10,16 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief Definition of String class. The object is generic string represention in the platform,
+ * which intergrated different types of string conversion and function. Users can use
+ * this class to perform various operations about characters.
+ * @file basic_defines.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2023-01-19
+ * @date Created: 2023-01-19
+ * @date Last modified: 2023-01-19
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
-
-#include "gui_tools_utility_imp.h"
-
-namespace TzSoft
-{
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
-
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
-
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
-
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft

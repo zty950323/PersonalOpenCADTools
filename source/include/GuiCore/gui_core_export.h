@@ -23,8 +23,8 @@
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#ifndef SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
-#define SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
+#ifndef _GUI_CORE_CORE_EXPORT_H_H_
+#define _GUI_CORE_CORE_EXPORT_H_H_
 
 #include "zsofts_compiler_specific.h"
 
@@ -40,4 +40,4 @@
 #define TZ_GUI_CORE_C_EXPORT TZ_C_IMPORT
 #endif
 
-#endif // SOURCE_INCLUDE_GUI_CORE_CORE_EXPORT_H_
+#endif // _GUI_CORE_CORE_EXPORT_H_H_

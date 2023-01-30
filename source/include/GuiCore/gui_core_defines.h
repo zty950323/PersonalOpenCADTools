@@ -10,38 +10,33 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief This file provides a serious predefined parameters about GuiCore.
+ * codec.
+ * @file gui_core_defines.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2023-01-30
+ * @date Created: 2023-01-30
+ * @date Last modified: 2023-01-30
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#ifndef _GUI_CORE_CORE_DEFINES_H_H_
+#define _GUI_CORE_CORE_DEFINES_H_H_
 
-namespace TzSoft
+#include "zsofts_compiler_specific.h"
+
+TZ_NAMESPACE_BEGIN(TzSoft)
+
+enum class CoreCommonFlag : unsigned short
 {
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
+  TZ_NEED_WIDGETS = 0,
+};
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
+TZ_NAMESPACE_END(TzSoft)
 
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
+#define __builtin_expect(EXP, C) (EXP)
 
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft
+#endif // _GUI_CORE_CORE_DEFINES_H_H_

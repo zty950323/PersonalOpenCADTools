@@ -26,7 +26,7 @@
 #ifndef _GUI_CORE_OBJECT_P_H_
 #define _GUI_CORE_OBJECT_P_H_
 
-#include "core_export.h"
+#include "gui_core_export.h"
 
 #include <QtCore/qglobal.h>
 
@@ -40,9 +40,9 @@ namespace TzSoft
         virtual ~TObjectPrivate();
 
     protected:
-        TObjectPrivate(TObject* qObject);
+        TObjectPrivate(TObject *qObject);
 
-        TObject* q_ptr;
+        TObject *q_ptr;
 
         Q_DECLARE_PUBLIC(TObject)
     };

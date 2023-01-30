@@ -10,38 +10,60 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief Define some common structures in our platform.
+ * @file basic_defines.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2023-01-19
+ * @date Created: 2023-01-19
+ * @date Last modified: 2023-01-19
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#ifndef _BASIC_DFEINS_H_H_
+#define _BASIC_DFEINS_H_H_
 
-namespace TzSoft
+#include "platform_types.h"
+
+#pragma pack(push, 8)
+
+namespace Basic
 {
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
+    struct Vector2d
     {
-        return nullptr;
-    }
+        TZDOUBLE x;
+        TZDOUBLE y;
+    };
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
+    struct Vector3d
     {
-        return nullptr;
-    }
+        TZDOUBLE x;
+        TZDOUBLE y;
+        TZDOUBLE z;
+    };
 
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
+    struct Vector2i
     {
-    }
+        TZUINT32 x;
+        TZUINT32 y;
+    };
 
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
+    struct Vector3i
     {
-    }
-}  // namespace TzSoft
+        TZUINT32 x;
+        TZUINT32 y;
+        TZUINT32 z;
+    };
+
+    struct ScreenPoint
+    {
+        TZINT32 x;
+        TZINT32 y;
+    };
+} // namespace Basic
+
+#pragma pack(pop)
+
+#endif // _BASIC_DFEINS_H_H_

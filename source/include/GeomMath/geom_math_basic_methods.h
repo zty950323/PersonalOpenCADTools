@@ -10,38 +10,26 @@
  * purposes.
  *
  * @version 1.0
- * @brief This file provides implementation class for UiToolsUtility using.
- * @file gui_tools_utility_imp.cpp
+ * @brief This file provides a serious deines and macros in GeomMath project inner used.
+ * codec.
+ * @file geom_math_common_utils.h
  * @author Tom Zhao(18872770445@163.com)
- * @since 2022-11-01
- * @date Created: 2022-11-01
- * @date Last modified: 2022-11-01
+ * @since 2022-10-21
+ * @date Created: 2022-10-21
+ * @date Last modified: 2022-10-21
  *
  * Github: @link https://github.com/zty950323/PersonalOpenCADTools @endlink
  * Homepage: @link https://blog.csdn.net/zhaotianyu950323 @endlink
  * Blog: @link https://www.zhihu.com/people/Tom_Zhao @endlink
  */
 
-#include "gui_tools_utility_imp.h"
+#ifndef SOURCE_INCLUDE_GEOM_MATH_BASIC_METHOS_H_
+#define SOURCE_INCLUDE_GEOM_MATH_BASIC_METHOS_H_
+
+#include "geom_math_export.h"
 
 namespace TzSoft
 {
-    TzDrawHelpers* UiToolsUtilityImp::drawHelpers(void)
-    {
-        return nullptr;
-    }
+} // namespace TzSoft
 
-    const TzDrawHelpers* UiToolsUtilityImp::cDrawHeplers(void)
-    {
-        return nullptr;
-    }
-
-    UiToolsUtilityImp::UiToolsUtilityImp(void)
-        : m_pPrivate(new UiToolsUtilityImpPrivate())
-    {
-    }
-
-    UiToolsUtilityImp::~UiToolsUtilityImp(void)
-    {
-    }
-}  // namespace TzSoft
+#endif // SOURCE_INCLUDE_GEOM_MATH_BASIC_METHOS_H_

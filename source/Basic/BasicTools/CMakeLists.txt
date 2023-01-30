@@ -14,26 +14,21 @@ ENDIF()
 
 SET(TZ_LIBRARY_NAME BasicTools)
 
-SET(TZ_BASIC_DP_PATH ${TZ_SDK_INCLUDE_DIR}/DesignPatternTools)
-SET(TZ_BASIC_OCTOOLS_PATH ${TZ_SDK_INCLUDE_DIR}/OCTools)
-SET(TZ_BASIC_DS_PATH ${TZ_SDK_INCLUDE_DIR}/DataStructure)
-SET(TZ_BASIC_UTIL_PATH ${TZ_SDK_INCLUDE_DIR}/Utility)
-SET(TZ_BASIC_TEST_PATH ${TZ_SDK_INCLUDE_DIR}/TestCommon)
-SET(TZ_BASIC_TOOLS_PATH ${TZ_SDK_INCLUDE_DIR}/BasicTools)
-
 SET(_LIBRARY_SDK_INCLUDE
-    ${TZ_SDK_INCLUDE_DIR}/basic_array.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_array.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_array_stl.h
     ${TZ_SDK_INCLUDE_DIR}/basic_bit_flags.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_bit_flags.h
     ${TZ_SDK_INCLUDE_DIR}/basic_char_map.h
-    ${TZ_SDK_INCLUDE_DIR}/basic_export.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_math.h
     ${TZ_SDK_INCLUDE_DIR}/basic_open_no_copyable_class.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_array.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
     ${TZ_BASIC_TOOLS_PATH}/basic_64_coder.h
     ${TZ_BASIC_TOOLS_PATH}/basic_type_class.h
-    ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_export.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_string.h
+    ${TZ_BASIC_TOOLS_PATH}/basic_string.inl
     ${TZ_BASIC_DP_PATH}/basic_open_singleTon.h
     ${TZ_BASIC_OCTOOLS_PATH}/basic_yvals_core.h
     ${TZ_BASIC_DS_PATH}/basic_RBTree.h
@@ -98,6 +93,8 @@ SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
 
 SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
     ${TZ_BASIC_INCLUDE_DIR}
+    ${TZ_BASIC_TOOLS_PATH}
+    ${TZ_PLATFORM_PATH}
     ${TZ_SDK_INCLUDE_DIR}
     ${TZ_THIRDPARTY_ROOT}/boost_1_79_0
     inc
@@ -118,7 +115,6 @@ IF(TZ_WINDOWS)
 
     SOURCE_GROUP("include\\Common"
         FILES
-        ${TZ_SDK_INCLUDE_DIR}/basic_array.h
         ${TZ_SDK_INCLUDE_DIR}/basic_open_array.h
         ${TZ_SDK_INCLUDE_DIR}/basic_open_array_stl.h
         ${TZ_SDK_INCLUDE_DIR}/basic_bit_flags.h
@@ -127,9 +123,13 @@ IF(TZ_WINDOWS)
         ${TZ_SDK_INCLUDE_DIR}/basic_export.h
         ${TZ_SDK_INCLUDE_DIR}/basic_open_math.h
         ${TZ_SDK_INCLUDE_DIR}/basic_open_no_copyable_class.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_array.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
         ${TZ_BASIC_TOOLS_PATH}/basic_64_coder.h
         ${TZ_BASIC_TOOLS_PATH}/basic_type_class.h
-        ${TZ_BASIC_TOOLS_PATH}/basic_binary_data.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_export.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_string.h
+        ${TZ_BASIC_TOOLS_PATH}/basic_string.inl
     )
 
     SOURCE_GROUP("include\\DesignPattern"

@@ -38,6 +38,9 @@ SET(_LIBRARY_SDK_INCLUDE
     ${TZ_SDK_INCLUDE_DIR}/tzsofts_str_operations.h
     ${TZ_SDK_INCLUDE_DIR}/tzsofts_trace_util.h
     ${TZ_SDK_INCLUDE_DIR}/zsofts_types.h
+    ${TZ_PLATFORM_PATH}/platform_compiler_specific.h
+    ${TZ_PLATFORM_PATH}/platform_defines.h
+    ${TZ_PLATFORM_PATH}/platform_types.h
     ${__TZ_PLATFORM_INCLUDE}
 )
 
@@ -66,7 +69,7 @@ SET(TZ_LIBRARY_SRC
 
 SET(TZ_LIBRARY_FOLDER "Basic")
 
-#   COMPILE_OPTIONS
+# COMPILE_OPTIONS
 
 SET(TZ_LIBRARY_GENERAL_OPTIONS
     ${__TZ_PLATFORM_COMPILE_OPTIONS}
@@ -80,7 +83,7 @@ SET(TZ_LIBRARY_GENERAL_OPTIONS_RELEASE
     ${__TZ_PLATFORM_COMPILE_OPTIONS_RELEASE}
 )
 
-#   LINK FLAGS
+# LINK FLAGS
 
 SET(TZ_LIBRARY_GENERAL_LINK_FLAGS
     ${__TZ_PLATFORM_LINK_FLAGS}
@@ -95,7 +98,6 @@ SET(TZ_LIBRARY_GENERAL_LINK_FLAGS_RELEASE
 )
 
 SET(TZ_LIBRARY_INCLUDE_DIRECTORIES_PRIVATE
-    ${TZ_BASIC_INCLUDE_DIR}
     ${TZ_SDK_INCLUDE_DIR}
     inc
 )
@@ -108,4 +110,43 @@ SET(TZ_LIBRARY_INSTALL_HEADERS
     ${_LIBRARY_SDK_INCLUDE}
 )
 
+SET(TZ_LIBRARY_CUSTOM_GROUP ON)
+
 TZ_SETUP_LIBRARY()
+
+IF(TZ_WINDOWS)
+    SOURCE_GROUP("include\\Common"
+        FILES
+        ${TZ_SDK_INCLUDE_DIR}/platform_export.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_assert.h
+        ${TZ_SDK_INCLUDE_DIR}/zsofts_compiler_specific.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_debug_utils.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_lock.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_math.h
+        ${TZ_SDK_INCLUDE_DIR}/zsofts_platform.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_platform_utils.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_ref_counter.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_str_operations.h
+        ${TZ_SDK_INCLUDE_DIR}/tzsofts_trace_util.h
+        ${TZ_SDK_INCLUDE_DIR}/zsofts_types.h
+    )
+
+    SOURCE_GROUP("include\\Platform"
+        FILES
+        ${TZ_PLATFORM_PATH}/platform_compiler_specific.h
+        ${TZ_PLATFORM_PATH}/platform_defines.h
+        ${TZ_PLATFORM_PATH}/platform_types.h
+        ${__TZ_PLATFORM_INCLUDE}
+    )
+
+    SOURCE_GROUP("src\\Common"
+        FILES
+        src/tzsofts_assert.cpp
+        src/tzsofts_platform_utils.cpp
+        src/tzsofts_lock.cpp
+        src/tzsofts_trace_util.cpp
+        ${__TZ_PLATFORM_SRC}
+        ${TZ_SOURCE_COMMON_DIR}/target_winver.cpp
+    )
+
+ENDIF()
