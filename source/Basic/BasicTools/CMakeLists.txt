@@ -29,6 +29,7 @@ SET(_LIBRARY_SDK_INCLUDE
     ${TZ_BASIC_TOOLS_PATH}/basic_export.h
     ${TZ_BASIC_TOOLS_PATH}/basic_string.h
     ${TZ_BASIC_TOOLS_PATH}/basic_string.inl
+    ${TZ_BASIC_TOOLS_PATH}/basic_ref_count_base.h
     ${TZ_BASIC_DP_PATH}/basic_open_singleTon.h
     ${TZ_BASIC_OCTOOLS_PATH}/basic_yvals_core.h
     ${TZ_BASIC_DS_PATH}/basic_RBTree.h
@@ -130,6 +131,7 @@ IF(TZ_WINDOWS)
         ${TZ_BASIC_TOOLS_PATH}/basic_export.h
         ${TZ_BASIC_TOOLS_PATH}/basic_string.h
         ${TZ_BASIC_TOOLS_PATH}/basic_string.inl
+        ${TZ_BASIC_TOOLS_PATH}/basic_ref_count_base.h
     )
 
     SOURCE_GROUP("include\\DesignPattern"
