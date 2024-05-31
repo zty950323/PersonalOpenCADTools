@@ -36,52 +36,53 @@ namespace Base
 {
     struct TypeData;
 
-    class TZ_BASIC_STATIC_EXPORT Type
+    class TZ_BASIC_STATIC_EXPORT GeneralType
     {
     public:
+        typedef void* (*instantiationMethod)();
+
         /// Construction
-        Type(const Type& type);
-        Type();
+        GeneralType(const GeneralType& type);
+        GeneralType();
         /// Destruction
-        virtual ~Type();
+        virtual ~GeneralType();
 
         /// Creates a instance of this type
         void* createInstance();
         /// Creates a instance of the named type
         static void* createInstanceByName(const char* TypeName, bool bLoadModule = false);
-        static void importModule(const char* TypeName);
+        static void* createInstanceByName(const std::string& TypeName, bool bLoadModule = false);
+        static void importModuleByName(const char* TypeName);
 
-        typedef void* (*instantiationMethod)();
+        static GeneralType badType();
+        static void init();
+        static void destruct();
 
-        static Type fromName(const char* name);
-        static Type fromKey(unsigned int key);
-        const char* getName() const;
-        const Type getParent() const;
-        bool isDerivedFrom(const Type type) const;
-
-        static int getAllDerivedFrom(const Type type, std::vector<Type>& List);
+        static int getAllDerivedFrom(const GeneralType type, std::vector<GeneralType>& List);
         /// Returns the given named type if is derived from parent type, otherwise return bad type
-        static Type getTypeIfDerivedFrom(const char* name, const Type parent, bool bLoadModule = false);
-
+        static GeneralType getTypeIfDerivedFrom(const char* name, const GeneralType parent, bool bLoadModule = false);
         static int getNumTypes();
+        static const GeneralType createType(const GeneralType parent, const char* name, instantiationMethod method = nullptr);
 
-        static const Type createType(const Type parent, const char* name, instantiationMethod method = nullptr);
+        static GeneralType fromName(const char* name);
+        static GeneralType fromKey(unsigned int key);
+
+        const char* getName() const;
+        const GeneralType getParent() const;
+        bool isDerivedFrom(const GeneralType type) const;
 
         unsigned int getKey() const;
         bool isBad() const;
 
-        void operator=(const Type type);
-        bool operator==(const Type type) const;
-        bool operator!=(const Type type) const;
+        // Define some operators.
+        void operator=(const GeneralType type);
+        bool operator==(const GeneralType type) const;
+        bool operator!=(const GeneralType type) const;
 
-        bool operator<(const Type type) const;
-        bool operator<=(const Type type) const;
-        bool operator>=(const Type type) const;
-        bool operator>(const Type type) const;
-
-        static Type badType();
-        static void init();
-        static void destruct();
+        bool operator<(const GeneralType type) const;
+        bool operator<=(const GeneralType type) const;
+        bool operator>=(const GeneralType type) const;
+        bool operator>(const GeneralType type) const;
 
     protected:
         static std::string getModuleName(const char* ClassName);
@@ -94,59 +95,50 @@ namespace Base
         static std::set<std::string> m_loadModuleSet;
     };
 
-    inline unsigned int
-        Type::getKey() const
+    inline unsigned int GeneralType::getKey() const
     {
-        return this->m_index;
+        return m_index;
     }
 
-    inline bool
-        Type::operator!=(const Type type) const
+    inline bool GeneralType::operator!=(const GeneralType type) const
     {
-        return (this->getKey() != type.getKey());
+        return (getKey() != type.getKey());
     }
 
-    inline void
-        Type::operator=(const Type type)
+    inline void GeneralType::operator=(const GeneralType type)
     {
-        this->m_index = type.getKey();
+        m_index = type.getKey();
     }
 
-    inline bool
-        Type::operator==(const Type type) const
+    inline bool GeneralType::operator==(const GeneralType type) const
     {
-        return (this->getKey() == type.getKey());
+        return (getKey() == type.getKey());
     }
 
-    inline bool
-        Type::operator<(const Type type) const
+    inline bool GeneralType::operator<(const GeneralType type) const
     {
-        return (this->getKey() < type.getKey());
+        return (getKey() < type.getKey());
     }
 
-    inline bool
-        Type::operator<=(const Type type) const
+    inline bool GeneralType::operator<=(const GeneralType type) const
     {
-        return (this->getKey() <= type.getKey());
+        return (getKey() <= type.getKey());
     }
 
-    inline bool
-        Type::operator>=(const Type type) const
+    inline bool GeneralType::operator>=(const GeneralType type) const
     {
-        return (this->getKey() >= type.getKey());
+        return (getKey() >= type.getKey());
     }
 
-    inline bool
-        Type::operator>(const Type type) const
+    inline bool GeneralType::operator>(const GeneralType type) const
     {
-        return (this->getKey() > type.getKey());
+        return (getKey() > type.getKey());
     }
 
-    inline bool
-        Type::isBad() const
+    inline bool GeneralType::isBad() const
     {
-        return (this->m_index == 0);
+        return (m_index == 0);
     }
-} // namespace Base
+}  // namespace Base
 
 #endif // BASIC_BASE64_H

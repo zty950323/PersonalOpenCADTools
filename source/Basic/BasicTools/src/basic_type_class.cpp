@@ -24,74 +24,84 @@
 
 #include "BasicTools/basic_type_class.h"
 
-# include <cassert>
+#include <cassert>
 
 namespace Base
 {
     using namespace std;
+
     struct TypeData
     {
         TypeData(const char* theName,
-            const Type type = Type::badType(),
-            const Type theParent = Type::badType(),
-            Type::instantiationMethod method = nullptr
+            const GeneralType type = GeneralType::badType(),
+            const GeneralType theParent = GeneralType::badType(),
+            GeneralType::instantiationMethod method = nullptr
         ) : name(theName), parent(theParent), type(type), instMethod(method) { }
 
         string name;
-        Type parent;
-        Type type;
-        Type::instantiationMethod instMethod;
+        GeneralType parent;
+        GeneralType type;
+        GeneralType::instantiationMethod instMethod;
     };
 
-    map<string, unsigned int> Type::m_typeMap;
-    vector<TypeData*> Type::m_typeData;
-    set<string> Type::m_loadModuleSet;
+    map<string, unsigned int> GeneralType::m_typeMap;
+    vector<TypeData*> GeneralType::m_typeData;
+    set<string> GeneralType::m_loadModuleSet;
 
     /*-- Construction/Destruction --*/
     /**
-    * A constructor.
-    * A more elaborate description of the constructor.
-    */
-    Type::Type()
+     * A constructor.
+     * A more elaborate description of the constructor.
+     */
+    GeneralType::GeneralType()
         : m_index(0)
     {
     }
 
-
-    Type::Type(const Type& type)
+    GeneralType::GeneralType(const GeneralType& type)
         : m_index(type.m_index)
     {
     }
 
     /**
-    * A destructor.
-    * A more elaborate description of the destructor.
-    */
-    Type::~Type()
+     * A destructor.
+     * A more elaborate description of the destructor.
+     */
+    GeneralType::~GeneralType()
     {
     }
 
-    void* Type::createInstance()
+    void* GeneralType::createInstance()
     {
         instantiationMethod method = m_typeData[m_index]->instMethod;
         return method ? (*method)() : nullptr;
     }
 
-    void* Type::createInstanceByName(const char* TypeName, bool bLoadModule)
+    void* GeneralType::createInstanceByName(const char* TypeName, bool bLoadModule)
     {
         // if not already, load the module
         if (bLoadModule)
-            importModule(TypeName);
+            importModuleByName(TypeName);
 
         // now the type should be in the type map
-        Type t = fromName(TypeName);
+        GeneralType t = fromName(TypeName);
         if (t == badType())
             return nullptr;
 
         return t.createInstance();
     }
 
-    void Type::importModule(const char* TypeName)
+    void* GeneralType::createInstanceByName(const std::string& TypeName, bool bLoadModule /*= false*/)
+    {
+        if (TypeName.size() == 0) {
+            return nullptr;
+        }
+
+        const auto& nameStr = TypeName.c_str();
+        return createInstanceByName(nameStr, bLoadModule);
+    }
+
+    void GeneralType::importModuleByName(const char* TypeName)
     {
         // cut out the module name
         string Mod = getModuleName(TypeName);
@@ -101,7 +111,7 @@ namespace Base
             set<string>::const_iterator pos = m_loadModuleSet.find(Mod);
             if (pos == m_loadModuleSet.end()) {
                 // Interpreter().loadModule(Mod.c_str());
-#ifdef TZOT_LOG_LOAD_MODULE
+#ifdef TZ_OPEN_LOG_IMPORT_INFO
                 Console().Log("Act: Module %s loaded through class %s \n", Mod.c_str(), TypeName);
 #endif
                 m_loadModuleSet.insert(Mod);
@@ -109,10 +119,10 @@ namespace Base
         }
     }
 
-    string Type::getModuleName(const char* ClassName)
+    string GeneralType::getModuleName(const char* ClassName)
     {
         string temp(ClassName);
-        std::string::size_type pos = temp.find_first_of("::");
+        string::size_type pos = temp.find_first_of("::");
 
         if (pos != std::string::npos)
             return string(temp, 0, pos);
@@ -120,35 +130,35 @@ namespace Base
             return string();
     }
 
-    Type Type::badType()
+    GeneralType GeneralType::badType()
     {
-        Type bad;
+        GeneralType bad;
         bad.m_index = 0;
         return bad;
     }
 
-    const Type Type::createType(const Type parent, const char* name, instantiationMethod method)
+    const GeneralType GeneralType::createType(const GeneralType parent, const char* name, instantiationMethod method)
     {
-        Type newType;
-        newType.m_index = static_cast<unsigned int>(Type::m_typeData.size());
+        GeneralType newType;
+        newType.m_index = static_cast<unsigned int>(GeneralType::m_typeData.size());
         TypeData* typeData = new TypeData(name, newType, parent, method);
-        Type::m_typeData.push_back(typeData);
+        GeneralType::m_typeData.push_back(typeData);
 
         // add to dictionary for fast lookup
-        Type::m_typeMap[name] = newType.getKey();
+        GeneralType::m_typeMap[name] = newType.getKey();
 
         return newType;
     }
 
 
-    void Type::init()
+    void GeneralType::init()
     {
-        assert(Type::m_typeData.size() == 0);
-        Type::m_typeData.push_back(new TypeData("BadType"));
-        Type::m_typeMap["BadType"] = 0;
+        assert(GeneralType::m_typeData.size() == 0);
+        GeneralType::m_typeData.push_back(new TypeData("BadType"));
+        GeneralType::m_typeMap["BadType"] = 0;
     }
 
-    void Type::destruct()
+    void GeneralType::destruct()
     {
         for (std::vector<TypeData*>::const_iterator it = m_typeData.begin(); it != m_typeData.end(); ++it)
             delete* it;
@@ -157,7 +167,7 @@ namespace Base
         m_loadModuleSet.clear();
     }
 
-    Type Type::fromName(const char* name)
+    GeneralType GeneralType::fromName(const char* name)
     {
         std::map<std::string, unsigned int>::const_iterator pos;
 
@@ -165,31 +175,31 @@ namespace Base
         if (pos != m_typeMap.end())
             return m_typeData[pos->second]->type;
         else
-            return Type::badType();
+            return GeneralType::badType();
     }
 
-    Type Type::fromKey(unsigned int key)
+    GeneralType GeneralType::fromKey(unsigned int key)
     {
         if (key < m_typeData.size())
             return m_typeData[key]->type;
         else
-            return Type::badType();
+            return GeneralType::badType();
     }
 
-    const char* Type::getName() const
+    const char* GeneralType::getName() const
     {
         return m_typeData[m_index]->name.c_str();
     }
 
-    const Type Type::getParent() const
+    const GeneralType GeneralType::getParent() const
     {
         return m_typeData[m_index]->parent;
     }
 
-    bool Type::isDerivedFrom(const Type type) const
+    bool GeneralType::isDerivedFrom(const GeneralType type) const
     {
 
-        Type temp(*this);
+        GeneralType temp(*this);
         do {
             if (temp == type)
                 return true;
@@ -199,7 +209,7 @@ namespace Base
         return false;
     }
 
-    int Type::getAllDerivedFrom(const Type type, std::vector<Type>& List)
+    int GeneralType::getAllDerivedFrom(const GeneralType type, std::vector<GeneralType>& List)
     {
         int cnt = 0;
 
@@ -214,21 +224,21 @@ namespace Base
         return cnt;
     }
 
-    int Type::getNumTypes()
+    int GeneralType::getNumTypes()
     {
         return static_cast<int>(m_typeData.size());
     }
 
-    Type Type::getTypeIfDerivedFrom(const char* name, const Type parent, bool bLoadModule)
+    GeneralType GeneralType::getTypeIfDerivedFrom(const char* name, const GeneralType parent, bool bLoadModule)
     {
         if (bLoadModule)
-            importModule(name);
+            importModuleByName(name);
 
-        Type type = fromName(name);
+        GeneralType type = fromName(name);
 
         if (type.isDerivedFrom(parent))
             return type;
         else
-            return Type::badType();
+            return GeneralType::badType();
     }
 }  // namespace Base
