@@ -11,4 +11,4 @@ message("TZ_GEOMETRY_SOURCE_DIR=${TZ_GEOMETRY_SOURCE_DIR}")
 set(TZ_GEOMETRY_INCLUDE_DIR ${TZ_GEOMETRY_SOURCE_DIR}/include)
 message("TZ_GEOMETRY_INCLUDE_DIR=${TZ_GEOMETRY_INCLUDE_DIR}")
 
-add_subdirectory(GeomMath)
+# add_subdirectory(GeomMath)
